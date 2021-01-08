@@ -103,7 +103,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
         <dc:creator>
           <cc:Agent>
             <dc:title>Matías Senger</dc:title>
@@ -242,7 +242,7 @@
          sodipodi:role="line"
          id="tspan891"
          x="69.541649"
-         y="78.479378">Wheighted average</tspan><tspan
+         y="78.479378">Weighted average</tspan><tspan
          sodipodi:role="line"
          x="69.541649"
          y="95.146004"
