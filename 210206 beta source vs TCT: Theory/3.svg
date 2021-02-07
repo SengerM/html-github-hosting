@@ -13,7 +13,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.0.2 (1.0.2+r75+1)"
-   sodipodi:docname="1.svg">
+   sodipodi:docname="3.svg">
   <defs
      id="defs2">
     <marker
@@ -46,21 +46,6 @@
     </marker>
     <marker
        style="overflow:visible"
-       id="marker1733"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Mend"
-       inkscape:isstock="true"
-       inkscape:collect="always">
-      <path
-         transform="matrix(-0.4,0,0,-0.4,-4,0)"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         id="path1731" />
-    </marker>
-    <marker
-       style="overflow:visible"
        id="marker1607"
        refX="0"
        refY="0"
@@ -88,96 +73,6 @@
          style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
          d="M 0,0 5,-5 -12.5,0 5,5 Z"
          id="path1595" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="marker1487"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Mend"
-       inkscape:isstock="true"
-       inkscape:collect="always">
-      <path
-         transform="matrix(-0.4,0,0,-0.4,-4,0)"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         id="path1485" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="marker1477"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Mend"
-       inkscape:isstock="true"
-       inkscape:collect="always">
-      <path
-         transform="matrix(-0.4,0,0,-0.4,-4,0)"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         id="path1475" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="marker1383"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Mend"
-       inkscape:isstock="true"
-       inkscape:collect="always">
-      <path
-         transform="matrix(-0.4,0,0,-0.4,-4,0)"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         id="path1381" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="marker1373"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Mend"
-       inkscape:isstock="true"
-       inkscape:collect="always">
-      <path
-         transform="matrix(-0.4,0,0,-0.4,-4,0)"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         id="path1371" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="marker1265"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Mend"
-       inkscape:isstock="true"
-       inkscape:collect="always">
-      <path
-         transform="matrix(-0.4,0,0,-0.4,-4,0)"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         id="path1263" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="marker1188"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Mend"
-       inkscape:isstock="true"
-       inkscape:collect="always">
-      <path
-         transform="matrix(-0.4,0,0,-0.4,-4,0)"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         id="path1186" />
     </marker>
     <marker
        style="overflow:visible"
@@ -216,9 +111,9 @@
      borderopacity="1"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.2084926"
-     inkscape:cx="207.45994"
-     inkscape:cy="103.19185"
+     inkscape:zoom="3.260971"
+     inkscape:cx="179.73742"
+     inkscape:cy="123.83003"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -231,7 +126,8 @@
      inkscape:window-maximized="1"
      inkscape:snap-tangential="false"
      inkscape:showpageshadow="false"
-     inkscape:document-rotation="0">
+     inkscape:document-rotation="0"
+     inkscape:snap-global="false">
     <sodipodi:guide
        position="-49.999996,-131.86771"
        orientation="1,0"
@@ -320,186 +216,12 @@
          x="517.79529"
          y="510.23621">E</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.793749, 0.793749;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker1131)"
-       d="M 75.999998,110 122,154"
+       style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.793748, 0.793748;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker1131)"
+       d="M 74.590908,105 107,136"
        id="path1127" />
     <g
-       id="g1237"
-       transform="translate(7.000002,-2)">
-      <path
-         style="fill:none;stroke:#000000;stroke-width:0.165;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1188)"
-         d="m 84.999998,135 v 4"
-         id="path1178" />
-      <g
-         id="g1176">
-        <circle
-           style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#800000;stroke-width:0.264999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
-           id="path1167"
-           cx="85"
-           cy="135"
-           r="1" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;vector-effect:none;fill:#800000;fill-opacity:1;stroke:none;stroke-width:2.58259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000;stop-opacity:1"
-           x="321.25983"
-           y="510.23621"
-           id="text1171"
-           transform="matrix(0.10244889,0,0,0.10244889,51.51805,83.16675)"><tspan
-             sodipodi:role="line"
-             id="tspan1169"
-             x="321.25983"
-             y="510.23621"
-             style="fill:#800000;stroke-width:2.58259">+</tspan></text>
-      </g>
-    </g>
-    <g
-       id="g1261"
-       transform="translate(7.000002,-14)">
-      <path
-         style="fill:none;stroke:#000000;stroke-width:0.165;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1265)"
-         d="m 84.999998,135 v -4"
-         id="path1251" />
-      <g
-         id="g1259">
-        <circle
-           style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ccffaa;fill-opacity:1;fill-rule:evenodd;stroke:#338000;stroke-width:0.264999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
-           id="circle1253"
-           cx="85"
-           cy="135"
-           r="1" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;vector-effect:none;fill:#338000;fill-opacity:1;stroke:none;stroke-width:2.58259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000;stop-opacity:1"
-           x="321.25983"
-           y="510.23621"
-           id="text1257"
-           transform="matrix(0.10244889,0,0,0.10244889,51.83756,83.106848)"><tspan
-             sodipodi:role="line"
-             id="tspan1255"
-             x="321.25983"
-             y="510.23621"
-             style="fill:#338000;stroke-width:2.58259">-</tspan></text>
-      </g>
-    </g>
-    <g
-       id="g1357"
-       transform="translate(11.000002,-1)">
-      <path
-         style="fill:none;stroke:#000000;stroke-width:0.165;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1383)"
-         d="m 84.999998,135 v 4"
-         id="path1347" />
-      <g
-         id="g1355">
-        <circle
-           style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#800000;stroke-width:0.264999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
-           id="circle1349"
-           cx="85"
-           cy="135"
-           r="1" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;vector-effect:none;fill:#800000;fill-opacity:1;stroke:none;stroke-width:2.58259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000;stop-opacity:1"
-           x="321.25983"
-           y="510.23621"
-           id="text1353"
-           transform="matrix(0.10244889,0,0,0.10244889,51.51805,83.16675)"><tspan
-             sodipodi:role="line"
-             id="tspan1351"
-             x="321.25983"
-             y="510.23621"
-             style="fill:#800000;stroke-width:2.58259">+</tspan></text>
-      </g>
-    </g>
-    <g
-       id="g1369"
-       transform="translate(11.000002,-11)">
-      <path
-         style="fill:none;stroke:#000000;stroke-width:0.165;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1373)"
-         d="m 84.999998,135 v -4"
-         id="path1359" />
-      <g
-         id="g1367">
-        <circle
-           style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ccffaa;fill-opacity:1;fill-rule:evenodd;stroke:#338000;stroke-width:0.264999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
-           id="circle1361"
-           cx="85"
-           cy="135"
-           r="1" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;vector-effect:none;fill:#338000;fill-opacity:1;stroke:none;stroke-width:2.58259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000;stop-opacity:1"
-           x="321.25983"
-           y="510.23621"
-           id="text1365"
-           transform="matrix(0.10244889,0,0,0.10244889,51.83756,83.106848)"><tspan
-             sodipodi:role="line"
-             id="tspan1363"
-             x="321.25983"
-             y="510.23621"
-             style="fill:#338000;stroke-width:2.58259">-</tspan></text>
-      </g>
-    </g>
-    <g
-       id="g1461"
-       transform="translate(14.000002)">
-      <path
-         style="fill:none;stroke:#000000;stroke-width:0.165;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1487)"
-         d="m 84.999998,135 v 4"
-         id="path1451" />
-      <g
-         id="g1459">
-        <circle
-           style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#800000;stroke-width:0.264999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
-           id="circle1453"
-           cx="85"
-           cy="135"
-           r="1" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;vector-effect:none;fill:#800000;fill-opacity:1;stroke:none;stroke-width:2.58259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000;stop-opacity:1"
-           x="321.25983"
-           y="510.23621"
-           id="text1457"
-           transform="matrix(0.10244889,0,0,0.10244889,51.51805,83.16675)"><tspan
-             sodipodi:role="line"
-             id="tspan1455"
-             x="321.25983"
-             y="510.23621"
-             style="fill:#800000;stroke-width:2.58259">+</tspan></text>
-      </g>
-    </g>
-    <g
-       id="g1473"
-       transform="translate(14.000002,-8)">
-      <path
-         style="fill:none;stroke:#000000;stroke-width:0.165;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1477)"
-         d="m 84.999998,135 v -4"
-         id="path1463" />
-      <g
-         id="g1471">
-        <circle
-           style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ccffaa;fill-opacity:1;fill-rule:evenodd;stroke:#338000;stroke-width:0.264999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
-           id="circle1465"
-           cx="85"
-           cy="135"
-           r="1" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;vector-effect:none;fill:#338000;fill-opacity:1;stroke:none;stroke-width:2.58259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000;stop-opacity:1"
-           x="321.25983"
-           y="510.23621"
-           id="text1469"
-           transform="matrix(0.10244889,0,0,0.10244889,51.83756,83.106848)"><tspan
-             sodipodi:role="line"
-             id="tspan1467"
-             x="321.25983"
-             y="510.23621"
-             style="fill:#338000;stroke-width:2.58259">-</tspan></text>
-      </g>
-    </g>
-    <g
        id="g1581"
-       transform="translate(24.000002,8)">
+       transform="translate(23.02309,3.9694046)">
       <path
          style="fill:none;stroke:#000000;stroke-width:0.165;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1607)"
          d="m 84.999998,135 v 4"
@@ -528,7 +250,7 @@
     </g>
     <g
        id="g1593"
-       transform="translate(24.000002,4)">
+       transform="translate(23.02309,-0.03059538)">
       <path
          style="fill:none;stroke:#000000;stroke-width:0.165;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1597)"
          d="m 84.999998,135 v -4"
@@ -555,75 +277,17 @@
              style="fill:#338000;stroke-width:2.58259">-</tspan></text>
       </g>
     </g>
-    <g
-       id="g1717"
-       transform="translate(21.000002,6)">
-      <path
-         style="fill:none;stroke:#000000;stroke-width:0.165;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1743)"
-         d="m 84.999998,135 v 4"
-         id="path1707" />
-      <g
-         id="g1715">
-        <circle
-           style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#800000;stroke-width:0.264999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
-           id="circle1709"
-           cx="85"
-           cy="135"
-           r="1" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;vector-effect:none;fill:#800000;fill-opacity:1;stroke:none;stroke-width:2.58259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000;stop-opacity:1"
-           x="321.25983"
-           y="510.23621"
-           id="text1713"
-           transform="matrix(0.10244889,0,0,0.10244889,51.51805,83.16675)"><tspan
-             sodipodi:role="line"
-             id="tspan1711"
-             x="321.25983"
-             y="510.23621"
-             style="fill:#800000;stroke-width:2.58259">+</tspan></text>
-      </g>
-    </g>
-    <g
-       id="g1729"
-       transform="translate(21.000002,1)">
-      <path
-         style="fill:none;stroke:#000000;stroke-width:0.165;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1733)"
-         d="m 84.999998,135 v -4"
-         id="path1719" />
-      <g
-         id="g1727">
-        <circle
-           style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ccffaa;fill-opacity:1;fill-rule:evenodd;stroke:#338000;stroke-width:0.264999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
-           id="circle1721"
-           cx="85"
-           cy="135"
-           r="1" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;vector-effect:none;fill:#338000;fill-opacity:1;stroke:none;stroke-width:2.58259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000;stop-opacity:1"
-           x="321.25983"
-           y="510.23621"
-           id="text1725"
-           transform="matrix(0.10244889,0,0,0.10244889,51.83756,83.106848)"><tspan
-             sodipodi:role="line"
-             id="tspan1723"
-             x="321.25983"
-             y="510.23621"
-             style="fill:#338000;stroke-width:2.58259">-</tspan></text>
-      </g>
-    </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:2.51338584;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000;stop-opacity:1;"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:2.51339;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000;stop-opacity:1"
        x="309.92126"
        y="419.52756"
        id="text1165"
-       transform="matrix(0.19303848,0.18094332,-0.18094332,0.19303848,99.915801,-17.972512)"><tspan
+       transform="matrix(0.19303848,0.18094332,-0.18094332,0.19303848,97.475428,-27.815476)"><tspan
          sodipodi:role="line"
          id="tspan1163"
          x="309.92126"
-         y="419.52756">MIP particle trajectory</tspan></text>
+         y="419.52756">Infrared photon</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 105,115 v -15 h 65 v 65 h -65 v -15"
@@ -682,5 +346,23 @@
          id="tspan2063"
          x="11.338598"
          y="174.35828">Silicon</tspan></text>
+    <circle
+       id="path1891"
+       style="fill:#000000;stroke:none;stroke-width:0.264583"
+       cx="108.00415"
+       cy="136.97517"
+       r="0.39687499" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;vector-effect:none;fill:#5f8dd3;fill-opacity:1;stroke:none;stroke-width:1.12608;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000;stop-opacity:1;"
+       x="197.78421"
+       y="143.69702"
+       id="text1907"
+       transform="matrix(0.23495846,0,0,0.23495846,62.908342,104.23489)"><tspan
+         sodipodi:role="line"
+         id="tspan1905"
+         x="197.78421"
+         y="143.69702"
+         style="stroke-width:1.12608;fill:#5f8dd3;">← Absorption</tspan></text>
   </g>
 </svg>
