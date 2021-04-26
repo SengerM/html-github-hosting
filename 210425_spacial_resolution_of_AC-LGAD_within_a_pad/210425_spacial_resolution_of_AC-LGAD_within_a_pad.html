@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Spacial Resolution of AC-LGAD Within a Pad</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+	<script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	
+</head>
+
+<body>
+	
+	<div id="document_title">This will be replaced by the title of the document</div>
+		
+	<author affiliation="Universität Zürich">
+		Matías Senger
+	</author>
+	
+	<div style="width: 100%;text-align:center;margin: 10px;">
+		April 26<sup>th</sup> 2021
+	</div>
+	
+	<abstract>
+	<p>Among the technologies for the implementation of the so called 4D-pixels (pixelated detectors capable of measuring position and time of impact of particles)&nbsp;<crossref>2021 Paternoster Novel strategies for fine-segmented Low Gain Avalanche Diodes</crossref> AC-LGAD detectors have proven outstanding performance in measuring the impact time and position of MIP particles&nbsp;<crossref>2020 Mandurrino RSD1 characterization</crossref>. Furthermore this technology solves the problem of the fill factor with a value of 100&nbsp;% thanks to having a non-segmented active area and the segmentation is done in the readout electrodes, which are AC coupled to the detector. Despite having these remarkable features the AC coupling requires relatively big pad sizes which could degrade the spacial resolution in the area within the pad.</p>
+	<p>In this article I present a measurement of the spacial resolution within a pad using a detector that belongs to the <em>RSD1</em><footnote><em>RSD1</em> is the first production of AC-LGADs at FBK&nbsp;<crossref>2020 Mandurrino RSD1 characterization</crossref>.</footnote> production. For this measurement a scanning TCT was used and a special pad layout with a trench was analyzed. The results show that the performance of the detector is not compromised in the area below a metallic pad.</p>
+	</abstract>
+	
+	<div id="table-of-contents">
+		<h2 class="unnumbered">Table of contents</h2> <!-- Feel free to change this title. -->
+		<!-- Here will be placed the table of contents -->
+	</div>
+	
+
+	<h1>Introduction</h1>
+	
+	<p>AC-LGAD detectors consist of a continuous and "big" LGAD device on top of which a special resistive layer is deposited together with an isolating layer and finally conductive electrodes on top of everything are implemented&nbsp;<crossref>2019 Mandurrino AC-LGAD demonstration</crossref>&nbsp;<crossref>2020 Mandurrino RSD1 characterization</crossref>&nbsp;<crossref>2021 Paternoster Novel strategies for fine-segmented Low Gain Avalanche Diodes</crossref>. This allows the detectors to have a 100&nbsp;% fill factor. A pictorial representation of an AC-LGAD is shown in <crossref>Figure: cartoon of AC-LGAD with MIP</crossref>. Since the signal produced by an impinging particle is shared among the pads as it travels through the resistive layer to the collection ring in the edges of the detector, the ultimate spacial resolution of these detectors is obtained by combining the signal measured from many pads.</p>
+	
+	<float class="Figure" id="Figure: cartoon of AC-LGAD with MIP">
+		<image 
+			src="media/1.svg" 
+			style="width: 100%; max-height: 44vh;"
+		></image>
+		<floatcaption>Pictorial representation of an AC-LGAD with 9 square pads (as the one that was used for the current work). A MIP particle hits the detector in some position, it produces ionization charge which is distributed among the pads. As the signal spreads on the surface of the detector its amplitude gets smaller.</floatcaption>
+	</float>
+	
+	<p>The sharing signal scheme works fine when the impinging particle hits the detector in a region in between the pads, as illustrated in <crossref>Figure: cartoon of AC-LGAD with MIP</crossref>. In turn, if the particle hits the detector in the area within a pad it is to be expected that the spacial resolution may be compromised as the (fast components of the) signal will be mostly captured by a single pad. The signal sharing (of fast components), thus, becomes worse and the spacial resolution may degrade to that of a single square pixel of the size of the pad without signal sharing. However, as the spacial resolution is determined by the collected charge, independently of the "collection speed", and the pads are AC&nbsp;coupled, all the charge will eventually "slowly" return to the resistive layer and be eventually shared. In view of this the spacial resolution should not degrade. If this process is slow enough, however, the signal could be drawn below the noise floor producing indeed a degradation of the spacial resolution.</p>
+	
+	<p>To determine which effect wins a spacial resolution measurement was done using a scanning TCT setup. Details of the setup and the detector will be provided below.</p>
+	
+	<h2>Setup and procedure</h2>
+	
+	<p>The device used for this measurement was the one labeled <em>RSD1 W10-A -5,3 3x3 200</em><footnote>Alias <a href="https://es.wikipedia.org/wiki/El_holand%C3%A9s_errante_(leyenda)">El Holandés</a>.</footnote>. This device has a total of nine pads of which only four were used. A microscope picture of this device is shown in <crossref>Figure: microscope picture of the device</crossref> where there can be appreciated the four wire bonded pads. Each of these pads has an opening in order to be able to shine the laser through the pad, as shown in the zoom inset. Though this is not exactly "photons impinging below the pad" it is expected to provide a good approximation.</p>
+	
+	<float class="Figure" id="Figure: microscope picture of the device">
+		<image 
+			src="media/2.svg" 
+			style="width: 100%; max-height: 44vh;"
+		></image>
+		<floatcaption>Microscope picture of the AC-LGAD utilized for this work. The brown region is the silicon exposed to the photons from the laser. The wire bonds were carefully done in order to not obstruct the openings in the pads. The laser was shined within the region denoted with the dashed rectangle in the zoomed detail.</floatcaption>
+	</float>
+	
+	<p>The procedure to characterize the device was "the same as usual" which is described in references&nbsp;<crossref>2021 Senger First time-space characterization of an AC-LGAD</crossref> and&nbsp;<crossref>2021 Senger First application of the empirical likelihood function to position reconstruction in AC-LGAD detectors</crossref>. I.e.&nbsp;the device was placed in the scanning TCT and, after all the routine procedures<footnote>Big rough scan to find the device, z&nbsp;scan to accurately find the focus and adjustment of the proper scale in the oscilloscope for each of the four channels.</footnote> were completed, two scans were performed:
+	<ol>
+		<li>A "training scan" with a spacing of 3&nbsp;µm and 999 laser shots at each position.</li>
+		<li>A "testing scan" with a spacing of 1&nbsp;µm and 22 laser shots at each position.</li>
+	</ol>
+	The data recorded from these two scans was later on fed into a machine learning algorithm&nbsp;<crossref>2021 Senger First application of the empirical likelihood function to position reconstruction in AC-LGAD detectors</crossref>.</p>
+	
+	<h1>Results</h1>
+	
+	<p>Using the <em>training scan</em> dataset the machine learning algorithm was trained and nearly 200&nbsp;k events from the <em>testing scan</em> dataset were reconstructed. The reconstruction error was defined simply as 
+	<equation id="Equation: Reconstruction error">
+		$$\text{Reconstruction error}=\sqrt{x_{\text{Error}}^{2}+y_{\text{Error}}^{2}}$$
+	</equation>
+	with the error in each coordinate being the difference between the "real point" where the laser was shined<footnote>The "real point" is the $x,y$ point where the laser was configured to shine.</footnote> $x_\text{Laser was shined}$, $y_\text{Laser was shined}$ and the reconstructed point by the reconstruction algorithm:
+	<equation id="Equation: x_error y_error">
+		$$\left\{ \begin{aligned} & x_{\text{Error}}=x_{\text{Laser was shined}}-x_{\text{Reconstructed}}\\
+			 & y_{\text{Error}}=y_{\text{Laser was shined}}-y_{\text{Reconstructed}}
+			\end{aligned}
+			\right.$$
+	</equation>
+	In <crossref>Figure: Reconstruction error colormaps</crossref> the reconstruction error mean and standard deviation at each $x,y$ point are shown as color maps. The quantity shown in these plots is the "total error" given by <crossref>Equation: Reconstruction error</crossref> and each pixel contains data (mean or std) from 22 laser shots.</p>
+	
+	<float class="Figure" id="Figure: Reconstruction error colormaps">
+		<div style="display: flex;">
+			<iframe class="plotly" src="media/Reconstruction error mean.html" style="width: 555px ! important;"></iframe>
+			<iframe class="plotly" src="media/Reconstruction error std.html" style="width: 555px ! important;"></iframe>
+		</div>
+		<floatcaption>Mean (left) and standard deviation (right) of the reconstruction error given by <crossref>Equation: Reconstruction error</crossref>. Each pixel contains data of 22 laser shots.</floatcaption>
+	</float>
+	
+	<p>Two regions were defined along the scanned surface, they are shown in the plots in <crossref>Figure: Reconstruction error colormaps</crossref>. For each of these regions the reconstruction error in each coordinate ($x$ and $y$) was analyzed. In <crossref>Figure: Reconstruction error x y histograms</crossref> the distribution of these quantities is shown.</p>
+	<p>The reconstruction error in the $x$ coordinate is much worse in the region 2 (outside the pad) than in region 1. This is to be expected. The laser beam size is approximately 20&nbsp;µm&nbsp;<crossref>2021 Senger A spacial characterization of the TCT</crossref>, which is more or less the same size of the opening in the pad (see <crossref>Figure: microscope picture of the device</crossref>). Thus, when the laser is shined onto the pad opening the translation symmetry along the $x$ direction is broken which makes much easier the position reconstruction on this coordinate. The reconstruction error in $x$ within the pad opening is, thus, not realistic.</p>
+	<p>In the $y$ coordinate we see that the reconstruction error inside the pad opening (region 1) is worse than outside the pad (region 2). This, again, is expected. The reason is that the sharing of the signal between this pad and the one on top (see <crossref>Figure: microscope picture of the device</crossref>) is better when the laser is shined outside the pad and in this direction the symmetry is not broken.</p>
+	
+	
+	<float class="Figure" id="Figure: Reconstruction error x y histograms">
+		<div style="display: flex;">
+			<iframe class="plotly" src="media/x reconstruction error distribution.html" style="width: 555px ! important;"></iframe>
+			<iframe class="plotly" src="media/y reconstruction error distribution.html" style="width: 555px ! important;"></iframe>
+		</div>
+		<floatcaption>$x$ and $y$ reconstruction errors, as given by <crossref>Equation: x_error y_error</crossref>, distributions in each of the different regions indicated in the color maps of <crossref>Figure: Reconstruction error colormaps</crossref>.</floatcaption>
+	</float>
+	
+	<p>In <crossref>Figure: Reconstruction error y histograms with fits</crossref> the reconstruction error in the $y$ direction is plotted together with Gaussian fits for each region. From these fits we see that the fluctuations in the reconstructed position (the $\sigma$ for each fit) are 5.7&nbsp;µm outside the pad and 8.6&nbsp;µm inside the pad opening. We see a degradation of about 30&nbsp;%. We can compare the resolution in region&nbsp;1 with the resolution expected for a square pixel with the same size as the pad, 100&nbsp;µm, which is given by $$\sigma_\text{Uniform}=\frac{\text{Pixel size}}{12}$$ assuming a uniform distribution. In this case the resolution would be of about 8&nbsp;µm. Since this is comparable with the obtained resolution in the $y$ direction, I conclude that within the pad the spacial resolution is given by the usual uniform distribution for pixels with no signal sharing.</p>
+	
+	<float class="Figure" id="Figure: Reconstruction error y histograms with fits">
+		<iframe class="plotly" src="media/y reconstruction error distribution with fits.html" style="width: 100%; min-width: 555px; max-width: 999px;"></iframe>
+		<floatcaption>Reconstruction error in the $y$ direction, as given by <crossref>Equation: x_error y_error</crossref>, together with Gaussian fits.</floatcaption>
+	</float>
+	
+	<h1>Conclusion</h1>
+	
+	<p>The spacial resolution of an AC-LGAD in the region below the metal pad was measured. The results are compatible with the dispersion of a uniform distribution, i.e. as if the pad is the only active electrode to reconstruct the event. A full conclusion can be drawn by comparing the spacial resolution obtained in this work with the one for the whole detector. The measurements to determine the characteristics of this detector in the rest of its surface are ongoing and a comparison will be made later on.</p>
+	
+	
+	
+	<div id="references_list">
+		<h1 class="unnumbered">References</h1>
+		<reference id="2020 Mandurrino RSD1 characterization">Mandurrino, M., N. Cartiglia, M. Tornago, M. Ferrero, F. Siviero, G. Paternoster, F. Ficorella, M. Boscardin, L. Pancheri, and G. F. Dalla Betta. “High Performance Picosecond- and Micron-Level 4D Particle Tracking with 100% Fill-Factor Resistive AC-Coupled Silicon Detectors (RSD).” ArXiv:2003.04838 [Physics], March 24, 2020. <a href="http://arxiv.org/abs/2003.04838.">http://arxiv.org/abs/2003.04838.</a></reference>
+		<reference id="2021 Paternoster Novel strategies for fine-segmented Low Gain Avalanche Diodes">Paternoster, G., G. Borghi, R. Arcidiacono, M. Boscardin, N. Cartiglia, M. Centis Vignali, G. F. Dalla Betta, et al. “Novel Strategies for Fine-Segmented Low Gain Avalanche Diodes.” Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment 987 (January 21, 2021): 164840. <a href="https://doi.org/10.1016/j.nima.2020.164840">https://doi.org/10.1016/j.nima.2020.164840</a>.</reference>
+		<reference id="2019 Mandurrino AC-LGAD demonstration">Mandurrino, M., R. Arcidiacono, M. Boscardin, N. Cartiglia, G. F. Dalla Betta, M. Ferrero, F. Ficorella, et al. “Demonstration of 200-, 100-, and 50- μ m Pitch Resistive AC-Coupled Silicon Detectors (RSD) With 100% Fill-Factor for 4D Particle Tracking.” IEEE Electron Device Letters 40, no. 11 (November 2019): 1780–83. <a href="https://doi.org/10.1109/LED.2019.2943242">https://doi.org/10.1109/LED.2019.2943242</a>.</reference>
+		<reference id="2021 Senger First time-space characterization of an AC-LGAD">M. Senger, First time-space characterization of an AC-LGAD, <a href="https://msenger.web.cern.ch/first-time-space-characterization-of-an-ac-lgad/">https://msenger.web.cern.ch/first-time-space-characterization-of-an-ac-lgad/</a>.</reference>
+		<reference id="2021 Senger First application of the empirical likelihood function to position reconstruction in AC-LGAD detectors">M. Senger, First application of the empirical likelihood function to position reconstruction in AC-LGAD detectors, <a href="https://msenger.web.cern.ch/first-application-of-the-empirical-likelihood-function-to-position-reconstruction-in-ac-lgad-detectors/">https://msenger.web.cern.ch/first-application-of-the-empirical-likelihood-function-to-position-reconstruction-in-ac-lgad-detectors/</a>.</reference>
+		<reference id="2021 Senger A spacial characterization of the TCT">M. Senger, A spacial characterization of the TCT, <a href="https://msenger.web.cern.ch/a-spacial-characterization-of-the-tct/">https://msenger.web.cern.ch/a-spacial-characterization-of-the-tct/</a>.</reference>
+	</div>
+	
+	<div id="footnotes_list">
+		<h1 class="unnumbered">Footnotes</h1>
+	</div>
+	
+	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script> <!-- This will load the script directly from the online repo, so you don't need to download it but you need internet connection. -->
+	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script> <!-- This will load the script directly from the online repo, so you don't need to download it but you need internet connection. -->
+</body>
+
+</html>
