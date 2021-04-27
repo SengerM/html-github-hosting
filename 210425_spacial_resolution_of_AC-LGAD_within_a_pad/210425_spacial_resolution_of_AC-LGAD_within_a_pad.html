@@ -117,7 +117,9 @@
 		<floatcaption>$x$ and $y$ reconstruction errors, as given by <crossref>Equation: x_error y_error</crossref>, distributions in each of the different regions indicated in the color maps of <crossref>Figure: Reconstruction error colormaps</crossref>.</floatcaption>
 	</float>
 	
-	<p>In <crossref>Figure: Reconstruction error y histograms with fits</crossref> the reconstruction error in the $y$ direction is plotted together with Gaussian fits for each region. From these fits we see that the fluctuations in the reconstructed position (the $\sigma$ for each fit) are 5.7&nbsp;µm outside the pad and 8.6&nbsp;µm inside the pad opening. We see a degradation of about 30&nbsp;%. We can compare the resolution in region&nbsp;1 with the resolution expected for a square pixel with the same size as the pad, 100&nbsp;µm, which is given by $$\sigma_\text{Uniform}=\frac{\text{Pixel size}}{12}$$ assuming a uniform distribution. In this case the resolution would be of about 8&nbsp;µm. Since this is comparable with the obtained resolution in the $y$ direction, I conclude that within the pad the spacial resolution is given by the usual uniform distribution for pixels with no signal sharing.</p>
+	<p>In <crossref>Figure: Reconstruction error y histograms with fits</crossref> the reconstruction error in the $y$ direction is plotted together with Gaussian fits for each region. From these fits we see that the fluctuations in the reconstructed position (the $\sigma$ for each fit) are 5.7&nbsp;µm outside the pad and 8.6&nbsp;µm inside the pad opening. We see a degradation of about 30&nbsp;%. We can compare the resolution in region&nbsp;1 with the resolution expected for a square pixel with the same size which is given by 
+		$$\sigma_\text{Uniform}=\frac{\text{Pad size}}{\sqrt{12}}$$ 
+	assuming a uniform distribution. Using 100&nbsp;µm for the pad size (see <crossref>Figure: microscope picture of the device</crossref>)  we get $\sigma_\text{Uniform}\approx 29 ~\text{µm}$. The measured spacial resolution in $y$ is about 3.3 times smaller, so the conclusion is that there is still charge sharing that can be exploited even when the particle hits within the pad.</p>
 	
 	<float class="Figure" id="Figure: Reconstruction error y histograms with fits">
 		<iframe class="plotly" src="media/y reconstruction error distribution with fits.html" style="width: 100%; min-width: 555px; max-width: 999px;"></iframe>
@@ -126,7 +128,7 @@
 	
 	<h1>Conclusion</h1>
 	
-	<p>The spacial resolution of an AC-LGAD in the region below the metal pad was measured. The results are compatible with the dispersion of a uniform distribution, i.e. as if the pad is the only active electrode to reconstruct the event. A full conclusion can be drawn by comparing the spacial resolution obtained in this work with the one for the whole detector. The measurements to determine the characteristics of this detector in the rest of its surface are ongoing and a comparison will be made later on.</p>
+	<p>The spacial resolution of an AC-LGAD in the region below the metal pad was measured. The results show an improvement with respect to the no-charge-sharing scenario which would give a uniform distribution below the pad, thus showing that the charge sharing mechanism is still functioning when the impact happens on a pad. A full conclusion can be drawn by comparing the spacial resolution obtained in this work with the one for the whole detector. The measurements to determine the characteristics of this detector in the rest of its surface are ongoing and a comparison will be made later on.</p>
 	
 	
 	
