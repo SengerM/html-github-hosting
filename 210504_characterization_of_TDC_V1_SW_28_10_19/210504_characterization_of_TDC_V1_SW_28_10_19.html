@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Characterization of TDC&nbsp;V1&nbsp;SW&nbsp;28&nbsp;10&nbsp;19</title>
+	<title>Characterization of the "fully digital TDC"</title>
 	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
@@ -25,7 +25,7 @@
 </head>
 
 <body>
-	<siglas class="definition" first="TDC Version 1 designed by Stephan Wiederkehr and produced on October 20&lt;sup&gt;th&lt;&#47;sup&gt; 2029" short="TDC V1 SW 28 10 19"></siglas>
+	<siglas class="definition" first="TDC Version 1 designed by Stephan Wiederkehr and produced on October 20&lt;sup&gt;th&lt;&#47;sup&gt; 2029 (TDC V1 SW 28 10 19)" short="TDC V1 SW 28 10 19"></siglas>
 	<siglas class="definition" first="Time to Digital Converter (TDC)" short="TDC"></siglas>
 	
 	<presentation_display_block>
@@ -41,7 +41,7 @@
 		</div>
 		
 		<abstract>
-		<p>In this document I present an introduction to the <siglas>TDC V1 SW 28 10 19</siglas> as well as the results from the characterization I performed. This design is the "fully digital TDC" which consists in a closed chain of inverters and a counter attached to its end. When the stop signal arrives, the system is "digitally freezed" and then the readout proceeds.</p>
+		<p>In this document I present the characterization of the "fully digital TDC" to which, to be more specific, I refer to as the <siglas>TDC V1 SW 28 10 19</siglas>. First I briefly explain the block diagram of this circuit and then I proceed to the characterization process.</p>
 		</abstract>
 	</presentation_display_block>
 	
@@ -143,7 +143,24 @@
 		<div style="display: flex; align-items: center; background-color: rgb(200,255,200); border-style: solid; border-color: rgb(111,222,111);">
 			<p style="margin: 33px;"><b>Post characterization check.</b> The calibration-check procedure was repeated after the characterization of the <siglas>TDC</siglas> structure to ensure that the system was still performing as expected. The results obtained are almost identical to the ones in <crossref>Figure: results of calibration pre-measurement</crossref>. &#9989;</p>
 		</div>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<h1>Characterization</h1>
 		
+		<p>For the characterization process the setup was assembled as in <crossref>Figure: test setup block diagram</crossref> taking care of modifying as least as possible the configuration with respect to the calibration procedure in order to not introduce unwanted effects<footnote>This setup was observed to change its calibration due to environment effects in the past&nbsp;<crossref>Reference: Characterization of delay in PSI test setup</crossref>.</footnote>. In <crossref>Figure: pics of the test setup</crossref> pictures of the setup during the characterization are showed.</p>
+		
+		<float class="Figure" id="Figure: pics of the test setup">
+			<div style="display: flex; width: 100%; flex-wrap: wrap; justify-content: space-evenly; align-items: center;">
+				<image src="media/test_setup_pics/1.svg" style="width: 333px; max-width: 100%; max-height: 99vh; margin: 33px;"></image>
+				<image src="media/test_setup_pics/2.svg" style="width: 333px; max-width: 100%; max-height: 99vh; margin: 33px;"></image>
+			</div>
+			<floatcaption>Pictures of the test setup. The oscilloscope used for the calibration procedure was left at all the time next to the setup, even when not used, to maintain the environment as close as possible to the calibration setup.</floatcaption>
+		</float>
+	</presentation_display_block>
+	
+	<presentation_display_block>
+		<p style="background-color: rgb(255,77,77); color: rgb(255,222,222);">Bla bla bla, poner los resultados! Por hoy me cansé.</p>	
 	</presentation_display_block>
 	
 	<presentation_display_block>
@@ -160,7 +177,9 @@
 	
 	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script> <!-- This will load the script directly from the online repo, so you don't need to download it but you need internet connection. -->
 	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script> <!-- This will load the script directly from the online repo, so you don't need to download it but you need internet connection. -->
+<!--
 	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/presentation_display_block/presentation_display_block.js"></script>
+-->
 </body>
 
 </html>
