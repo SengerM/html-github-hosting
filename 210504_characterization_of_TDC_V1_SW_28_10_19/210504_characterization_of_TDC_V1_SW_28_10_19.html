@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Characterization of TDC&nbsp;V1&nbsp;SW&nbsp;28&nbsp;10&nbsp;19</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/presentation_display_block/presentation_display_block.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+	<script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	
+</head>
+
+<body>
+	<siglas class="definition" first="TDC Version 1 designed by Stephan Wiederkehr and produced on October 20&lt;sup&gt;th&lt;&#47;sup&gt; 2029" short="TDC V1 SW 28 10 19"></siglas>
+	<siglas class="definition" first="Time to Digital Converter (TDC)" short="TDC"></siglas>
+	
+	<presentation_display_block>
+		
+		<div id="document_title"></div>
+			
+		<author affiliation="Universität Zürich">
+			Matías Senger
+		</author>
+		
+		<div style="width: 100%;text-align:center;margin: 10px;">
+			<a href="https://en.wikipedia.org/wiki/Star_Wars_Day"><img src="media/360px-Star_Wars_Day_May_The_Fourth.png" alt="May the 4<sup>th</sup>" height="44px" style="vertical-align:middle;"></a>, 2021
+		</div>
+		
+		<abstract>
+		<p>In this document I present an introduction to the <siglas>TDC V1 SW 28 10 19</siglas> as well as the results from the characterization I performed. This design is the "fully digital TDC" which consists in a closed chain of inverters and a counter attached to its end. When the stop signal arrives, the system is "digitally freezed" and then the readout proceeds.</p>
+		</abstract>
+	</presentation_display_block>
+	
+	<presentation_display_block>
+		<div id="table-of-contents">
+			<h2 class="unnumbered">Table of contents</h2> <!-- Feel free to change this title. -->
+			<!-- Here will be placed the table of contents -->
+		</div>
+	</presentation_display_block>
+	
+	<presentation_display_block>
+		<h1>Introduction</h1>
+		
+		<p>In this section I will describe some details about the <siglas>TDC V1 SW 28 10 19</siglas> design as well as about the test setup employed for its characterization. The whole system can be divided into three hierarchical blocks:
+		<ol>
+			<li><b>The <siglas>TDC V1 SW 28 10 19</siglas>.</b> This is the <siglas>TDC</siglas> design we are interested in.</li>
+			<li><b>The test structure.</b> This is the circuit implemented in the silicon which contains four identical <siglas>TDC V1 SW 28 10 19</siglas> replicas and peripheral circuitry for the operation.</li>
+			<li><b>The test setup.</b> This is the whole measuring system composed of a Raspberry Pi, an FPGA, a specialized short-delay generation system and the test structure itself.</li>
+		</ol>
+		Each of these blocks contains the previous blocks, i.e. the <em>test setup</em> contains one <em>test structure</em> and the <em>test structure</em> contains four identical replicas of the <em><siglas>TDC</siglas></em>. 
+		</p>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<h2>The <siglas>TDC V1 SW 28 10 19</siglas> circuit</h2>
+		
+		<p>In <crossref>Figure: TDC block diagram</crossref> it is shown the simplified block diagram of the <siglas>TDC V1 SW 28 10 19</siglas> circuit. The heart of the circuit is the ring of inverters, highlighted in yellow. This is a closed path with an odd number of inverters, 21 in this case, which makes it an oscillator. As seen, the first of the inverters is a NAND gate, allowing to start or stop the oscillation. There is also a second chain of identical inverters, highlighted in green, which is not closed. This line has an extra inverter in the beginning. Additionally, there is a set of 21 memories, called <code>SAFF_cell</code> in the diagram, which are differential D&nbsp;flip-flops<footnote>This flip-flop was specifically designed for this application.</footnote>, that basically store the difference of their inputs when <code>STOP</code> signal is received. Finally, there is a 7&nbsp;bit counter attached to the output of the last inverter in the non closed chain.</p>
+		
+		<float class="Figure" id="Figure: TDC block diagram">
+			<image src="media/tdc_block diagram.svg" style="width: 1111px;"></image>
+			<floatcaption>Simplified block diagram of the <siglas>TDC V1 SW 28 10 19</siglas> design. In red the two input signals <code>START</code> and <code>STOP</code> and in blue the two output buses <code>SAFF</code> and <code>COUNT</code>.</floatcaption>
+		</float>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<h3 class="unnumbered">The working principle</h3>
+		
+		<p>The working principle of this circuit is simple. Initially both <code>START</code> and <code>STOP</code> signals are at a low value. In this case the ring of inverters (yellow) is in the state <code>1010...01</code> and the non closed chain (green) in state <code>0101...10</code>. The circuit is in a stationary state. When the <code>START</code> changes to a high state the NAND gate becomes a NOT gate and the state of the ring (yellow) is not stable anymore. It starts to oscillate by propagating a "wave of identical consecutive states", i.e. first it changes to <code>0010...01</code>, after the propagation time it changes to <code>0110...01</code>, and so on. The same happens with the non closed (green) chain of inverters. Each time the output of the last inverter in the non closed (green) chain commutes, the counter increments in one, registering a complete loop in the ring of inverters. In some moment in time the <code>STOP</code> signal changes to a high state and in this moment the state of the two chains of inverters is freezed by the <code>SAFF_cell</code> modules and the counter stops counting. Thus, the status of the circuit is freezed. By knowing the propagation time of the NOT gates, the conversion from the state to a time is direct and a measurement of time between the <code>START</code> and <code>STOP</code> signals is obtained.</p>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<p>Note that each of the <code>SAFF_cell</code> blocks in <crossref>Figure: TDC block diagram</crossref> has the <b>inputs switched</b>. As far as I know the only reason for this is to have a "more beautiful" reading in the <code>SAFF</code> bus. For example, instead of having an output of the form <code>0101101...</code> we invert each odd bit and this becomes <code>0000111...</code>. In this way it is easier to visualize in which position "the wave" is.</p>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<h2>The test structure</h2>
+		
+		<p>The test structure implemented, i.e. the piece of silicon, contains four identical replicas of the <siglas>TDC V1 SW 28 10 19</siglas> circuit. The (simplified) block diagram of the test structure is shown in <crossref>Figure: test structure block diagram</crossref>. As can be seen all the <siglas>TDC</siglas>s share the same <code>START</code> and <code>STOP</code> signals, and the only additional circuitry is a mechanism to select each of the four outputs via the <code>SEL</code> selection bus. This selection is done during the readout process, time after the time measurement has finished.</p>
+		
+		<float class="Figure" id="Figure: test structure block diagram">
+			<image src="media/test_structure_block_diagram.svg" style="width: 555px;"></image>
+			<floatcaption>Simplified block diagram of the test structure implemented. The test structure contains four identical replicas of the <siglas>TDC V1 SW 28 10 19</siglas> design which block diagram is shown in <crossref>Figure: TDC block diagram</crossref>.</floatcaption>
+		</float>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<div style="display: flex; align-items: center; background-color: rgb(255,200,200); border-style: solid; border-color: rgb(255,111,111);">
+			<p style="margin-left: 22px; margin-right: 22px">&#128545; During the characterization procedure <b>a bug was found in the silicon</b>. In the output selection mechanism (see <crossref>Figure: test structure block diagram</crossref>) the four <code>COUNT[0]</code> bits are short-circuited among them and always connected to the output, independently of the <code>SEL</code> value. Despite there is not an easy solution to this problem, a workaround was found to still be able to characterize the <siglas>TDC V1 SW 28 10 19</siglas> design.</p>
+			<image src="media/bug_in_silicon.svg" style="width: 144px; max-width: 25vw;"></image>
+		</div>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<h2>The test setup</h2>
+		
+		<p>Finally, in this section I will describe the outermost block which is the <em>test setup</em>. A simplified block diagram is shown in <crossref>Figure: test setup block diagram</crossref>. In the rightmost part we find the test structure, described previously. Next, going from right to left, we find the <em>delay module</em> which is a board that contains two <a href="https://www.microchip.com/wwwproducts/en/SY89296">SY89296</a> delay chips. This delay module provides the <code>START</code> and <code>STOP</code> signals with an arbitrary delay between -10&nbsp;ns and 10&nbsp;ns in steps smaller than 10&nbsp;ps and fluctuations smaller than 5&nbsp;ps (more details will be given in <crossref>Section: test setup calibration</crossref>). The rest of the signals from the test structure interface directly with an FPGA which was specifically configured for this application<footnote>For the record, the code used to program the FPGA for this work can be found in <a href="https://github.com/SengerM/PSITestSetupFPGA">this repo</a>, specifically in the commit <a href="https://github.com/SengerM/PSITestSetupFPGA/commit/fe27162759e35888a1b5c73677af94f15d5e2ab5">fe27162759e35888a1b5c73677af94f15d5e2ab5</a>.</footnote>. The FPGA is controlled by a Raspberry Py which runs software developed specifically for this work<footnote>Again, for the record, the code used in the Raspberry Pi can be found in <a href="https://github.com/SengerM/PSITestSetupRaspberriPi">this repo</a> in the commit <a href="https://github.com/SengerM/PSITestSetupRaspberriPi/commit/24143785a4c96a2dd802be2f7d97497134f91e5e">24143785a4c96a2dd802be2f7d97497134f91e5e</a>.</footnote>. The last element in the test setup, in the leftmost part, is me &#129299;.</p>
+		
+		
+		<float class="Figure" id="Figure: test setup block diagram">
+			<image src="media/test_setup_block_diagram.svg" style="width: 777px;"></image>
+			<floatcaption>Simplified block diagram of the test setup. The block diagram of the <em>test structure</em> is shown in <crossref>Figure: test structure block diagram</crossref>.</floatcaption>
+		</float>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<h1 id="Section: test setup calibration">Test setup calibration</h1>
+		
+		
+		
+	</presentation_display_block>
+	
+	<presentation_display_block>
+		<div id="references_list">
+			<h1 class="unnumbered">References</h1>
+		</div>
+		
+		<div id="footnotes_list">
+			<h1 class="unnumbered">Footnotes</h1>
+		</div>
+	</presentation_display_block>
+	
+	
+	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script> <!-- This will load the script directly from the online repo, so you don't need to download it but you need internet connection. -->
+	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script> <!-- This will load the script directly from the online repo, so you don't need to download it but you need internet connection. -->
+	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/presentation_display_block/presentation_display_block.js"></script>
+</body>
+
+</html>
