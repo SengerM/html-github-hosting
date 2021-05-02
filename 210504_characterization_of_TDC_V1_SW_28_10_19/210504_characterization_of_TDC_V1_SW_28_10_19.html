@@ -119,13 +119,37 @@
 	<presentation_display_block>	
 		<h1 id="Section: test setup calibration">Test setup calibration</h1>
 		
+		<p>Before proceeding with the characterization of the test structure a calibration procedure was performed. The setup was placed in a laboratory<footnote>Our lab at G floor.</footnote> with the ambient temperature controlled during the complete period of both calibration (of test setup) and characterization (of test structure). For this calibration, the test structure was replaced by an oscilloscope<footnote>LeCroy WaveRunner 640Zi sampling at 40&nbsp;Gs/s.</footnote> as shown in <crossref>Figure: test setup calibration block diagram</crossref>. The <code>START</code> and <code>STOP</code> signals produced by the delay module were measured with the oscilloscope and the time difference at a fixed voltage threshold was computed. This calibration procedure allowed to compensate for known deviations from the ideal behavior of the delay module&nbsp;<crossref>Reference: Characterization of delay in PSI test setup</crossref> as well as to know the systematic error introduced by the setup.</p>
 		
+		<float class="Figure" id="Figure: test setup calibration block diagram">
+			<image src="media/test_setup_calibration_block_diagram.svg" style="width: 777px;"></image>
+			<floatcaption>Simplified block diagram for the calibration of the test setup. The setup is the same as the one used for characterizing the test structure (<crossref>Figure: test setup block diagram</crossref>) but the test structure was replaced by an oscilloscope measuring the <code>START</code> and <code>STOP</code> signals.</floatcaption>
+		</float>
+	</presentation_display_block>
+	
+	<presentation_display_block>		
+		<p>The results of the calibration procedure prior to the characterization of the test setup are shown in <crossref>Figure: results of calibration pre-measurement</crossref>. The measured delay follows a Gaussian distribution&nbsp;<crossref>Reference: Characterization of delay in PSI test setup</crossref>. In the two plots shown in <crossref>Figure: results of calibration pre-measurement</crossref> we find the difference between the mean of this distribution and the set delay in the left and the standard deviation of this distribution in the right, as functions of the <em>set delay</em>. The quantity we are more interested in here is the fluctuation of the delay. This quantity seems to be on the order of 4-4.5&nbsp;ps for the whole range of delays. This number contains both the systematic of the test setup and the one from the oscilloscope. It was not yet possible to measure the contribution from the oscilloscope to this number though work is being done towards this.</p>
+		
+		<float class="Figure" id="Figure: results of calibration pre-measurement">
+			<div style="display: flex;">
+				<iframe class="plotly" src="media/calibration_pre_measurement/Calibration mean error.html"></iframe>
+				<iframe class="plotly" src="media/calibration_pre_measurement/Delay fluctuations vs set delay.html"></iframe>
+			</div>
+			<floatcaption>Results of the calibration of the test setup soon before proceeding with the characterization of the test structure. Left: <em>Calibration mean error</em> defined as the difference between the <em>set delay</em> and the <em>average of the measured delay</em>. Right: <em>Delay fluctuations</em> defined as the standard deviation of the measured delay.</floatcaption>
+		</float>
+	</presentation_display_block>
+	
+	<presentation_display_block>		
+		<div style="display: flex; align-items: center; background-color: rgb(200,255,200); border-style: solid; border-color: rgb(111,222,111);">
+			<p style="margin: 33px;"><b>Post characterization check.</b> The calibration-check procedure was repeated after the characterization of the <siglas>TDC</siglas> structure to ensure that the system was still performing as expected. The results obtained are almost identical to the ones in <crossref>Figure: results of calibration pre-measurement</crossref>. &#9989;</p>
+		</div>
 		
 	</presentation_display_block>
 	
 	<presentation_display_block>
 		<div id="references_list">
 			<h1 class="unnumbered">References</h1>
+			<reference id="Reference: Characterization of delay in PSI test setup"><em>Characterization of delay in PSI test setup</em>, M. Senger, <a href="https://msenger.web.cern.ch/characterization-of-delay-in-psi-test-setup/">https://msenger.web.cern.ch/characterization-of-delay-in-psi-test-setup/</a>.</reference>
 		</div>
 		
 		<div id="footnotes_list">
