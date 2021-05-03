@@ -148,7 +148,7 @@
 	<presentation_display_block>	
 		<h1>Characterization</h1>
 		
-		<p>For the characterization process the setup was assembled as in <crossref>Figure: test setup block diagram</crossref> taking care of modifying as least as possible the configuration with respect to the calibration procedure in order to not introduce unwanted effects<footnote>This setup was observed to change its calibration due to environment effects in the past&nbsp;<crossref>Reference: Characterization of delay in PSI test setup</crossref>.</footnote>. In <crossref>Figure: pics of the test setup</crossref> pictures of the setup during the characterization are showed.</p>
+		<p>For the characterization process the setup was assembled as in <crossref>Figure: test setup block diagram</crossref> taking care of modifying as least as possible the configuration with respect to the calibration procedure in order to not introduce unwanted effects<footnote>This setup was observed to change its calibration due to environment effects in the past&nbsp;<crossref>Reference: Characterization of delay in PSI test setup</crossref>. For this characterization the environment was kept almost untouched, for example the oscilloscope used for the calibration procedure was left untouched next to the setup even when unused during the measurements.</footnote>. In <crossref>Figure: pics of the test setup</crossref> pictures of the setup during the characterization are shown.</p>
 		
 		<float class="Figure" id="Figure: pics of the test setup">
 			<div style="display: flex; width: 100%; flex-wrap: wrap; justify-content: space-evenly; align-items: center;">
@@ -160,7 +160,26 @@
 	</presentation_display_block>
 	
 	<presentation_display_block>
-		<p style="background-color: rgb(255,77,77); color: rgb(255,222,222);">Bla bla bla, poner los resultados! Por hoy me cansé.</p>	
+		<float class="Figure" id="Figure: distribution of outputs in time">
+			<iframe class="plotly" style="min-width: 666px !important; max-width: 100% !important;" src="media/Distribution of outputs for TDC 2.html"></iframe>
+			<floatcaption>Temporal distribution of each of the different outputs obtained from the <siglas>TDC V1 SW 28 10 19</siglas> circuit. To ease visualization you can enable/disable traces by clicking in the legend.</floatcaption>
+		</float>
+		
+		<float class="Figure" id="Figure: mean time vs sequence number">
+			<iframe class="plotly" src="media/Mean time vs sequence number.html"></iframe>
+			<floatcaption>Mean time for each sequence as a function of the sequence number. The <em>sequence number</em> in the $x$ axis of this plot is an integer number assigned to each sequence in "crescent order", i.e. take the sequences in the legend of the plot in <crossref>Figure: distribution of outputs in time</crossref> and start numbering them; as a result you obtain the <em>sequence number</em> used in this plot. The <em>mean time</em> for each sequence (i.e. the $y$ axis in this plot) is just the mean of each distribution shown in <crossref>Figure: distribution of outputs in time</crossref>.</floatcaption>
+		</float>
+		
+		<float class="Figure" id="Figure: time resolution vs sequence number">
+			<iframe class="plotly" src="media/Time resolution vs sequence number.html"></iframe>
+			<floatcaption>Time resolution as a function of the sequence number. The meaning of the <em>sequence number</em> is explained in the caption of <crossref>Figure: mean time vs sequence number</crossref>. The time resolution shown here is defined as the difference between the q<sub>95%</sub> and the q<sub>5%</sub> quantiles for the temporal distribution of each sequence, as shown in <crossref>Figure: distribution of outputs in time</crossref>.</floatcaption>
+		</float>
+		
+		<float class="Figure" id="Figure: time resolution distribution">
+			<iframe class="plotly" src="media/Time resolution histograms.html"></iframe>
+			<floatcaption>Distribution of the time resolution shown in <crossref>Figure: time resolution vs sequence number</crossref>. </floatcaption>
+		</float>
+		
 	</presentation_display_block>
 	
 	<presentation_display_block>
@@ -177,7 +196,9 @@
 	
 	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script> <!-- This will load the script directly from the online repo, so you don't need to download it but you need internet connection. -->
 	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script> <!-- This will load the script directly from the online repo, so you don't need to download it but you need internet connection. -->
+<!--
 	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/presentation_display_block/presentation_display_block.js"></script>
+-->
 </body>
 
 </html>
