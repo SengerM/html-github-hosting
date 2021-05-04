@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Characterization of the "fully digital TDC"</title>
+	<title>Timing characterization of the "fully digital TDC"</title>
 	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
@@ -87,7 +87,7 @@
 	</presentation_display_block>
 	
 	<presentation_display_block>	
-		<h2>The test structure</h2>
+		<h2 id="Section: the test structure">The test structure</h2>
 		
 		<p>The test structure implemented, i.e. the piece of silicon, contains four identical replicas of the <siglas>TDC V1 SW 28 10 19</siglas> circuit. The (simplified) block diagram of the test structure is shown in <crossref>Figure: test structure block diagram</crossref>. As can be seen all the <siglas>TDC</siglas>s share the same <code>START</code> and <code>STOP</code> signals, and the only additional circuitry is a mechanism to select each of the four outputs via the <code>SEL</code> selection bus. This selection is done during the readout process, time after the time measurement has finished.</p>
 		
@@ -160,25 +160,95 @@
 	</presentation_display_block>
 	
 	<presentation_display_block>
+		<p>The characterization proceeded as follows:
+			<ol>
+				<li>A random time between 0 and 10&nbsp;ns was chosen.</li>
+				<li>The delay module was configured to produce such a time difference between the <code>START</code> and <code>STOP</code> signals.</li>
+				<li>The <code>START</code> and <code>STOP</code> signals were produced thus running the <siglas>TDC</siglas> structure.</li>
+				<li>The <code>SAFF</code> and <code>COUNT</code> outputs of each of the four <siglas>TDC</siglas>s in the test structure were read.</li>
+			</ol>
+			This process was repeated enough (around 3.5 million) times in order to obtain sufficient statistics. </presentation_display_block><presentation_display_block> A fraction of the results are shown in <crossref>Figure: distribution of outputs in time</crossref>. In this plot we only see results from a single <siglas>TDC</siglas> structure (<siglas>TDC</siglas> 2), the others look similar with the exception of <siglas>TDC</siglas> 1 which seems to be broken<footnote>This <siglas>TDC</siglas> alone has an additional problem of unknown origin apart from the bug found in the <em>output selection mechanism</em>. The remaining three <siglas>TDC</siglas>s performed within the expected.</footnote>, and the time range was limited to about 500&nbsp;ps though the data extends up to 10&nbsp;ns. Each distribution shown in this figure corresponds to the time distribution of a particular output of the circuit. The notation used in the legend of this plot is <code>COUNT|SAFF</code> where <code>COUNT</code> is represented by an integer decimal number and <code>SAFF</code> by the corresponding binary sequence. Thus, for example, the first output we find is <code>0|000000000000000000001</code> which means that the read value for the counter was <code>0</code> and for the ring of inverters the value was <code>000000000000000000001</code>.</p>
+	
 		<float class="Figure" id="Figure: distribution of outputs in time">
 			<iframe class="plotly" style="min-width: 666px !important; max-width: 100% !important;" src="media/Distribution of outputs for TDC 2.html"></iframe>
-			<floatcaption>Temporal distribution of each of the different outputs obtained from the <siglas>TDC V1 SW 28 10 19</siglas> circuit. To ease visualization you can enable/disable traces by clicking in the legend.</floatcaption>
+			<floatcaption>Temporal distribution of each of the different outputs obtained from the <siglas>TDC V1 SW 28 10 19</siglas> circuit. The notation in the legend is <code>COUNT|SAFF</code> where <code>COUNT</code> and <code>SAFF</code> are the buses shown in <crossref>Figure: TDC block diagram</crossref>. To ease visualization you can enable/disable traces by clicking in the legend.</floatcaption>
 		</float>
+	</presentation_display_block>
+	
+	<presentation_display_block>
+		<p> In this plot we can explore the data in a very crude but intuitive way. For example, if we chose a single output and isolate its trace by double clicking in the legend we see that all the occurrences of such output are very constrained in time, as expected. We can also see that the distributions are not identical between one another, for example the distribution of <code>0|000000000000000000001</code> and <code>0|000000000000000000011</code> (the first two in the legend) has a different width. Some sequences, for example <code>0|00000000000111111111</code>, show a very peculiar bimodal distribution. This effect is due to the existence of "forbidden times" in the test setup, for some reason some delay values cannot be generated<footnote>It is not yet known with certainty what is th ereason for this, but it is probably a bad implementation of the algorithm that defines the configuration of the <em>delay module</em> given an arbitrary delay value.</footnote>. This is evident if we focus on the trace with legend <em>All events without filtering</em>.</p>
+	</presentation_display_block>
+	
+	<presentation_display_block>
+		<p>Each of the outputs was assigned an integer number in the following way:
+		
+		<table>
+			  <tr>
+				<td>Output sequence</td>
+				<td>Output sequence number</td>
+			  </tr>
+			  <tr>
+				<td style="text-align:center; vertical-align:middle"><code>0|000000000000000000001</code></td>
+				<td style="text-align:center; vertical-align:middle">0<br></td>
+			  </tr>
+			  <tr>
+				<td style="text-align:center; vertical-align:middle"><code>0|000000000000000000011</code></td>
+				<td style="text-align:center; vertical-align:middle">1</td>
+			  </tr>
+			  <tr>
+				<td style="text-align:center; vertical-align:middle"><code>0|000000000000000000111</code></td>
+				<td style="text-align:center; vertical-align:middle">2</td>
+			  </tr>
+			  <tr>
+				<td style="text-align:center; vertical-align:middle">⋮</td>
+				<td style="text-align:center; vertical-align:middle">⋮</td>
+			  </tr>
+		</table>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		After this, the mean value for each of the distributions (like the ones in <crossref>Figure: distribution of outputs in time</crossref>) was computed and plotted as a function of the <em>output sequence number</em>. The result is shown in <crossref>Figure: mean time vs sequence number</crossref>. Let's focus first in the curve for <siglas>TDC</siglas>&nbsp;2 (so double click this curve in the legend to isolate it). We see that the <em>mean time</em> is linear with the <em>output sequence number</em>, which is expected&nbsp;&#9989;. There are, however, some strange effects. If we focus in the region of <em>output sequence number</em> between 0 and 300, where the linear behavior is observed, we note some "periodic perturbations" to this line. The reason for this is well understood and originates in the fact that the counter changes its output while the change of inverters has not yet changed. Thus, for each value of the counter, the last state of the chain of inverters and the first one are degenerated. A solution to this is to add a single bit counter attached to another point of the chain of inverters, for example in the middle, to break the degeneracy. If we now look in the region of <em>output sequence number</em> between 300 and 400 we see an erratic behavior. The reason for this is the presence of spurious outputs. For example <code>0|000000000000000010111</code>, which is the last element in the legend of the plot in <crossref>Figure: distribution of outputs in time</crossref>, is, in principle, a non valid output in the ideal case. The data processing algorithm automatically sorts the valid outputs and puts them before the spurious outputs, and this is the reason why all the data points between 300 and 400 in <crossref>Figure: mean time vs sequence number</crossref> show this strange behavior. Having understood these two phenomenons, the rest of the deviations from the linear behavior can probably be attributed to statistical fluctuations.</p>
 		
 		<float class="Figure" id="Figure: mean time vs sequence number">
 			<iframe class="plotly" src="media/Mean time vs sequence number.html"></iframe>
 			<floatcaption>Mean time for each sequence as a function of the sequence number. The <em>sequence number</em> in the $x$ axis of this plot is an integer number assigned to each sequence in "crescent order", i.e. take the sequences in the legend of the plot in <crossref>Figure: distribution of outputs in time</crossref> and start numbering them; as a result you obtain the <em>sequence number</em> used in this plot. The <em>mean time</em> for each sequence (i.e. the $y$ axis in this plot) is just the mean of each distribution shown in <crossref>Figure: distribution of outputs in time</crossref>.</floatcaption>
 		</float>
 		
+		<p>Let's focus now on the curves of <siglas>TDC</siglas>s&nbsp;2 and&nbsp;3. These present an extra oscillation in the region where we would expect a linear behavior. This oscillation is produced by <em>the bug in the silicon</em> mentioned in <crossref>Section: the test structure</crossref>. For some reason the effect that this bug produces in the <code>COUNT[0]</code> bit of the <siglas>TDC</siglas> number&nbsp;2 is different than the effect for the rest of the <siglas>TDC</siglas>s. Despite this oscillation, a difference in the slope of the curves is observed by the naked eye which denotes each <siglas>TDC</siglas> is running at a slightly different frequency.</p>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<p>To further proceed with the analysis, a value of <em>time resolution</em> was assigned to each different output. Since the distribution of the sequences in time tends to be rather uniform<footnote>See for example the distribution of <code>0|000000000000000011111</code> in <crossref>Figure: distribution of outputs in time</crossref>.</footnote>, instead of using the standard deviation $\sigma$ as a measure for the time resolution, it was defined as the difference between the 95&nbsp;% and the 5&nbsp;% quantiles.</presentation_display_block><presentation_display_block> This quantity is shown, as a function of the <em>output sequence number</em> defined before, in <crossref>Figure: time resolution vs sequence number</crossref>. As can be seen, most of the values of <em>time resolution</em> accumulate below 50&nbsp;ps (zoom in vertically) and there are some isolated and periodic peaks with values close to 1&nbsp;ns. These peaks correspond to the degenerated outputs mentioned previously; the same output is found when the counter commutes from $n-1$ to $n$ and when the counter commutes from $n$ to $n+1$, thus producing a distribution with two peaks separated by the counter period. As this problem is already understood, we can now focus in the region with <em>time resolution</em> below 60&nbsp;ps. In the plot in <crossref>Figure: time resolution vs sequence number</crossref> a moving average for each <siglas>TDC</siglas> was added to ease the visualization. In these averages we see that for <em>output sequence number</em> between 0 and 300 there is a tendency to increase, and then there is a sudden decrease. The increase, which denotes a degradation in the time resolution, is expected because the fluctuations in the commutation time of the inverters at the core of each <siglas>TDC</siglas> are accumulative. The decrease in the time resolution between <em>output sequence number</em> 300 and beyond is because those are the spurious outputs explained before. These outputs appear for smaller times and thus the time resolution for them is better.</p>
+		
 		<float class="Figure" id="Figure: time resolution vs sequence number">
 			<iframe class="plotly" src="media/Time resolution vs sequence number.html"></iframe>
 			<floatcaption>Time resolution as a function of the sequence number. The meaning of the <em>sequence number</em> is explained in the caption of <crossref>Figure: mean time vs sequence number</crossref>. The time resolution shown here is defined as the difference between the q<sub>95%</sub> and the q<sub>5%</sub> quantiles for the temporal distribution of each sequence, as shown in <crossref>Figure: distribution of outputs in time</crossref>.</floatcaption>
 		</float>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<p>To conclude with the analysis, the distribution of the <em>time resolution</em> from <crossref>Figure: time resolution vs sequence number</crossref> was plotted. The graph is shown in <crossref>Figure: time resolution distribution</crossref>. The bins beyond 1&nbsp;ns can be ignored as they correspond to the degenerated outputs. If we zoom in horizontally in the region below 80&nbsp;ps we see that the worse time resolution is, for only a single output, 70&nbsp;ps. The peak resolution is slightly below 20&nbsp;ps and the mean time resolution around 30-40&nbsp;ps.</p>
 		
 		<float class="Figure" id="Figure: time resolution distribution">
 			<iframe class="plotly" src="media/Time resolution histograms.html"></iframe>
 			<floatcaption>Distribution of the time resolution shown in <crossref>Figure: time resolution vs sequence number</crossref>. </floatcaption>
 		</float>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<h1>Conclusions and discussion</h1>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<p>The <siglas>TDC V1 SW 28 10 19</siglas> test structure was characterized in terms of its performance in time measurements. Its working principle was understood and a specialized test setup was configured for the characterization. A careful calibration was done and checked on the test setup before the measurements to the <siglas>TDC</siglas>, and this calibration was revised again after the measurements were completed to verify the correct functioning of the system. During the characterization process a bug was found in the circuit implemented in the silicon, which affects the least significant bit of the counter. Despite this complication it was still possible to proceed with the characterization.</p>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<p>For this test structure the time resolution is better than 60&nbsp;ps, with a typical value of around 30&nbsp;ps. The range of time measured spans between 0 and 10&nbsp;ns. The time resolution was observed to degrade as the measured time increases; however this degradation seems to be small, in the order of 10&nbsp;% for the whole measured range.</p>
+	</presentation_display_block>
+	
+	<presentation_display_block>	
+		<p>It is still pending to determine the power consumption of this design and whether or not it can physically fit within a small pixel.</p>
 		
 	</presentation_display_block>
 	
@@ -196,9 +266,7 @@
 	
 	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script> <!-- This will load the script directly from the online repo, so you don't need to download it but you need internet connection. -->
 	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script> <!-- This will load the script directly from the online repo, so you don't need to download it but you need internet connection. -->
-<!--
 	<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/presentation_display_block/presentation_display_block.js"></script>
--->
 </body>
 
 </html>
