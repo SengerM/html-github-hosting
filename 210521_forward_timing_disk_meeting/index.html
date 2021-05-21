@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>TDC test structures UZH/PSI</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<presentation_display_block>
+
+<div id="document_title"></div>
+	
+<author	affiliation="Paul Scherrer Institut|Universität Zürich">
+	L. Caminada
+</author>
+<author	affiliation="Universität Zürich">
+	B. Kilminster
+</author>
+<author affiliation="Universität Zürich">
+	A. Macchiolo
+</author>
+<author affiliation="Paul Scherrer Institut">
+	B. Meier
+</author>
+<author affiliation="Universität Zürich">
+	<u>M. Senger</u>
+</author>
+<author affiliation="Paul Scherrer Institut|Universität Zürich">
+	S. Wiederkehr
+</author>
+
+<div id="presentation_header">
+	<span id="date"><a href="https://indico.cern.ch/event/1032564/">May&nbsp;21<sup>th</sup> 2021</a></span>
+	<span id="presenter"><a href="https://msenger.web.cern.ch/">Matías Senger</a></span>
+	<div id="institutions_logos">
+		<a href="https://www.psi.ch/en"><image id="logo_PSI" src="media/logo_PSI.svg"></image></a>
+		<a href="https://www.physik.uzh.ch/en.html"><image id="logo_UZH" src="media/logo_Physik_Institut.jpeg"></image></a>
+	</div>
+</div>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<div id="table-of-contents">
+	<h2 class="unnumbered">Presentation layout</h2>
+	<!-- Here will be placed the table of contents -->
+</div>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<h1>Introduction</h1>
+
+<p>There is ongoing R&D effort on development of so called 4D&nbsp;pixels.</p>
+
+<h2 class="unnumbered">Sensors</h2>
+
+<p>A number of technologies under development&nbsp;<crossref>Reference: Novel Strategies for Fine-Segmented Low Gain Avalanche Diodes</crossref>:
+<ul class="spaced">
+	<li>Inverse LGAD (iLGAD)&nbsp;<crossref>Reference: Inverse Low Gain Avalanche Detectors (ILGADs) for Precise Tracking and Timing Applications</crossref>.</li>
+	<li>Trench Isolated LGAD (TI-LGAD)&nbsp;<crossref>Reference: Trench-Isolated Low Gain Avalanche Diodes (TI-LGADs)</crossref>.</li>
+	<li>AC Coupled LGAD (AC-LGAD)&nbsp;<crossref>Resistive AC-Coupled Silicon Detectors: Principles of Operation and First Results from a Combined Analysis of Beam Test and Laser Data</crossref>.</li>
+</ul>
+</p>
+
+<h2 class="unnumbered">Readout</h2>
+
+<p>Add timing information → Use Time to Digital Converters (TDC) to digitize time measurements.</p>
+
+<ul class="spaced">
+	<li>TDC technology already exists<footnote>See for example the <a href="https://en.wikipedia.org/wiki/Time-to-digital_converter">Wikipedia article for TDCs</a>.</footnote>.</li>
+	<li>Has to be adapted to the constraints in HEP:
+</presentation_display_block>
+<presentation_display_block>
+		<ul>
+			<li>Fit within a small pixel.</li>
+			<li>Low power consumption.</li>
+			<li>Radiation tolerant.</li>
+		</ul>
+	</li>
+</ul>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<p>Today I will discuss a <b>TDC</b> design we are working on subjected to these constraints.</p>
+
+<p>Long term goal: Produce a full readout chip for 4D&nbsp;pixels.</p>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<h1>TDC designs</h1>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<h2 class="unnumbered">General idea</h2>
+
+<p>A closed chain of inverters + a counter:</p>
+
+<image src="media/general_idea_of_the_TDCs.svg" style="width: 100%; max-width: 666px;"></image>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<p>3 designs have been <b>produced and tested</b> based on this concept:</p>
+
+<ol class="spaced">
+	<li>Fully digital TDC. (Not discussed today<footnote>For details on this TDC see reference&nbsp;<crossref>Reference: Timing characterization of the fully digital TDC</crossref>.</footnote>.)</li>
+	<li>Semi analog TDC. <a href="http://www.lfoundry.com/en/technology#lf2">L&nbsp;Foundry 110&nbsp;nm technology</a><footnote>This design was also produced with UMC110 technology. The production with LF110 technology, however, yields better results and this one is discussed in this talk.</footnote>.</li>
+	<li>Fully analog TDC. (Not discussed today.)</li>
+</ol>
+
+
+</presentation_display_block>
+<presentation_display_block>
+
+<h2>Semi analog TDC</h2>
+
+<p>Simplified block diagram:</p>
+
+<image src="media/semi_analog_tdc_block diagram.svg" style="max-width: 100%; width: 1111px;"></image>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<ul>
+	<li>Slower inverters with "special design". 9 inverters in total.</li>
+	<li>Ring is sampled in an analog way.</li>
+</ul>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<h3 class="unnumbered">Working principle</h3>
+
+<ol class="spaced">
+	<li><code>START</code> and <code>STOP</code> at low level. Ring does not oscillate.</li>
+	<li><code>START</code> changes to high. The ring starts to oscillate (it is properly initialized, not shown in the block diagram).</li>
+	<li>The counter counts the number of full loops.</li>
+	<li><code>STOP</code> changes to high. The inverters are "analogly frozen" in whatever state they were. The one inverter that was commuting is frozen in an intermediate state.</li>
+</ol>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<h2>This TDC as a black box</h2>
+
+<p>We can view this TDC as a black box:</p>
+
+<image src="media/4.svg" style="width: 100%; max-width: 333px; margin: 55px;"></image>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<h1>Required space in the pixel</h1>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<p>Current implementation:</p>
+<div style="display: flex;">
+	<ul class="spaced">
+		<li>9 inverters and 5 bits counter.</li>
+		<li>Up to $\approx 100 \text{ ns}$.</li>
+		<li>Fits fine in a 50×50&nbsp;µm<sup>2</sup> pixel.</li>
+	</ul>
+	<image src="media/6.svg" style="width: 100%; max-width: 222px;"></image>
+</div>
+<p>Will require more complicated readout logic, however this is in the periphery outside the pixel.</p>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<h1>Test setup</h1>
+</presentation_display_block>
+<presentation_display_block>
+
+<p>A specialized test setup was assembled.</p>
+
+<image src="media/test_setup_block_diagram.svg" style="width: 100%; max-width: 888px;"></image>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<ul class="spaced">
+	<li>Raspberri Pi: Automates measurement routines.</li>
+	<li>FPGA: Controls hardware.</li>
+	<li>Delay module: Produces <code>START</code> and <code>STOP</code> signals with arbitrary time difference (-10 to 10&nbsp;ns in steps of about 1&nbsp;ps).</li>
+</ul>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<p>A picture of the setup (human not shown &#128513;):</p>
+
+<image src="media/5.svg" style="height: 60vh;"></image>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<h1>Results</h1>
+
+<p>Raw data looks like this:</p>
+
+<div style="display: flex;">
+	<iframe class="plotly" src="media/processed_by_script_visualize_tpix_data_FOR_TIPP2021/Counter.html" style="min-width: 333px !important; max-width: 33% !important;"></iframe>
+	<iframe class="plotly" src="media/processed_by_script_visualize_tpix_data_FOR_TIPP2021/Raw inverters signals.html" style="min-width: 555px !important; max-width: 77% !important;"></iframe>
+</div>
+
+<ul>
+	<li>The counter counts each falling edge of <code>INV[8]</code>.</li>
+	<li><code>INV[8]</code> has different amplitude due to the counter input impedance.</li>
+</ul>
+</presentation_display_block>
+<presentation_display_block>
+
+<p>Let's normalize all the <code>INV[:]</code> signals and invert the odd ones:</p>
+
+<iframe class="plotly" src="media/processed_by_script_visualize_tpix_data_FOR_TIPP2021/Normalized inverters signals.html" style="min-width: 666px !important; max-width: 100% !important;"></iframe>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<p>Now we digitize them with a "low resolution ADC":</p>
+
+<iframe class="plotly" src="media/Discretization demonstration.html" style="min-width: 666px !important; max-width: 100% !important;"></iframe>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<p>Digitized <code>INV[:]</code> now looks like this:
+<ul class="spaced">
+	<li>1 bit: <code>000011111</code>.</li>
+	<li>2 bit: <code>000123333</code>.</li>
+	<li>3 bit: <code>001234567</code>.</li>
+	<li>Etc.</li>
+</ul>
+</p>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<p>This procedure on real data:</p>
+
+<div>
+	<div style="display: flex; align-items: center; width: 100%;">
+		<div style="transform: rotate(-90deg); font-size: 200%; font-weight: bold;">1&nbsp;bit</div>
+		<iframe class="plotly" src="media/processed_by_script_plot_sequences_distributions_FOR_TIPP/Time distribution of sequences with 2 levels of discretization.html" style="min-width: 666px !important; max-width: 100% !important;"></iframe>
+	</div>
+
+</presentation_display_block>
+<presentation_display_block>
+
+	<div style="display: flex; align-items: center; width: 100%;">
+		<div style="transform: rotate(-90deg); font-size: 200%; font-weight: bold;">2&nbsp;bit</div>
+		<iframe class="plotly" src="media/processed_by_script_plot_sequences_distributions_FOR_TIPP/Time distribution of sequences with 4 levels of discretization.html" style="min-width: 666px !important; max-width: 100% !important;"></iframe>
+	</div>
+
+</presentation_display_block>
+<presentation_display_block>
+
+	<div style="display: flex; align-items: center; width: 100%;">
+		<div style="transform: rotate(-90deg); font-size: 200%; font-weight: bold;">3&nbsp;bit</div>
+		<iframe class="plotly" src="media/processed_by_script_plot_sequences_distributions_FOR_TIPP/Time distribution of sequences with 8 levels of discretization.html" style="min-width: 666px !important; max-width: 100% !important;"></iframe>
+	</div>
+</div>
+
+</presentation_display_block>
+<presentation_display_block>
+	
+<h2 class="unnumbered">Time resolution</h2>
+
+</presentation_display_block>
+<presentation_display_block>
+	
+<p>We can think of this as an imperfect ruler:</p>
+<img src="media/ruler_nice.svg" onmouseover="this.src='media/ruler_not_nice.svg'" onmouseout="this.src='media/ruler_nice.svg'" style="width: 100%; max-width: 666px; margin: 55px;"/>
+
+<ul>
+	<li>The "ruler" is "dense", i.e. there are no empty gaps.</li>
+	<li>For each bin in this "imperfect ruler" (i.e. for each output of our TDC) we can define its own resolution.</li>
+	<li>Distributions tend to be uniform.</li>
+</ul>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<p>In view of this, I will look at the following quantities:</p>
+
+<image src="media/time_resolution_definition.svg" style="margin: 55px; width: 100%; max-width: 444px;"></image>
+
+<ol class="spaced">
+	<li>Standard deviation $\sigma$.</li>
+	<li>Width of the distribution measured as $q_{95\text{ %}} - q_{5\text{ %}}$ where $q_x$ is the $x$ percent quantile.</li>
+</ol>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<div style="display: flex;">
+	<div style="display: flex; flex-direction: column; justify-content: center;">
+		<div style="font-size: 150%; width: 100%; text-align: center;">q<sub>95 %</sub> - q<sub>5 %</sub></div>
+		<iframe class="plotly" src="media/processed_by_script_time_resolution_FOR_TIPP/Time resolution quantile vs time.html" style="min-width: 666px !important; max-width: 100% !important;"></iframe>
+	</div>
+	<div style="display: flex; flex-direction: column; justify-content: center;">
+		<div style="font-size: 150%; width: 100%; text-align: center;">Standard deviation</div>
+		<iframe class="plotly" src="media/processed_by_script_time_resolution_FOR_TIPP/Time resolution std vs time.html" style="min-width: 666px !important; max-width: 100% !important;"></iframe>
+	</div>
+</div>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<ul style="spaced">
+	<li>Degradation of time resolution as time goes by; expected due to the accumulative fluctuations in propagation delay.</li>
+	<li>Time resolution improves by adding bits&nbsp;&#128512;.</li>
+</ul>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<p>Let's look at $q_{95\text{ %}} - q_{5\text{ %}}$ and $\sigma$ in histograms:</p>
+
+<div style="display: flex;">
+	<div style="display: flex; flex-direction: column; justify-content: center;">
+		<iframe class="plotly" src="media/processed_by_script_time_resolution_FOR_TIPP/Distribution of quantile time resolution.html" style="min-width: 666px !important; max-width: 100% !important;"></iframe>
+	</div>
+	<div style="display: flex; flex-direction: column; justify-content: center;">
+		<iframe class="plotly" src="media/processed_by_script_time_resolution_FOR_TIPP/Distribution of std time resolution.html" style="min-width: 666px !important; max-width: 100% !important;"></iframe>
+	</div>
+</div>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<p>Temporal resolution for this TDC:</p>
+<div style="display: flex;">
+	<ul class="spaced" style="min-width: 666px !important; max-width: 100% !important;">
+		<li>Using $q_{95\text{ %}} - q_{5\text{ %}}$ (i.e. "full width"):
+		<ul>
+			<li>1 bit: $\lesssim 70 \text{ ps}$.</li>
+			<li>2 bit: $\lesssim 40 \text{ ps}$.</li>
+			<li>3 bit: $\lesssim 30 \text{ ps}$.</li>
+		</ul>
+		</li>
+	</ul>
+	<ul class="spaced" style="min-width: 666px !important; max-width: 100% !important;">
+		<li>Using $\sigma$ (standard deviation):
+		<ul>
+			<li>1 bit: $\lesssim 40 \text{ ps}$.</li>
+			<li>2 bit: $\lesssim 20 \text{ ps}$.</li>
+			<li>3 bit: $\lesssim 10 \text{ ps}$.</li>
+		</ul>
+		</li>
+	</ul>
+</div>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<h1>Further perspectives</h1>
+
+<ul class="spaced">
+	<li>An analog front end circuit was designed and produced, though not yet tested.
+		<ul>
+			<li>Plan is to test it alone, then interface it with a TDC (single pixel), and then "single pixel full chain" detector → front end → TDC.</li>
+		</ul>
+	</li>
+</presentation_display_block>
+<presentation_display_block>
+	<li>Projected prototype:
+		<ul>
+			<li>Pixel size: 100×100&nbsp;µm<sup>2</sup>.</li>
+			<li>30×30 pixels.</li>
+			<li>Interface it with real TI-LGAD sensors (in production).</li>
+		</ul>
+	</li>
+</ul>
+
+</presentation_display_block>
+<presentation_display_block>
+
+<h1>Conclusions</h1>
+
+<ul class="spaced">
+	<li>Two TDC designs were produced, tested and studied:
+		<ol>
+			<li>Fully digital TDC: Fast inverters, digital readout. (Not discussed today.)</li>
+			<li>Semi analog TDC: Slower inverters, semi-analog readout.</li>
+		</ol>
+	</li>
+</presentation_display_block>
+<presentation_display_block>
+	<li>Their performance was studied.
+		<ol>
+			<li>Fully digital TDC: $\lesssim 60 \text{ ps}$ "full width" time resolution, $\sigma \lesssim 20\text{ ps}$. (Not discussed today.)</li>
+			<li>Semi analog TDC: $\lesssim 30 \text{ ps}$ "full width" time resolution, $\sigma \lesssim 10\text{ ps}$.</li>
+		</ol>
+	</li>
+</presentation_display_block>
+<presentation_display_block>
+	<li>Semi analog design fits well in 50×50&nbsp;µm<sup>2</sup> pixel&nbsp;&#9989;.</li>
+</presentation_display_block>
+<presentation_display_block>
+	<li>Power consumption and radiation hardness studies are pending.</li>
+</ul>
+
+</presentation_display_block>
+
+<!----------------------------------------------------------------->
+<presentation_display_block>
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: HL-LHC schedule">LHC schedule overview. <a href="https://project-hl-lhc-industry.web.cern.ch/content/project-schedule">https://project-hl-lhc-industry.web.cern.ch/content/project-schedule</a>. Accessed May 2021.</reference>
+	<reference id="Reference: Program of Tech for Future Experiments"><em>Strategic R&amp;D Programme on Technologies for Future Experiments</em>. <a href="https://cds.cern.ch/record/2649646">https://cds.cern.ch/record/2649646</a>, December 2018. Number: CERN-OPEN-2018-006.</reference>
+	<reference id="Reference: Novel Strategies for Fine-Segmented Low Gain Avalanche Diodes">Paternoster, G., G. Borghi, R. Arcidiacono, M. Boscardin, N. Cartiglia, M. Centis Vignali, G. F. Dalla Betta, et al. “Novel Strategies for Fine-Segmented Low Gain Avalanche Diodes.” Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment 987 (January 21, 2021): 164840. <a href="https://doi.org/10.1016/j.nima.2020.164840">https://doi.org/10.1016/j.nima.2020.164840</a>.</reference>
+	<reference id="Resistive AC-Coupled Silicon Detectors: Principles of Operation and First Results from a Combined Analysis of Beam Test and Laser Data">Tornago, M., R. Arcidiacono, N. Cartiglia, M. Costa, M. Ferrero, M. Mandurrino, F. Siviero, et al. “Resistive AC-Coupled Silicon Detectors: Principles of Operation and First Results from a Combined Analysis of Beam Test and Laser Data.” ArXiv:2007.09528 [Physics], October 16, 2020. <a href="http://arxiv.org/abs/2007.09528">http://arxiv.org/abs/2007.09528</a>.</reference>
+	<reference id="Reference: Trench-Isolated Low Gain Avalanche Diodes (TI-LGADs)">Paternoster, G., G. Borghi, M. Boscardin, N. Cartiglia, M. Ferrero, F. Ficorella, F. Siviero, A. Gola, and P. Bellutti. “Trench-Isolated Low Gain Avalanche Diodes (TI-LGADs).” IEEE Electron Device Letters 41, no. 6 (June 2020): 884–87. <a href="https://doi.org/10.1109/LED.2020.2991351">https://doi.org/10.1109/LED.2020.2991351</a>.</reference>
+	<reference id="Reference: Inverse Low Gain Avalanche Detectors (ILGADs) for Precise Tracking and Timing Applications">Currás, E., M. Carulla, M. Centis Vignali, J. Duarte-Campderros, M. Fernández, D. Flores, A. García, et al. “Inverse Low Gain Avalanche Detectors (ILGADs) for Precise Tracking and Timing Applications.” Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment 958 (April 2020): 162545. <a href="https://doi.org/10.1016/j.nima.2019.162545">https://doi.org/10.1016/j.nima.2019.162545</a>.</reference>
+	<reference id="Reference: Timing characterization of the fully digital TDC">Timing characterization of the "fully digital TDC", Matías Senger, May&nbsp;2021. <a href="https://sengerm.github.io/html-github-hosting/210504_characterization_of_TDC_V1_SW_28_10_19/210504_characterization_of_TDC_V1_SW_28_10_19.html">https://sengerm.github.io/html-github-hosting/210504_characterization_of_TDC_V1_SW_28_10_19/210504_characterization_of_TDC_V1_SW_28_10_19.html</a>.</reference>
+</div>
+
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+</presentation_display_block>
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+
+<!-- Presentation display blocks -->
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/presentation_display_block/presentation_display_block.js"></script>
+<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/presentation_display_block/presentation_display_block.css">
+<script src="js/header.js"></script>
+<link rel="stylesheet" href="css/header.css">
+</body>
+
+</html>

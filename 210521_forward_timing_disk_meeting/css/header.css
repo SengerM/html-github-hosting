@@ -1,0 +1,68 @@
+#presentation_header {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+#presentation_header {
+	flex-direction: column;
+	margin: 44px auto;
+}
+#sticked_presentation_header.show_header {
+	opacity: 100% !important;
+	top: 0 !important;
+}
+#sticked_presentation_header {
+	align-items: center;
+	justify-content: space-evenly;
+	display: flex;
+	transition: .2s;
+	position: fixed;
+	top: -55px;
+	left: 0;
+	margin: 0;
+	font-size: 88%;
+	background: #fffffff9;
+	border-style: hidden hidden solid hidden;
+	border-width: 1px;
+	border-color: #d1e3ff;
+	flex-direction: row;
+	opacity: 0;
+	width: 100%;
+}
+#sticked_presentation_header img {
+	max-height: 44px !important;
+	margin: 0 5px;
+}
+#presentation_header #institutions_logos img {
+	height: 88px;
+	margin: 0 44px;
+	max-width: 44vw;
+}
+#sticked_presentation_header #institutions_logos * {
+	max-width: 22vw;
+}
+#presentation_header #institutions_logos {
+	display: flex; 
+	justify-content: space-evenly; 
+}
+#presentation_header #logo_TIPP {
+	width: 66vw;
+	max-width: 444px;
+}
+#sticked_presentation_header #logo_TIPP {
+	max-width: 44vw;
+}
+#presentation_header #presenter {
+	display: none;
+	text-align: center;
+}
+#sticked_presentation_header #presenter, #sticked_presentation_header #date {
+	display: inline;
+	margin: 0 22px !important;
+	text-align: center;
+}
+#presentation_header #date {
+	margin: 33px;
+	text-align: center;
+}

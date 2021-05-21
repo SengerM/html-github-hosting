@@ -1,0 +1,11 @@
+ul.spaced, ol.spaced {
+	margin: 44px;
+}
+ul.spaced li, ol.spaced li {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+table.spaced {
+	margin-top: 55px;
+	margin-bottom: 55px;
+}
