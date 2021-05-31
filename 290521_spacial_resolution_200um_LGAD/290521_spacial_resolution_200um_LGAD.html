@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Spacial resolution of 200&nbsp;µm pitch AC-LGAD</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich">Matías Senger</author>
+
+<div style="text-align:center; margin: 33px auto;">May 31<sup>st</sup> 2021</div>
+
+<abstract><p>The spacial resolution of a 200&nbsp;µm pitch AC-LGAD was determined using a TCT and the machine learning algorithm <crossref toid="Reference: First application of machine the empirical likelihood function bla bla bla"></crossref>.</p></abstract>
+
+<div id="table-of-contents">
+	<h2 class="unnumbered">Contents</h2>
+</div>
+
+<h1>Introduction</h1>
+
+<p>In my previous work I have always studied AC-LGADs with 100&nbsp;µm pitch&nbsp;<crossref toid="Reference: First application of machine the empirical likelihood function bla bla bla"></crossref>,&nbsp;<crossref toid="Reference: First time-space characterization of an AC-LGAD"></crossref>. Today I repeated the studies but with a 200&nbsp;µm pitch LGAD. The device I used today is <em>RSD1 W10-A -5,3 3x3 200</em>. Without more preamble I will go directly to the results. In <crossref toid="Figure: Picture of the AC-LGAD"></crossref> there is a picture of the actual device used for this study.</p>
+
+<float class="Figure" id="Figure: Picture of the AC-LGAD">
+	<image src="media/1.svg" style="max-width: 100%;"></image>
+	<floatcaption>Picture of the device used for this study.</floatcaption>
+</float>
+
+<h1>Results</h1>
+
+<p>As usual I made two scans:
+	<ol>
+		<li>Training scan: 999 samples at each point with a spacing of 11&nbsp;µm between each point.</li>
+		<li>Testing scan: 9 samples at each point with a spacing of 1&nbsp;µm between each point.</li>
+	</ol>
+	Using these two scans and the reconstruction error defined as 
+	<equation id="Equation: Reconstruction error">$$ \text{Reconstruction error}=\sqrt{\left(x_{\text{Laser}}-x_{\text{Reconstructed}}\right)^{2}+\left(y_{\text{Laser}}-y_{\text{Reconstructed}}\right)^{2}} $$</equation>
+	the sensor performance was evaluated. The $x_\text{Laser}$ and $y_\text{Laser}$ are the values configured in the experimental setup. The $x_\text{Reconstructed}$ and $y_\text{Reconstructed}$ are computed from the measured waveforms from each of the four channels using the machine learning algorithm&nbsp;<crossref toid="Reference: First application of machine the empirical likelihood function bla bla bla"></crossref>, which was previously trained using the <em>training scan</em>. <crossref toid="Figure: reconstruction error color map"></crossref> shows the reconstruction error fluctuations as a function of position. As can be seen in the region between the pads this is more or less uniform with an average value of about 5.5&nbsp;µm, which is remarkable for a device with a pitch of 200&nbsp;µm.</p>
+
+<float class="Figure" id="Figure: reconstruction error color map">
+	<iframe class="plotly" style="height: 666px !important; width: 666px !important;" src="media/Reconstruction error std.html"></iframe>
+	<floatcaption>Reconstruction error standard deviation as a function of position. For the color map, at each point it is shown the standard deviation in the reconstruction error of the 9 samples of the <em>testing scan</em>.</floatcaption>
+</float>
+
+<p>A number of regions were defined on the surface to focus the study. These regions are shown in <crossref toid="Figure: reconstruction error color map"></crossref>. The distribution of the reconstruction error in such regions in directions $x$ and $y$ is shown in <crossref toid="Figure: xy histograms"></crossref>, together with Gaussian fits. We start with Region&nbsp;1: The standard deviation of this region, according to the fit, is around $\sigma = 6 \text{ µm}$ for both $x$ and $y$ coordinates, as was noticed before. For Region&nbsp;2 we expect a worse behavior in $x$ direction but not a degradation in $y$, and we find looking into the fits $\sigma_x \approx 12 \text{ µm}$ and $\sigma_y \approx 5\text{ µm}$ respectively. So the spacial resolution in $x$ is about two times worse. The reason for this is that there are no pads to the left of Region&nbsp;2 so the "reconstruction power" in $x$ gets worse as we move away from the two rightmost pads. In Region&nbsp;3 and Region&nbsp;4 we can compare what happens inside a pad. Due to the fact that the opening in the pad is along the $y$ direction, and thus "breaks the symmetry in $x$ direction, the resolution for Region&nbsp;3 in $x$ direction should be ignored. If we look into the spacial resolution in $y$ we see that for Region&nbsp;3 we have $\sigma_y \approx 7.5 \text{ µm}$ and for Region&nbsp;4 we have $\sigma_y \approx 5 \text{ µm}$. The resolution is degraded, however this is probably due to the fact that in Region&nbsp;3 we are further away from the bottom left pad. A more detailed analysis can be found in&nbsp;<crossref toid="Reference: Spacial Resolution of AC-LGAD Within a Pad"></crossref>.</p>
+
+<float class="Figure" id="Figure: xy histograms">
+	<div style="display: flex;">
+		<iframe class="plotly" style="width: 666px !important;" src="media/x reconstruction error distribution.html"></iframe>
+		<iframe class="plotly" style="width: 666px !important;" src="media/y reconstruction error distribution.html"></iframe>
+	</div>
+	<floatcaption>Reconstruction error distribution, left in $x$ and right in $y$, for the different regions indicated in <crossref toid="Figure: reconstruction error color map"></crossref>.</floatcaption>
+</float>
+
+<h1>Conclusions</h1>
+
+<p>The overall resolution of a 200&nbsp;µm pitch AC-LGAD was studied using a laser. Under the best conditions, i.e. in the region between the four pads, a spacial resolution of the order of 6&nbsp;µm was achieved. </p>
+
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: First application of machine the empirical likelihood function bla bla bla"><em>First application of the empirical likelihood function to position reconstruction in AC-LGAD detectors</em>, Matías Senger, <a href="https://msenger.web.cern.ch/first-application-of-the-empirical-likelihood-function-to-position-reconstruction-in-ac-lgad-detectors/">https://msenger.web.cern.ch/first-application-of-the-empirical-likelihood-function-to-position-reconstruction-in-ac-lgad-detectors/</a>.</reference>
+	<reference id="Reference: First time-space characterization of an AC-LGAD"><em>First time-space characterization of an AC-LGAD</em>, Matías Senger, <a href="https://msenger.web.cern.ch/first-time-space-characterization-of-an-ac-lgad/">https://msenger.web.cern.ch/first-time-space-characterization-of-an-ac-lgad/</a>.</reference>
+	<reference id="Reference: Spacial Resolution of AC-LGAD Within a Pad"><em>Spacial Resolution of AC-LGAD Within a Pad</em>, Matías Senger, <a href="https://sengerm.github.io/html-github-hosting/210425_spacial_resolution_of_AC-LGAD_within_a_pad/210425_spacial_resolution_of_AC-LGAD_within_a_pad.html">https://sengerm.github.io/html-github-hosting/210425_spacial_resolution_of_AC-LGAD_within_a_pad/210425_spacial_resolution_of_AC-LGAD_within_a_pad.html</a>.</reference>
+</div>
+
+<!--
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+-->
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
