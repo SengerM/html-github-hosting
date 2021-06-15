@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>IV measurements of irradiated FBK sensors in the probe station</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich">Matías Senger</author>
+
+<ul>
+	<li>Set of 20 irradiated FBK LGAD sensors + 2 HPK sent from Torino for long term studies.</li>
+	<li>Study to do: Put them in the climate chamber, apply the bias voltage and monitor IV characteristic and time resolution for several months.</li>
+</ul>
+
+<p>List of FBK sensors:</p>
+
+<table><thead><tr><th>Manufacturer</th><th>Production?</th><th>Wafer</th><th>Type</th><th>Position?</th><th>Fluence</th><th>Letter?</th></tr></thead><tbody><tr><td>FBK</td><td>UFSD3.2</td><td>18</td><td>4</td><td>9,1</td><td>4.00E+14</td><td>R</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>18</td><td>10</td><td>8,3</td><td>4.00E+14</td><td>P</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>4</td><td>4</td><td>10,2</td><td>8.00E+14</td><td>E</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>10</td><td>4</td><td>7,3</td><td>8.00E+14</td><td>C’</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>18</td><td>4</td><td>10,2</td><td>8.00E+14</td><td>S</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>10</td><td>10</td><td>5,3</td><td>8.00E+14</td><td>G’</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>18</td><td>10</td><td>6,3</td><td>8.00E+14</td><td>X</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>4A</td><td>10</td><td>4,3</td><td>8.00E+14</td><td>G</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>10</td><td>4</td><td>3,3</td><td>1.50E+15</td><td>C’</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>18</td><td>4</td><td>6,5</td><td>1.50E+15</td><td>U</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>4A</td><td>4</td><td>3,3</td><td>1.50E+15</td><td>E</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>10</td><td>10</td><td>2,3</td><td>1.50E+15</td><td>F’</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>18</td><td>10</td><td>6,5</td><td>1.50E+15</td><td>X</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>4A</td><td>10</td><td>2,3</td><td>1.50E+15</td><td>H</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>4</td><td>4</td><td>5,2</td><td>2.50E+15</td><td>I</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>10</td><td>4</td><td>3,2</td><td>2.50E+15</td><td>D’</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>18</td><td>4</td><td>2,3</td><td>2.50E+15</td><td>R</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>4</td><td>10</td><td>3,2</td><td>2.50E+15</td><td>J</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>10</td><td>10</td><td>5,2</td><td>2.50E+15</td><td>I’</td></tr><tr><td>FBK</td><td>UFSD3.2</td><td>18</td><td>10</td><td>10,5</td><td>2.50E+15</td><td>O</td></tr></tbody></table>
+
+<h1 class="unnumbered">Measurements in the probe station</h1>
+
+<p>IV curves using 3 "terminals" (back side, pad and guard ring) were measured, guard ring grounded. Each measurement was done at least twice to ensure repeatability of results. Below the results.</p>
+
+<iframe class="plotly" src="media/current vs bias voltage all together.html"></iframe>
+
+<iframe class="plotly" src="media/I_chuck vs V_bias.html"></iframe>
+
+<iframe class="plotly" src="media/I_pad vs V_bias.html"></iframe>
+
+<h1 class="unnumbered">Conclusions</h1>
+
+<ul>
+	<p>After lot of effort I could configure the IV measurement with guard ring grounded.</p>
+	<p>Wafer 4 and 4A seem to be different than wafers 10 and 18.</p>
+</ul>
+
+<!--
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: _____">Bla bla bla.</reference>
+</div>
+-->
+
+<!--
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+-->
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
