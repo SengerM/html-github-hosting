@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Charge Sharing and Spacial Resolution of an AC-LGAD with "100&nbsp;% Fill Factor Pads"</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich">Matías Senger</author>
+
+<div style="display: block; margin: 33px auto; text-align: center;">July 12<sup>th</sup> 2021</div>
+
+<abstract>In this article I present my measurement of the charge sharing characteristics and spacial resolution of an AC-LGAD whose pads cover nearly 100&nbsp;% of the area.</abstract>
+
+<div id="table-of-contents">
+	<h2 class="unnumbered">Contents</h2>
+</div>
+
+<h1>Introduction</h1>
+
+<p>This time I wanted to study the properties of an AC-LGAD which is identical to the ones I have been previously studying, except that the pads this time cover the whole area. According to what the experts say<footnote>I remember some talks by Nicolo, also&nbsp;<crossref toid="Reference: Latest Results on charge sharing in AC-LGAD (aka RSD)"></crossref>.</footnote>, this may affect the charge sharing characteristic of this technology thus comprising the spacial resolution. Based on some previous measurements I have done, however, this should not be the case&nbsp;<crossref toid="Reference: Spacial Resolution of AC-LGAD Within a Pad"></crossref>.</p>
+<p>To address this question I wirebonded the "big pads AC-LGAD" in the device <em>RSD1 W2-A 5,3 3x3 200</em> alias <em>Big Foot</em>. Pictures are shown in <crossref toid="Figure: pictures of the device"></crossref>. This device has pitch&nbsp;200&nbsp;µm and pad size about 190&nbsp;µm.</p>
+
+<float class="Figure" id="Figure: pictures of the device">
+	<image src="media/1.svg" style="max-width: 100%;"></image>
+	<floatcaption>Pictures of the AC-LGAD studied. The laser was shined along the red dashed line indicated in the third picture.</floatcaption>
+</float>
+
+<h1>Results</h1>
+
+<p>Four channels were measured, the numbering is indicated in <crossref toid="Figure: pictures of the device"></crossref>. The bias voltage was set to 199&nbsp;V and the laser intensity was set to that matching a MIP particle<footnote>The "Laser pulse width" parameter of the TCT software was set to 64.8&nbsp;%.</footnote>. In <crossref toid="Figure: plot of a signal"></crossref> an example of how each signal was processed is shown.</p>
+
+<float class="Figure" id="Figure: plot of a signal">
+	<iframe class="plotly" src="media/Signal at 00051 n_trigg 936 CH1.html"></iframe>
+	<floatcaption>Example of one signal as measured from one of the pads, and all the parameters extracted from that signal.</floatcaption>
+</float>
+
+<p>Of all the quantities extracted from each signal as shown in <crossref toid="Figure: plot of a signal"></crossref> we can observe the two that show the highest dependence with position: amplitude and collected charge. These two are shown in <crossref toid="Figure: amplitude and collected charge plot"></crossref>. As can be seen, close to the center of each pad the amplitude becomes flat. This was reported for other AC-LGADs at the last RD50 workshop&nbsp;<crossref toid="Reference: Latest Results on charge sharing in AC-LGAD (aka RSD)"></crossref>. In that occasion I asked the speaker if he tried the same analysis but for the collected charge instead of the amplitude, because my intuition says that the sharing should be better with the charge than with the amplitude<footnote>The reason is that the amplitude increases not only with the collected charge but also with the higher frequency components. If a particle impinges just in the middle of a pad, the high frequency components are captured all by that pad and they are "lost" so they are not available for the other pads. However, because the pads are AC coupled, the lower frequency components sooner or later will be shared. Thus, the collected charge might have better "sharing characteristics" than the amplitude.</footnote>. For some reason he got angry, and said that he did not made such analysis but the results would not change. So I decided to make it myself, and as can be seen comparing the two plots in <crossref toid="Figure: amplitude and collected charge plot"></crossref> it seems that the collected charge is indeed more linear than the amplitude denoting a better sharing when the laser is close to the center of each pad.</p>
+
+<float class="Figure" id="Figure: amplitude and collected charge plot">
+	<div style="display: flex;">
+		<iframe class="plotly" src="media/Amplitude.html"></iframe>
+		<iframe class="plotly" src="media/Collected charge.html"></iframe>
+	</div>
+	<floatcaption>Amplitude and collected charge for each of the four channels. At each point in "distance" the solid line is the average of 1000 measurements and the transparent band the standard deviation.</floatcaption>
+</float>
+
+<p>Using data from two similar scans, one "training scan" in which the response of the AC-LGAD was sampled every 10&nbsp;µm and another "testing scan" which is the one shown in <crossref toid="Figure: amplitude and collected charge plot"></crossref>, my "likelihood machine learning" algorithm&nbsp;<crossref toid="Reference: First application of the empirical likelihood function to position reconstruction in AC-LGAD detectors"></crossref> was applied. The results of the reconstruction are shown in <crossref toid="Figure: Results of position reconstruction"></crossref>. The data in the beginning and in the end does not match the $y=x$ relation expected because the metal pads blocked the laser in that points. Outside those regions we see a good agreement between the real distance and the reconstructed distance.</p>
+
+<float class="Figure" id="Figure: Results of position reconstruction">
+	<iframe class="plotly" src="media/1D position reconstruction.html"></iframe>
+	<floatcaption>Results of the 1D position reconstruction using the collected charge from <crossref toid="Figure: amplitude and collected charge plot"></crossref>. This reconstruction was done using my "likelihood machine learning algorithm"&nbsp;<crossref toid="Reference: First application of the empirical likelihood function to position reconstruction in AC-LGAD detectors"></crossref>.</floatcaption>
+</float>
+
+<p>To finish with this analysis, the position resolution along the scan was calculated as the standard deviation of the reconstructed distance at each point. This quantity is shown in <crossref toid="Figure: Error in position reconstruction"></crossref>. As we see, the best performance is achieved just in the middle of the two pads (real distance of about 140&nbsp;µm) where the spacial resolution was measured to be between 5-6&nbsp;µm. As the laser moves away from this position the response is more or less symmetric achieving a reconstruction error of 18&nbsp;µm in the worse case.</p>
+
+<float class="Figure" id="Figure: Error in position reconstruction">
+	<iframe class="plotly" src="media/1D position reconstruction std.html"></iframe>
+	<floatcaption>Reconstruction error (standard deviation) of the 1D position reconstruction shown in <crossref toid="Figure: Results of position reconstruction"></crossref>.</floatcaption>
+</float>
+
+<p>We can compare these numbers against the scenario in which there is no charge sharing. In this case the impact position is modeled as a uniform distribution within the area of the pad so the spacial resolution without sharing is $\frac{\text{pad size}}{\sqrt{12}}$. For the present detector we have $\text{pad size}=200~\text{µm}$ so the spacial resolution with no sharing would be of 58&nbsp;µm. According to my results, the position resolution is between 3 and 10 times better than this, even when the laser was shining well within the pad.</p>
+
+<h1>Conclusions</h1>
+
+<p>The spacial resolution of an AC-LGAD with "100&nbsp;% fill factor pads" was studied. The results show that the charge sharing mechanism is still active even when the laser was shined well within the pad. The results show that the charge sharing is improving the spacial resolution between 3 and 10 times with respect to the case in which there is no sharing. </p>
+
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: Spacial Resolution of AC-LGAD Within a Pad">Spacial Resolution of AC-LGAD Within a Pad, Matías Senger. April 26<sup>th</sup> 2021. <a href="https://msenger.web.cern.ch/spacial-resolution-of-200-%c2%b5m-pitch-ac-lgad/">https://msenger.web.cern.ch/spacial-resolution-of-200-%c2%b5m-pitch-ac-lgad/</a>.</reference>
+	<reference id="Reference: First application of the empirical likelihood function to position reconstruction in AC-LGAD detectors">First application of the empirical likelihood function to position reconstruction in AC-LGAD detectors, Matías Senger. January 14, 2021. <a href="https://msenger.web.cern.ch/first-application-of-the-empirical-likelihood-function-to-position-reconstruction-in-ac-lgad-detectors/">https://msenger.web.cern.ch/first-application-of-the-empirical-likelihood-function-to-position-reconstruction-in-ac-lgad-detectors/</a>.</reference>
+	<reference id="Reference: Latest Results on charge sharing in AC-LGAD (aka RSD)">Latest Results on charge sharing in AC-LGAD (aka RSD), Eric Ryan &amp; Hartmut F.-W. Sadrozinski, SCIPP –UC Santa Cruz. 22 Jun 2021. The 30<sup>th</sup> RD50 workshop. <a href="https://indico.cern.ch/event/1029124/contributions/4411193/">https://indico.cern.ch/event/1029124/contributions/4411193/</a>.</reference>
+</div>
+
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
