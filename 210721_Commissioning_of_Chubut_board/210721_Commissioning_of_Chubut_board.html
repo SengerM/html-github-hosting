@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Commissioning of the Chubut board</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich">Matías Senger</author>
+
+<div style="display: block; margin: 33px auto; text-align: center;">July 21<sup>th</sup> 2021</div>
+
+<abstract>In this document I give some details on the commissioning of the new "Chubut board", which is the Santa Cruz board made smaller. This board will be used for the long term studies of irradiated LGADs.</abstract>
+
+<div id="table-of-contents">
+	<h2 class="unnumbered">Contents</h2>
+</div>
+
+<siglas class="definition" first="Most Probable Value (MPV)" short="MPV"></siglas>
+<siglas class="definition" first="Minimum Ionizing Particle (MIP)" short="MIP"></siglas>
+
+$$
+\def\MODULE#1{\left|\,#1\,\right|}%
+
+\def\PARENTHESES#1{\left(#1\right)}%
+
+\def\SQBRACKETS#1{\left[#1\right]}%
+
+\def\BRACES#1{\left\{  #1\right\}  }%
+
+\def\LBRACE#1{\left\{  #1\right.}%
+
+\def\RBRACE#1{\left.#1\right\}  }%
+
+\def\LSQBRACKET#1{\left[#1\right.}%
+
+\def\RSQBRACKET#1{\left.#1\right]}%
+
+\def\LPARENTHESIS#1{\left(#1\right.}%
+
+\def\RPARENTHESIS#1{\left.#1\right)}%
+
+\def\ANGLEBRACKETS#1{\left\langle #1\right\rangle }%
+
+\def\SPACELONG{\hspace{10mm}}%
+
+\def\SPACEMEDIUM{\hspace{5mm}}%
+
+\def\DEF{\overset{{\scriptscriptstyle \text{def}}}{=}}%
+
+\def\UPBRACE#1#2{\overset{{\scriptstyle #2}}{\overbrace{#1}}}%
+
+\def\UNDERBRACE#1#2{\underset{{\scriptstyle #2}}{\underbrace{#1}}}%
+
+\def\REALES{\mathbb{R}}%
+
+\def\IMAGINARIOS{\mathbb{I}}%
+
+\def\NATURALES{\mathbb{N}}%
+
+\def\ENTEROS{\mathbb{Z}}%
+
+\def\COMPLEJOS{\mathbb{C}}%
+
+\def\RACIONALES{\mathbb{Q}}%
+
+\def\DIFERENTIAL{\,\text{d}}%
+
+
+\def\PRIME{{\vphantom{A}}^{\prime}}%
+
+
+\def\ORDER#1{\mathcal{O}\PARENTHESES{#1}}%
+
+\def\DIRACDELTA#1{\delta_{D}\PARENTHESES{#1}}%
+
+
+\def\HEAVYSIDETHETA#1{\Theta_{H}\PARENTHESES{#1}}%
+
+\def\ATAN{\text{atan}}%
+
+\def\INDICATORFUNCTION#1{\mathbf{1}\BRACES{#1} }%
+
+\def\VECTOR#1{\boldsymbol{#1}}%
+
+\def\VERSOR#1{\hat{\VECTOR{#1}}}%
+
+\def\IDENTITY{\mathds{1}}%
+
+\def\CURL{\VECTOR{\nabla}\times}%
+
+\def\GRADIENT{\VECTOR{\nabla}}%
+
+\def\DIVERGENCE{\VECTOR{\nabla}\cdot}%
+
+
+\def\LAPLACIAN{\nabla^{2}}%
+
+
+\def\REALPART#1{\text{Re}\left(#1\right)}%
+
+\def\IMAGPART#1{\text{Im}\left(#1\right)}%
+
+\def\TENDSTO#1{\underset{{\scriptscriptstyle #1}}{\longrightarrow}}%
+
+\def\EVALUATEDAT#1#2#3{\left\lceil #1\right\rfloor _{#2}^{#3}}%
+
+\def\TERA#1{\text{ T}\text{#1}}%
+
+
+\def\GIGA#1{\text{ G}\text{#1}}%
+
+\def\MEGA#1{\text{ M}\text{#1}}%
+
+\def\KILO#1{\text{ k}\text{#1}}%
+
+\def\UNIT#1{\,\text{#1}}%
+
+\def\CENTI#1{\text{ c}\text{#1}}%
+
+\def\MILI#1{\text{ m}\text{#1}}%
+
+\def\MICRO#1{\text{ }\mu\text{#1}}%
+
+\def\NANO#1{\text{ n}\text{#1}}%
+
+\def\PICO#1{\text{ p}\text{#1}}%
+
+\def\FEMTO#1{\text{ f}\text{#1}}%
+
+\def\TIMESTENTOTHE#1{\times10^{#1}}%
+
+\def\PROB#1{\mathbb{P}\left(#1\right)}%
+
+\def\MEAN#1{\mathbb{E}\PARENTHESES{#1}}%
+
+\def\VARIANCE#1{\mathbb{V}\PARENTHESES{#1}}%
+
+
+\def\COLOR#1#2{{\color{#2}{\,#1\,}}}%
+
+\def\RED#1{\textcolor{red}{#1}}%
+
+\def\BLUE#1{\COLOR{#1}{blue!80!white}}%
+
+\def\GREEN#1{\textcolor{green!70!black}{#1}}%
+
+\def\GRAY#1{\COLOR{#1}{black!30}}%
+
+\def\GRAY#1{\COLOR{#1}{blue!35!white}}%
+
+\def\GUNDERBRACE#1#2{\GRAY{\UNDERBRACE{\COLOR{#1}{black}}{#2}}}%
+
+
+\def\GUPBRACE#1#2{\GRAY{\UPBRACE{\COLOR{#1}{black}}{#2}}}%
+
+\def\REDCANCEL#1{\RED{\cancel{{\normalcolor #1}}}}%
+
+\def\BLUECANCEL#1{{\color{blue}\cancel{{\normalcolor #1}}}}%
+
+\def\GREENCANCEL#1{\GREEN{\cancel{{\normalcolor #1}}}}%
+
+\def\BLUECANCELTO#1#2{\BLUE{\cancelto{#2}{{\normalcolor #1}}}}%
+$$
+
+<h1>Introduction</h1>
+
+<p>To perform the long term studies of the LGAD devices sent from Torino, I developed a new board which I called the Chubut board. This is basically (almost) the same circuit as the widespread Santa Cruz board&nbsp;<crossref toid="Reference: Santa Cruz Twiki"></crossref> but implemented in a smaller board, so I can fit more inside the climate chamber simultaneously. It should also make everything easier, e.g. to put them in the TCT, etc.</p>
+
+<p>The files with the design of the Chubut board, and also simulations, can be found in <a href="https://github.com/SengerM/ChubutBoard">the GitHub repository</a>&nbsp;<crossref toid="Reference: GitHub repo with Chubut board"></crossref>. In <crossref toid="Figure: Pictures of Chubut board"></crossref> some pictures of the board assembled are shown.</p>
+
+<float class="Figure" id="Figure: Pictures of Chubut board">
+	<image src="media/1.svg" style="max-width: 100%;"></image>
+	<floatcaption>Pictures of a Chubut board assembled, without any detector.</floatcaption>
+</float>
+
+<h1>Comparison with the standard Santa Cruz board</h1>
+
+<p>Despite it should work out of the box, a test was made to compare the new Chubut board against the standard Santa Cruz board. For this, four boards were prepared as follows:
+<ul>
+	<li>HPK2 PIN diode installed in Santa Cruz board.</li>
+	<li>HPK2 PIN diode installed in Chubut board.</li>
+	<li>HPK2 LGAD installed in Santa Cruz board.</li>
+	<li>HPK2 LGAD installed in Chubut board.</li>
+</ul>
+All the devices are from wafer 31 to ensure they are similar enough (PIN with PIN and LGAD with LGAD). These boards were exposed to beta rays from the Sr-90 source. The conditions for all the boards were exactly the same. The bias voltage for all the measurements was 111&nbsp;V while the bias current was between 20 and 100&nbsp;nA.
+</p>
+
+<h2 id="Section: Measurement results">Measurements results</h2>
+
+<p>At a first glance it was evident that the Chubut board was performing fine, just looking at the response in the oscilloscope based in my previous experience with Santa Cruz boards. Even though, data was recorded and a more quantitative comparison between the two boards was done. In <crossref toid="Figure: Histograms for LGAD"></crossref> the distribution of the most relevant quantities are compared for the LGAD devices. As can be seen, the differences between each board are negligible. For the PIN devices similar results were obtained. As a conclusion, the Chubut boards are performing as expected&nbsp;&#9989;.</p>
+
+<float class="Figure" id="Figure: Histograms for LGAD">
+	<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+		<iframe src="media/LGAD amplitude.html" class="plotly" style="max-width: 555px !important; height: 400px !important;"></iframe>
+		<iframe src="media/LGAD noise.html" class="plotly" style="max-width: 555px !important; height: 400px !important;"></iframe>
+		<iframe src="media/LGAD SNR.html" class="plotly" style="max-width: 555px !important; height: 400px !important;"></iframe>
+		<iframe src="media/LGAD rise time.html" class="plotly" style="max-width: 555px !important; height: 400px !important;"></iframe>
+	</div>
+	<floatcaption>Comparison of the distribution of the most relevant figures between the Chubut board and the Santa Cruz board assembled each with an HPK2 LGAD device (wafer 31) and exposed to beta rays.</floatcaption>
+</float>
+
+<h1>Transimpedance characterization</h1>
+
+<p>An important characteristic of the amplifier circuit is the transimpedance. This magnitude relates the output voltage with the input current $$\text{Transimpedance} = \frac{V_\text{out}}{I_\text{in}}$$ and allows to measure the collected charge of the detector in the board in Coulomb. In order to measure the transimpedance, the board with the PIN diode was used. The reason is that because this device has unity gain, it can be used as a "standard charge producer" which depends only in the properties of the silicon. In the following paragraphs the method will be described.</p>
+
+If the transimpedance is a constant, which we expect it to be, then it is possible to integrate in time the voltage and the current such that the relation between them is still valid: 
+	<equation id="Equation: transimpedance as ratio of charge">
+	$$\text{Transimpedance}=\frac{\intop V\DIFERENTIAL t}{\intop I\DIFERENTIAL t}=\frac{Q_{\text{a.u.}}}{Q}$$
+	</equation>
+
+ where $Q_\text{a.u.}$ is "the charge in arbitrary units" as I am measuring it right now, and $Q$ is the charge measured in Coulomb. $Q_\text{a.u.}$ is the number I get from a measurement in the lab while $Q$ comes from the theory as explained below.
+
+<h2>Theory of collected charge</h2>
+
+<p>When a <siglas>MIP</siglas> particle passes through the detector, a number $N$ of electron-hole pairs is produced. $N$ is a random variable that follows a Landau distribution&nbsp;<crossref toid="Reference: Kolanoski 2020"></crossref>&nbsp;<crossref toid="Reference: Ferrero 2021 book"></crossref>. The total charge that will be measured when integrating the current coming out from the detector will be just $$Q=eN$$ where $e$ is the elementary charge.</p>
+
+<p>It is possible to relate the number of e-h pairs produced $N$ with the energy lost by the impinging <siglas>MIP</siglas> via $$N = \frac{E_\text{lost by the MIP in the detector}}{E_\text{to produce a single e-h pair}}$$ where $E_\text{lost by the MIP in the detector}$ is the total energy lost by the impinging MIP, which is a random variable following a Landau distribution, and $E_\text{to produce a single e-h pair} \approx 3.65 \text{ eV}$ is an effective energy required to produce a single e-h pair by ionization&nbsp;<crossref toid="Reference: Kolanoski 2020"></crossref>&nbsp;<crossref toid="Reference: Ferrero 2021 book"></crossref>.</p>
+
+<p>Because these quantities are random variables following a Landau distribution, we can study the <siglas>MPV</siglas>, so each of the random variables now is a fixed number: $$Q^\text{MPV} = e\frac{E_\text{lost by the MIP in the detector}^\text{MPV}}{E_\text{to produce a single e-h pair}}$$ It turns out that $E_\text{lost by the MIP in the detector}^\text{MPV}$ has a simple expression for electrons in silicon given by&nbsp;<crossref toid="Reference: Meroli 2011"></crossref>&nbsp;<crossref toid="Reference: Ferrero 2021 book"></crossref>
+	$$E_\text{lost by the MIP in the detector}^\text{MPV} = \PARENTHESES{0.031\ln\frac{d}{1\MICRO m}+0.128}\KILO{eV}\MICRO m^{-1}~d$$
+where $d$ is the depleted thickness of the silicon detector. Replacing this in the expression for $Q^\text{MPV}$ we get
+	$$Q^\text{MPV}_\text{MIP electrons in silicon} = e\frac{(31 \ln d + 128) d}{3.65}$$
+As far as I understand, this expression should be quite general.
+</p>
+
+<p>Using that $d = 45 \MICRO{m}$ for HPK2 devices, we get 
+	<equation id="Equation: Q theory">
+	$$Q^\text{MPV} \approx 0.486 \FEMTO{C}$$
+	</equation>
+</p>
+
+<h2>Measurement of collected charge</h2>
+
+<p>For each signal measured by the PIN diode mounted in the Chubut board the "collected charge in arbitrary units", i.e. $Q_\text{a.u.}$, was calculated, as shown in the example in <crossref toid="Figure: plot of a signal"></crossref>. The distribution of the collected charge for all the signals measured is shown in <crossref toid="Figure: collected charge distribution"></crossref>. Again we see a good agreement between the Chubut and the Santa Cruz boards. The collected charge follows a Landau distribution, the smaller peak at $\approx 0.6 \PICO{ a.u.}$ is the noise, so we can just ignore it.</p>
+
+<float class="Figure" id="Figure: plot of a signal">
+	<iframe src="media/Signal number 832.html" class="plotly"></iframe>
+	<floatcaption>Example of a signal from the HPK2 PIN diode mounted in the Chubut board produced by a beta particle and the different parameters extracted.</floatcaption>
+</float>
+
+<float class="Figure" id="Figure: collected charge distribution">
+	<iframe src="media/PIN collected charge.html" class="plotly"></iframe>
+	<floatcaption>Distribution of the "collected charge in arbitrary units" (i.e. not multiplied by the transconductance of the amplifier) from the measurements of the PIN diodes for both boards.</floatcaption>
+</float>
+
+<p>The most probable value for the collected charge in arbitrary units for the Chubut board measurement was estimated using a kernel density estimation. A value of 
+	<equation id="Equation: Q lab">
+	$$Q_\text{a.u.}^\text{MPV} = 1.57\TIMESTENTOTHE{-12}\UNIT{a.u.} \equiv 1.57\TIMESTENTOTHE{-12}\UNIT V\UNIT s$$
+	</equation>
+was obtained.</p>
+
+<h2>Calculation of transimpedance and comparison with simulations</h2>
+
+<p>Using the values from <crossref toid="Equation: Q theory"></crossref> and <crossref toid="Equation: Q lab"></crossref> we can calculate the transimpedance from <crossref toid="Equation: transimpedance as ratio of charge"></crossref> such that 
+	
+	$$\text{Transimpedance} = 3237 ~\Omega$$
+
+From the simulation, however, a value of about 450&nbsp;Ω was expected. The big difference between these two numbers is not yet understood. 
+</p>
+
+
+
+<h1>Conclusions</h1>
+
+<p>A new board with a single stage low power amplifier was designed, produced and tested. This board will be primarily used for the long term studies of irradiated LGADs, but can be used as a one-to-one replacement for the Santa Cruz board. The results from <crossref toid="Section: Measurement results"></crossref> show that the performance of this board is practically identical to the Santa Cruz board.</p>
+
+<p>The transimpedance of the board was measured in order to being able to convert the collected charge from "arbitrary units"<footnote>Volt × second.</footnote> to Coulomb. A big discrepancy between the measured value and the simulated one was found. The reason for this disagreement is still unknown.</p>
+
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: Santa Cruz Twiki">Ucsc Single Channel. <a href="https://twiki.cern.ch/twiki/bin/view/Main/UcscSingleChannel">https://twiki.cern.ch/twiki/bin/view/Main/UcscSingleChannel</a>.</reference>
+	
+	<reference id="Reference: GitHub repo with Chubut board">Chubut board GitHub repository. <a href="https://github.com/SengerM/ChubutBoard">https://github.com/SengerM/ChubutBoard</a>.</reference>
+	
+	<reference id="Reference: Kolanoski 2020">Kolanoski, Hermann, and Norbert Wermes. Particle Detectors: Fundamentals and Applications. Particle Detectors. Oxford University Press, 2020. <a href="https://cds.cern.ch/record/2721300">https://cds.cern.ch/record/2721300</a>.</reference>
+	
+	<reference id="Reference: Ferrero 2021 book">Ferrero, Marco, Roberta Arcidiacono, Marco Mandurrino, Valentina Sola, and Nicolò Cartiglia. An Introduction to Ultra-Fast Silicon Detectors: Design, Tests, and Performances. Boca Raton: CRC Press, 2021. <a href="https://doi.org/10.1201/9781003131946">https://doi.org/10.1201/9781003131946</a>.</reference>
+	
+	<reference id="Reference: Meroli 2011"> Energy loss measurement for charged particles in very thin silicon layers, S Meroli et al. 29 June 2011. <a href="http://iopscience.iop.org/1748-0221/6/06/P06013">http://iopscience.iop.org/1748-0221/6/06/P06013</a>.</reference>
+</div>
+
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
