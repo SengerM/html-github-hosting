@@ -236,12 +236,24 @@ If the transimpedance is a constant, which we expect it to be, then it is possib
 
 <p>When a <siglas>MIP</siglas> particle passes through the detector, a number $N$ of electron-hole pairs is produced. $N$ is a random variable that follows a Landau distribution&nbsp;<crossref toid="Reference: Kolanoski 2020"></crossref>&nbsp;<crossref toid="Reference: Ferrero 2021 book"></crossref>. The total charge that will be measured when integrating the current coming out from the detector will be just $$Q=eN$$ where $e$ is the elementary charge.</p>
 
-<p>It is possible to relate the number of e-h pairs produced $N$ with the energy lost by the impinging <siglas>MIP</siglas> via $$N = \frac{E_\text{lost by the MIP in the detector}}{E_\text{to produce a single e-h pair}}$$ where $E_\text{lost by the MIP in the detector}$ is the total energy lost by the impinging MIP, which is a random variable following a Landau distribution, and $E_\text{to produce a single e-h pair} \approx 3.65 \text{ eV}$ is an effective energy required to produce a single e-h pair by ionization&nbsp;<crossref toid="Reference: Kolanoski 2020"></crossref>&nbsp;<crossref toid="Reference: Ferrero 2021 book"></crossref>.</p>
+<p>It is possible to relate the number of e-h pairs produced $N$ with the energy lost by the impinging <siglas>MIP</siglas> via 
 
-<p>Because these quantities are random variables following a Landau distribution, we can study the <siglas>MPV</siglas>, so each of the random variables now is a fixed number: $$Q^\text{MPV} = e\frac{E_\text{lost by the MIP in the detector}^\text{MPV}}{E_\text{to produce a single e-h pair}}$$ It turns out that $E_\text{lost by the MIP in the detector}^\text{MPV}$ has a simple expression for electrons in silicon given by&nbsp;<crossref toid="Reference: Meroli 2011"></crossref>&nbsp;<crossref toid="Reference: Ferrero 2021 book"></crossref>
+	$$N = \frac{E_\text{lost by the MIP in the detector}}{E_\text{to produce a single e-h pair}}$$ 
+
+where $E_\text{lost by the MIP in the detector}$ is the total energy lost by the impinging MIP, which is a random variable following a Landau distribution, and $E_\text{to produce a single e-h pair} \approx 3.65 \text{ eV}$ is an effective energy required to produce a single e-h pair by ionization&nbsp;<crossref toid="Reference: Kolanoski 2020"></crossref>&nbsp;<crossref toid="Reference: Ferrero 2021 book"></crossref>.</p>
+
+<p>Because these quantities are random variables following a Landau distribution, we can study the <siglas>MPV</siglas>, so each of the random variables now is a fixed number: 
+	
+	$$Q^\text{MPV} = e\frac{E_\text{lost by the MIP in the detector}^\text{MPV}}{E_\text{to produce a single e-h pair}}$$ 
+
+It turns out that $E_\text{lost by the MIP in the detector}^\text{MPV}$ has a simple expression for electrons in silicon given by&nbsp;<crossref toid="Reference: Meroli 2011"></crossref>&nbsp;<crossref toid="Reference: Ferrero 2021 book"></crossref>
+
 	$$E_\text{lost by the MIP in the detector}^\text{MPV} = \PARENTHESES{0.031\ln\frac{d}{1\MICRO m}+0.128}\KILO{eV}\MICRO m^{-1}~d$$
+
 where $d$ is the depleted thickness of the silicon detector. Replacing this in the expression for $Q^\text{MPV}$ we get
-	$$Q^\text{MPV}_\text{MIP electrons in silicon} = e\frac{(31 \ln d + 128) d}{3.65}$$
+
+	$$Q^\text{MPV}_\text{MIP electrons in silicon} = e\frac{\left(31 \ln \left(\frac{d}{1 \MICRO{m}}\right) + 128\right) \frac{d}{1 \MICRO{m}}}{3.65}$$
+
 As far as I understand, this expression should be quite general.
 </p>
 
