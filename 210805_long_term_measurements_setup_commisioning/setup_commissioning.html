@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Commissioning of the long term studies setup</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+<!-- Math support https://www.mathjax.org/#gettingstarted -->
+<script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Below is the definitions of my macros that I use in Lyx -->
+<div style="display: none;">
+	$$
+	\def\MODULE#1{\left|\,#1\,\right|}%
+	\def\PARENTHESES#1{\left(#1\right)}%
+	\def\SQBRACKETS#1{\left[#1\right]}%
+	\def\BRACES#1{\left\{  #1\right\}  }%
+	\def\LBRACE#1{\left\{  #1\right.}%
+	\def\RBRACE#1{\left.#1\right\}  }%
+	\def\LSQBRACKET#1{\left[#1\right.}%
+	\def\RSQBRACKET#1{\left.#1\right]}%
+	\def\LPARENTHESIS#1{\left(#1\right.}%
+	\def\RPARENTHESIS#1{\left.#1\right)}%
+	\def\ANGLEBRACKETS#1{\left\langle #1\right\rangle }%
+	\def\SPACELONG{\hspace{10mm}}%
+	\def\SPACEMEDIUM{\hspace{5mm}}%
+	\def\DEF{\overset{{\scriptscriptstyle \text{def}}}{=}}%
+	\def\UPBRACE#1#2{\overset{{\scriptstyle #2}}{\overbrace{#1}}}%
+	\def\UNDERBRACE#1#2{\underset{{\scriptstyle #2}}{\underbrace{#1}}}%
+	\def\REALES{\mathbb{R}}%
+	\def\IMAGINARIOS{\mathbb{I}}%
+	\def\NATURALES{\mathbb{N}}%
+	\def\ENTEROS{\mathbb{Z}}%
+	\def\COMPLEJOS{\mathbb{C}}%
+	\def\RACIONALES{\mathbb{Q}}%
+	\def\DIFERENTIAL{\,\text{d}}%
+	\def\PRIME{{\vphantom{A}}^{\prime}}%
+	\def\ORDER#1{\mathcal{O}\PARENTHESES{#1}}%
+	\def\DIRACDELTA#1{\delta_{D}\PARENTHESES{#1}}%
+	\def\HEAVYSIDETHETA#1{\Theta_{H}\PARENTHESES{#1}}%
+	\def\ATAN{\text{atan}}%
+	\def\INDICATORFUNCTION#1{\mathbf{1}\BRACES{#1} }%
+	\def\VECTOR#1{\boldsymbol{#1}}%
+	\def\VERSOR#1{\hat{\VECTOR{#1}}}%
+	\def\IDENTITY{\mathds{1}}%
+	\def\CURL{\VECTOR{\nabla}\times}%
+	\def\GRADIENT{\VECTOR{\nabla}}%
+	\def\DIVERGENCE{\VECTOR{\nabla}\cdot}%
+	\def\LAPLACIAN{\nabla^{2}}%
+	\def\REALPART#1{\text{Re}\left(#1\right)}%
+	\def\IMAGPART#1{\text{Im}\left(#1\right)}%
+	\def\TENDSTO#1{\underset{{\scriptscriptstyle #1}}{\longrightarrow}}%
+	\def\EVALUATEDAT#1#2#3{\left\lceil #1\right\rfloor _{#2}^{#3}}%
+	\def\unit#1{\text{#1}}
+	\def\TERA#1{\text{ T}\unit{#1}}%
+	\def\GIGA#1{\text{ G}\unit{#1}}%
+	\def\MEGA#1{\text{ M}\unit{#1}}%
+	\def\KILO#1{\text{ k}\unit{#1}}%
+	\def\UNIT#1{\,\unit{#1}}%
+	\def\CENTI#1{\text{ c}\unit{#1}}%
+	\def\MILI#1{\text{ m}\unit{#1}}%
+	\def\MICRO#1{\text{ }\mu\unit{#1}}%
+	\def\NANO#1{\text{ n}\unit{#1}}%
+	\def\PICO#1{\text{ p}\unit{#1}}%
+	\def\FEMTO#1{\text{ f}\unit{#1}}%
+	\def\TIMESTENTOTHE#1{\times10^{#1}}%
+	\def\PROB#1{\mathbb{P}\left(#1\right)}%
+	\def\MEAN#1{\mathbb{E}\PARENTHESES{#1}}%
+	\def\VARIANCE#1{\mathbb{V}\PARENTHESES{#1}}%
+	\def\COLOR#1#2{{\color{#2}{\,#1\,}}}%
+	\def\RED#1{\textcolor{red}{#1}}%
+	\def\BLUE#1{\COLOR{#1}{blue!80!white}}%
+	\def\GREEN#1{\textcolor{green!70!black}{#1}}%
+	\def\GRAY#1{\COLOR{#1}{black!30}}%
+	\def\GRAY#1{\COLOR{#1}{blue!35!white}}%
+	\def\GUNDERBRACE#1#2{\GRAY{\UNDERBRACE{\COLOR{#1}{black}}{#2}}}%
+	\def\GUPBRACE#1#2{\GRAY{\UPBRACE{\COLOR{#1}{black}}{#2}}}%
+	\def\REDCANCEL#1{\RED{\cancel{{\normalcolor #1}}}}%
+	\def\BLUECANCEL#1{{\color{blue}\cancel{{\normalcolor #1}}}}%
+	\def\GREENCANCEL#1{\GREEN{\cancel{{\normalcolor #1}}}}%
+	\def\BLUECANCELTO#1#2{\BLUE{\cancelto{#2}{{\normalcolor #1}}}}%
+	$$
+	</div>
+<link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/CommentBox.css" rel="stylesheet"/><link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css" rel="stylesheet"/></head>
+<body>
+<div id="document_title"></div>
+<div style="margin-top: 10px; margin-bottom: 10px;">$\def\NEUTRONEQUIVALENT{\UNIT n_{\text{eq}}}$\UNIT%<author>Matías Senger</author><div style="margin: 22px; text-align: center;">August 5, 2021</div><abstract><div>
+In this document I provide an update on the commissioning of setup
+for the long term studies of irradiated LGAD detectors at UZH. This
+setup is intended to periodically monitor the characteristics and
+performance of irradiated LGAD detectors when they are kept biased
+for a long period of time. 
+</div></abstract></div><div id="table-of-contents"><h2 class="unnumbered">Table of contents</h2></div><h1>Introduction</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+In this work a set of irradiated FBK detectors from the UFSD3.2 production <crossref toid="Reference:libronuevosobreUFSD"></crossref> 
+are going to be tested<footnote>More specifically, devices of "type" 4 and 10 from wafers 4, 10,
+18 and 4A, irradiated to fluences of $4\TIMESTENTOTHE{14}\NEUTRONEQUIVALENT\CENTI m^{-2}$,
+$8\TIMESTENTOTHE{14}\NEUTRONEQUIVALENT\CENTI m^{-2}$, $15\TIMESTENTOTHE{14}\NEUTRONEQUIVALENT\CENTI m^{-2}$
+and $25\TIMESTENTOTHE{14}\NEUTRONEQUIVALENT\CENTI m^{-2}$. </footnote>. The tests consist in keeping them under working conditions (i.e.
+low temperature and biased) for an extended period of time, and regularly
+monitor a number parameters to look for deviations from the expected
+performance. For this, a dedicated setup is under implementation at
+UZH consisting of several hardware equipment and customized controlling
+and analysis software. </div><div>In this document the first report on its commissioning is presented.
+First the whole setup is described. Then some preliminary measurements
+are presented.</div><div></div><h1>Setup description</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+In <crossref toid="Figure: block diagram of the setup"></crossref> a block diagram of the
+designed setup is shown. The setup was designed to handle up to eight
+devices simultaneously. The devices are individually controlled and
+monitored, independently from one another. Two CAEN high voltage power
+supplies provide the high voltage to bias the LGADs, while at the
+same time are used to monitor the bias current and regularly trace
+IV curves of each device. An oscilloscope and a PSI DRS4 evaluation
+board<crossref toid="Reference:PSIDRS4"></crossref>  are used to measure the signals coming
+out from each LGAD when exposed to beta radiation from an Sr-90 source.
+A robotic system moves the Sr-90 beta source and MCP-PMT time reference
+from one LGAD to the other. All the setup is automatically controlled
+by a computer which runs a customized software. A picture of the setup
+is shown in <crossref toid="Figure: picture of the setup"></crossref>.</div><div><float class="Figure" id="Figure: block diagram of the setup"><div style="display: flex; width: 100%;"><image src="media/setup_block_diagram.svg" style="max-width: 100%;"/></div><floatcaption>Block diagram of the designed setup. </floatcaption></float><float class="Figure" id="Figure: picture of the setup"><div style="display: flex; width: 100%;"><image src="media/picture_of_the_setup.svg" style="max-width: 100%;"/></div><floatcaption>Picture of the setup in its current state. The climate chamber hosts
+the readout boards with the LGADs. The two high voltage power supplies
+lie on the first shelve (red devices). The DC power supply is placed
+in the higher shelve. The oscilloscope and the PC are on the table.
+</floatcaption></float></div><h2>Readout board</h2><div style="margin-top: 10px; margin-bottom: 10px;">
+To provide flexibility, each device is mounted in an individual readout
+board which has a built in amplifier. The board, designed and produced
+in the context of this project, is based in the Santa Cruz board <crossref toid="Reference:TwikioftheUCSCboard"></crossref> .
+The circuit has some minor modifications and the board a completely
+new layout, to obtain a board with smaller dimensions. For details
+on this board and its performance please see reference <crossref toid="Reference:TheChubutboardmywebsite"></crossref> .
+Some pictures of this board can be seen in <crossref toid="Figure: pics of the Chubut board"></crossref>,
+and a microscopy picture of a device mounted in a Chubut board is
+shown in <crossref toid="Figure: microscopy picture"></crossref>. 
+<float class="Figure" id="Figure: pics of the Chubut board"><div style="display: flex; width: 100%;"><image src="media/chubut_board_pics.svg" style="max-width: 100%; width: 777px;"/></div><floatcaption>Pictures of the Chubut board <crossref toid="Reference:TheChubutboardmywebsite"></crossref> ,
+developed in the context of this project. </floatcaption></float><float class="Figure" id="Figure: microscopy picture"><div style="display: flex; width: 100%;"><image src="media/microscope_picture_of_a_device_bonded.svg" style="max-width: 100%;"/></div><floatcaption>Microscopy picture of a device mounted in the Chubut board. </floatcaption></float></div><h2>High voltage power supplies</h2><div style="margin-top: 10px; margin-bottom: 10px;">
+The bias voltage for the eight devices is provided by two CAEN modules,
+each with four outputs, which can be seen in the picture of <crossref toid="Figure: picture of the setup"></crossref>(red apparatuses on the first shelve). One of the modules is model
+DT1419ET and the other is a DT1470ET. The modules are controlled through
+the network of the institute, optionally via USB. A simple and easy
+pure Python package was developed to control the instruments <footnote><a href="https://github.com/SengerM/CAENpy">https://github.com/SengerM/CAENpy</a>.</footnote>.</div><div></div><h2>Acquisition system</h2><div style="margin-top: 10px; margin-bottom: 10px;">
+To acquire the fast signals produced by MIP particles traversing the
+LGADs, a LeCroy WaveRunner 640Zi oscilloscope sampling at $40\GIGA s\UNIT s^{-1}$
+is used. This oscilloscope has four input channels. To fully automatize
+the setup, a PSI DSR4 evaluation system <crossref toid="Reference:PSIDRS4"></crossref> 
+is planned to be used, though the software to control this device
+has not yet been implemented. </div><div></div><h2>Timing reference</h2><div style="margin-top: 10px; margin-bottom: 10px;">
+A Photonis PP2365AC MCP-PMT is going to be used as a reference for
+fast and precise triggering of the acquisition system. This device
+provides a time resolution $\lesssim10\PICO s$ <footnote>Information provided to us by the manufacturer. Se also references
+<crossref toid="Reference:MCPastimingreference1"></crossref> <crossref toid="Reference:MCPastimingreference2"></crossref> <crossref toid="Reference:MCPastimingreference3"></crossref> <crossref toid="Reference:MCPastimingreference4"></crossref> 
+which describe the performance of a similar device for timing of minimum
+ionizing particles.</footnote>. This device will be mounted in a robotic system, currently in design,
+to move together with a radioactive Sr-90 source along each of the
+eight test LGADs. The block diagram in <crossref toid="Figure: block diagram of the setup"></crossref>
+illustrates this.</div><div></div><h1>Standby bias voltage and current monitoring</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+During the whole test the detectors will be kept under a standby voltage
+that can be configured individually for each device. Both the bias
+voltage and the bias current will be monitored constantly. In <crossref toid="Figure: standby bias current"></crossref>
+the very first measurements of standby bias current obtained for eight
+detectors simultaneously using this setup is presented. 
+<float class="Figure" id="Figure: standby bias current"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/Standby bias current.html"></iframe></div><floatcaption>Very first measurements of the bias current for eight irradiated LGADs
+installed inside the climate chamber. The labels in the legend are
+codified in an internal numeration to identify the detectors. </floatcaption></float></div><h1>IV-curve measurements</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+The current-voltage (IV) characteristic of an LGAD detector provides
+valuable information. The setup measures the IV curve of each device
+periodically, using the values of bias voltage and current provided
+by the high voltage power supplies. In <crossref toid="Figure: example of IV measurement"></crossref>
+an IV-curve measurement example is shown (label "Measurement setup
+through CAEN"). The bias voltage and the current are the values
+that were feed into the Chubut board. The current corresponds to the
+sum of the current of the four pads (3 wire bonded to ground, one
+connected to the amplifier input, see <crossref toid="Figure: microscopy picture"></crossref>)
+plus the guard ring, which is wire bonded to ground. The amplifier
+input is kept at $\approx0\UNIT V$ DC, while the backside of the
+device is where the bias voltage is applied. </div><div>This measurement (<crossref toid="Figure: example of IV measurement"></crossref>) is compared
+against an IV characterization of the same device made with a probe
+station before mounting the device in the readout board. In this case,
+the guard ring was grounded, one of the pads was kept fixed at $0\UNIT V$
+and the bias voltage was applied to the backside through the chuck.
+The current shown under the label "Probe station" is the current
+flowing through the backside. </div><div><float class="Figure" id="Figure: example of IV measurement"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/iv_curve_example.html"></iframe></div><floatcaption>Example of an IV curve measured by the setup using one of the high
+voltage power supplies. The measurement is compared with another measurement
+of the same device made with a probe station before mounting the device
+in the readout board. </floatcaption></float>
+As seen, the two measurements differ significantly; the current measured
+by the CAEN is considerably higher than the current measured by the
+probe station, and the current measured in the probe station has an
+extra kink at $\sim80-90\UNIT V$. To account for these differences
+let's consider the following expressions for the current in each case
+\[
+\LBRACE{\begin{aligned} &amp; I_{\text{CAEN}}\approx4I_{\text{pad}}+I_{\text{guard ring}}\\
+ &amp; I_{\text{probe station}}\approx I_{\text{pad}}+I_{\text{guard ring}}
+\end{aligned}
+}
+\]
+ after the connections described for each case. If we focus in the
+region where the gain layer depletes the change in the total current
+(i.e. the measured current) should be dominated by the variations
+in $I_{\text{pad}}$, i.e. 
+\[
+\EVALUATEDAT{\frac{\DIFERENTIAL I_{\text{guard ring}}}{\DIFERENTIAL V}}{\text{Gain layer depletes}}{}\ll\EVALUATEDAT{\frac{\DIFERENTIAL I_{\text{pad}}}{\DIFERENTIAL V}}{\text{Gain layer depletes}}{}\text{.}
+\]
+ Following this idea we should observe that 
+\[
+\EVALUATEDAT{\frac{\DIFERENTIAL I_{\text{CAEN}}}{\DIFERENTIAL V}}{\text{Gain layer depletes}}{}\approx4\EVALUATEDAT{\frac{\DIFERENTIAL I_{\text{probe station}}}{\DIFERENTIAL V}}{\text{Gain layer depletes}}{}\text{.}
+\]
+ The depletion of the gain layer is happening between $-35\UNIT V$
+and $-40\UNIT V$ approximately. In the measurement using the probe
+station the increase between $-35\UNIT V$ and $-40\UNIT V$ is of
+\[
+\EVALUATEDAT{\frac{\DIFERENTIAL I_{\text{probe station}}}{\DIFERENTIAL V}}{\text{Gain layer depletes}}{}\approx135\NANO A-94.3\NANO A=40.7\NANO A\text{.}
+\]
+ For the measurement with the CAEN the current increase in the same
+voltage range is about 
+\[
+\EVALUATEDAT{\frac{\DIFERENTIAL I_{\text{CAEN}}}{\DIFERENTIAL V}}{\text{Gain layer depletes}}{}\approx350\NANO A-190\NANO A=160\NANO A\text{.}
+\]
+The ratio of these two currents is 
+\[
+\frac{160\NANO A}{40.7\NANO A}=3.9
+\]
+which seem to indicate that the previous reasoning is correct. </div><div>With respect to the difference at $\approx-90\UNIT V$, the second
+kink in the measurement with the probe station, not present on the
+measurement with the CAEN, may be due to border effects in the pads
+left floating. </div><div></div><h1>Charge collection measurements</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+An important figure of the LGAD detectors is the collected charge.
+To obtain good timing capability a charge of about $5\text{-}6\FEMTO C$
+is required in the output of the detector <crossref toid="Reference:libronuevosobreUFSD"></crossref> .
+The experimental setup is designed to periodically measure the collected
+charge of each device using the Sr-90 source of beta particles. The
+software for this is still under development, but as an example in <crossref toid="Figure: example of signal"></crossref>
+a signal produced by a beta particle in a non-irradiated HPK LGAD
+device is shown, together with a number of features extracted by the
+analysis software. This signal was recorded in a preliminary test
+of the current setup. 
+<float class="Figure" id="Figure: example of signal"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/example_signal.html"></iframe></div><floatcaption>Example of a signal acquired with the setup using the Sr-90 source
+and the oscilloscope. This signal was recorded during a preliminary
+test using a non-irradiated HPK LGAD, biased with $111\text{ V}$.
+A number of features extracted by the analysis software are shown,
+in particular the collected charge (in arbitrary units of $\text{V s}$).
+</floatcaption></float></div><h1>Timing measurements</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+Perhaps the most relevant measurement is the time resolution of each
+detector; after all the detectors will be used for this. To monitor
+the time resolution of each detector a precise MCP-PMT reference detector
+will be used as trigger, as described previously. This detector was
+already ordered to the manufacturer, but it has not yet arrived to
+our lab. In the meantime a non-irradiated CNM LGAD detector with a
+time resolution of $27\PICO s$ will be used.</div><div></div><h1>Conclusions</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+Work is ongoing on the commissioning of the setup for the long term
+tests of irradiated LGAD devices. The setup is already partially operational
+and monitoring the standby current of eight detectors. There is still
+work to do in terms both of hardware and software. It is expected
+to have it fully operational in about 2-4 months. 
+</div><div id="footnotes_list"><h1 class="unnumbered">Footnotes</h1></div><div id="references_list"><h1 class="unnumbered">References</h1><reference id="Reference:libronuevosobreUFSD"><dummy_tag><dummy_tag>Ferrero, Marco, Roberta
+Arcidiacono, Marco Mandurrino, Valentina Sola, and Nicolò Cartiglia.
+An Introduction to Ultra-Fast Silicon Detectors: Design, Tests, and
+Performances. Boca Raton: CRC Press, 2021. </dummy_tag><dummy_tag><a href="https://doi.org/10.1201/9781003131946">https://doi.org/10.1201/9781003131946</a></dummy_tag><dummy_tag>. 
+
+</dummy_tag></dummy_tag></reference><reference id="Reference:TheChubutboardmywebsite"><dummy_tag><dummy_tag>The Chubut board,
+Matías Senger. </dummy_tag><dummy_tag><a href="https://msenger.web.cern.ch/the-chubut-board/">https://msenger.web.cern.ch/the-chubut-board/</a></dummy_tag><dummy_tag>.
+
+</dummy_tag></dummy_tag></reference><reference id="Reference:TwikioftheUCSCboard"><dummy_tag><dummy_tag>UCSC Single Channel.
+</dummy_tag><dummy_tag><a href="https://twiki.cern.ch/twiki/bin/view/Main/UcscSingleChannel">https://twiki.cern.ch/twiki/bin/view/Main/UcscSingleChannel</a></dummy_tag><dummy_tag>.
+
+</dummy_tag></dummy_tag></reference><reference id="Reference:PSIDRS4"><dummy_tag><dummy_tag>PSI DRS4 evaluation board, </dummy_tag><dummy_tag><a href="https://www.psi.ch/en/drs/evaluation-board">https://www.psi.ch/en/drs/evaluation-board</a></dummy_tag><dummy_tag>.
+
+</dummy_tag></dummy_tag></reference><reference id="Reference:MCPastimingreference1"><dummy_tag><dummy_tag>A. Ronzhin, S. Los,
+E. Ramberg, M. Spiropulu, A. Apresyan, S. Xie, H. Kim, A. Zatserklyaniy,
+Development of a new fast shower maximum detector based on microchannel
+plates photomultipliers (MCP-PMT) as an active element, 21 September
+2014, Nuclear Instruments and Methods in Physics Research Section
+A: Accelerators, Spectrometers, Detectors and Associated Equipment.
+</dummy_tag><dummy_tag><a href="https://doi.org/10.1016/j.nima.2014.05.039">https://doi.org/10.1016/j.nima.2014.05.039</a></dummy_tag><dummy_tag>.
+
+</dummy_tag></dummy_tag></reference><reference id="Reference:MCPastimingreference2"><dummy_tag><dummy_tag>A. Bornheim, C. Pena,
+M. Spiropulu, S. Xie, Z. Zhang, Precision timing detectors with cadmium-telluride
+sensor, 21 September 2017, Nuclear Instruments and Methods in Physics
+Research Section A: Accelerators, Spectrometers, Detectors and Associated
+Equipment. </dummy_tag><dummy_tag><a href="https://doi.org/10.1016/j.nima.2017.04.024">https://doi.org/10.1016/j.nima.2017.04.024</a></dummy_tag><dummy_tag>.
+
+</dummy_tag></dummy_tag></reference><reference id="Reference:MCPastimingreference3"><dummy_tag><dummy_tag>Test Beam Studies Of
+Silicon Timing for Use in Calorimetry, A. Apresyan, G. Bolla, A. Bornheim,
+H. Kim, S. Los, C. Pena, E. Ramberg,A. Ronzhin, M. Spiropulu, and
+S. Xie. </dummy_tag><dummy_tag><a href="https://inspirehep.net/files/f6b1cd929d10bb6fe53679fd2f38d3c7">https://inspirehep.net/files/f6b1cd929d10bb6fe53679fd2f38d3c7</a></dummy_tag><dummy_tag>.
+
+</dummy_tag></dummy_tag></reference><reference id="Reference:MCPastimingreference4"><dummy_tag><dummy_tag>A. Ronzhin, M.G. Albrow,
+M. Demarteau, S. Los, S. Malik, A. Pronko, E. Ramberg, A. Zatserklyaniy,
+Development of a 10ps level time of flight system in the Fermilab
+Test Beam Facility, Nuclear Instruments and Methods in Physics Research
+Section A: Accelerators, Spectrometers, Detectors and Associated Equipment.
+</dummy_tag><dummy_tag><a href="https://doi.org/10.1016/j.nima.2010.08.025">https://doi.org/10.1016/j.nima.2010.08.025</a></dummy_tag><dummy_tag>.
+</dummy_tag></dummy_tag></reference></div><script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script><script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script></body>
+</html>
