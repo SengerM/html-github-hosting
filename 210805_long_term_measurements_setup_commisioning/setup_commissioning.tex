@@ -49,7 +49,7 @@ tabsize=3}
 
 \title{Commissioning of the long term studies setup}
 \author{Matías Senger}
-\date{August 5, 2021}
+\date{\today}
 \maketitle
 \begin{abstract}
 In this document I provide an update on the commissioning of setup
@@ -181,8 +181,7 @@ detectors simultaneously using this setup is presented.
 \htmltag{tag_name=iframe}{class=plotly}{src=media/Standby bias current.html}
 \par\end{centering}
 \caption{Very first measurements of the bias current for eight irradiated LGADs
-installed inside the climate chamber. The labels in the legend are
-codified in an internal numeration to identify the detectors. \label{Figure: standby bias current}}
+installed inside the climate chamber. \label{Figure: standby bias current}}
 \end{figure}
 
 
@@ -263,6 +262,28 @@ kink in the measurement with the probe station, not present on the
 measurement with the CAEN, may be due to border effects in the pads
 left floating. 
 
+For reference, IV-curve measurements taken with the probe station
+of all the devices are shown in \ref{Figure: probe station measurements}.
+To enable/disable traces simply click/double click in the legend. 
+
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=iframe}{class=plotly}{src=media/current vs bias voltage all together.html}
+\par\end{centering}
+\caption{IV curves of all the irradiated FBK devices measured in a probe station
+at UZH. The traces can be enabled/disabled by clicking in the legend
+to ease the visualization/compare among them. The color of the traces
+is linked with the fluence of irradiation. For all the measurements,
+the devices were connected in three points: 1) the back side where
+the bias voltage was applied and the $I_{\text{chuck}}$ current measured,
+2) one of the four pads where a constant $0\text{ V}$ voltage was
+applied and the current $I_{\text{pad}}$ was measured, and 3) the
+guard ring was connected to ground. The guard ring current shown is
+$I_{\text{gr}}=I_{\text{chuck}}-I_{\text{pad}}$. The remaining 3
+pads were left floating. \label{Figure: probe station measurements}}
+\end{figure}
+
+
 \section{Charge collection measurements}
 
 An important figure of the LGAD detectors is the collected charge.
@@ -271,20 +292,27 @@ is required in the output of the detector~\cite{Reference: libro nuevo sobre UFS
 The experimental setup is designed to periodically measure the collected
 charge of each device using the Sr-90 source of beta particles. The
 software for this is still under development, but as an example in~\ref{Figure: example of signal}
-a signal produced by a beta particle in a non-irradiated HPK LGAD
-device is shown, together with a number of features extracted by the
-analysis software. This signal was recorded in a preliminary test
-of the current setup. 
+a signal produced by a beta particle in an HPK PIN diode is shown,
+together with a number of features extracted by the analysis software.
+This signal was recorded in a preliminary test of the current setup.
+The distribution of the collected charge for this test is shown in~\ref{Figure: example of collected charge distribution}.
 \begin{figure}[H]
 \begin{centering}
 \htmltag{tag_name=iframe}{class=plotly}{src=media/example_signal.html}
 \par\end{centering}
 \caption{Example of a signal acquired with the setup using the Sr-90 source
 and the oscilloscope. This signal was recorded during a preliminary
-test using a non-irradiated HPK LGAD, biased with $111\text{ V}$.
-A number of features extracted by the analysis software are shown,
-in particular the collected charge (in arbitrary units of $\text{V s}$).
-\label{Figure: example of signal}}
+test using an HPK PIN diode biased with $55\text{ V}$. A number of
+features extracted by the analysis software are shown, in particular
+the collected charge (in arbitrary units of $\text{V s}$). \label{Figure: example of signal}}
+\end{figure}
+
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=iframe}{class=plotly}{src=media/Collected charge (C).html}
+\par\end{centering}
+\caption{Example of collected charge distribution from a set of signals like
+the example one shown in~\ref{Figure: example of signal}.\label{Figure: example of collected charge distribution}}
 \end{figure}
 
 

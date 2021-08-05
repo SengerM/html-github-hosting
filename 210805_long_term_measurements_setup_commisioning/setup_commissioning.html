@@ -91,7 +91,7 @@
 	\def\BLUECANCELTO#1#2{\BLUE{\cancelto{#2}{{\normalcolor #1}}}}%
 	$$
 	</div>
-<link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/CommentBox.css" rel="stylesheet"/><link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css" rel="stylesheet"/></head>
+<link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css" rel="stylesheet"/><link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/CommentBox.css" rel="stylesheet"/></head>
 <body>
 <div id="document_title"></div>
 <div style="margin-top: 10px; margin-bottom: 10px;">$\def\NEUTRONEQUIVALENT{\UNIT n_{\text{eq}}}$\UNIT%<author>Matías Senger</author><div style="margin: 22px; text-align: center;">August 5, 2021</div><abstract><div>
@@ -167,8 +167,7 @@ voltage and the bias current will be monitored constantly. In <crossref toid="Fi
 the very first measurements of standby bias current obtained for eight
 detectors simultaneously using this setup is presented. 
 <float class="Figure" id="Figure: standby bias current"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/Standby bias current.html"></iframe></div><floatcaption>Very first measurements of the bias current for eight irradiated LGADs
-installed inside the climate chamber. The labels in the legend are
-codified in an internal numeration to identify the detectors. </floatcaption></float></div><h1>IV-curve measurements</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+installed inside the climate chamber. </floatcaption></float></div><h1>IV-curve measurements</h1><div style="margin-top: 10px; margin-bottom: 10px;">
 The current-voltage (IV) characteristic of an LGAD detector provides
 valuable information. The setup measures the IV curve of each device
 periodically, using the values of bias voltage and current provided
@@ -230,23 +229,35 @@ The ratio of these two currents is
 which seem to indicate that the previous reasoning is correct. </div><div>With respect to the difference at $\approx-90\UNIT V$, the second
 kink in the measurement with the probe station, not present on the
 measurement with the CAEN, may be due to border effects in the pads
-left floating. </div><div></div><h1>Charge collection measurements</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+left floating. </div><div>For reference, IV-curve measurements taken with the probe station
+of all the devices are shown in <crossref toid="Figure: probe station measurements"></crossref>.
+To enable/disable traces simply click/double click in the legend. </div><div><float class="Figure" id="Figure: probe station measurements"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/current vs bias voltage all together.html"></iframe></div><floatcaption>IV curves of all the irradiated FBK devices measured in a probe station
+at UZH. The traces can be enabled/disabled by clicking in the legend
+to ease the visualization/compare among them. The color of the traces
+is linked with the fluence of irradiation. For all the measurements,
+the devices were connected in three points: 1) the back side where
+the bias voltage was applied and the $I_{\text{chuck}}$ current measured,
+2) one of the four pads where a constant $0\text{ V}$ voltage was
+applied and the current $I_{\text{pad}}$ was measured, and 3) the
+guard ring was connected to ground. The guard ring current shown is
+$I_{\text{gr}}=I_{\text{chuck}}-I_{\text{pad}}$. The remaining 3
+pads were left floating. </floatcaption></float></div><h1>Charge collection measurements</h1><div style="margin-top: 10px; margin-bottom: 10px;">
 An important figure of the LGAD detectors is the collected charge.
 To obtain good timing capability a charge of about $5\text{-}6\FEMTO C$
 is required in the output of the detector <crossref toid="Reference:libronuevosobreUFSD"></crossref> .
 The experimental setup is designed to periodically measure the collected
 charge of each device using the Sr-90 source of beta particles. The
 software for this is still under development, but as an example in <crossref toid="Figure: example of signal"></crossref>
-a signal produced by a beta particle in a non-irradiated HPK LGAD
-device is shown, together with a number of features extracted by the
-analysis software. This signal was recorded in a preliminary test
-of the current setup. 
+a signal produced by a beta particle in an HPK PIN diode is shown,
+together with a number of features extracted by the analysis software.
+This signal was recorded in a preliminary test of the current setup.
+The distribution of the collected charge for this test is shown in <crossref toid="Figure: example of collected charge distribution"></crossref>.
 <float class="Figure" id="Figure: example of signal"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/example_signal.html"></iframe></div><floatcaption>Example of a signal acquired with the setup using the Sr-90 source
 and the oscilloscope. This signal was recorded during a preliminary
-test using a non-irradiated HPK LGAD, biased with $111\text{ V}$.
-A number of features extracted by the analysis software are shown,
-in particular the collected charge (in arbitrary units of $\text{V s}$).
-</floatcaption></float></div><h1>Timing measurements</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+test using an HPK PIN diode biased with $55\text{ V}$. A number of
+features extracted by the analysis software are shown, in particular
+the collected charge (in arbitrary units of $\text{V s}$). </floatcaption></float><float class="Figure" id="Figure: example of collected charge distribution"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/Collected charge (C).html"></iframe></div><floatcaption>Example of collected charge distribution from a set of signals like
+the example one shown in <crossref toid="Figure: example of signal"></crossref>.</floatcaption></float></div><h1>Timing measurements</h1><div style="margin-top: 10px; margin-bottom: 10px;">
 Perhaps the most relevant measurement is the time resolution of each
 detector; after all the detectors will be used for this. To monitor
 the time resolution of each detector a precise MCP-PMT reference detector
