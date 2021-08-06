@@ -11,6 +11,7 @@
 \usepackage{babel}
 \usepackage{float}
 \usepackage{units}
+\usepackage{textcomp}
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -47,7 +48,7 @@ tabsize=3}
 
 \global\long\def\NEUTRONEQUIVALENT{\UNIT n_{\text{eq}}}%
 
-\title{Commissioning of the long term studies setup}
+\title{Commissioning of the long-term-studies setup}
 \author{Matías Senger}
 \date{\today}
 \maketitle
@@ -55,8 +56,8 @@ tabsize=3}
 In this document I provide an update on the commissioning of setup
 for the long term studies of irradiated LGAD detectors at UZH. This
 setup is intended to periodically monitor the characteristics and
-performance of irradiated LGAD detectors when they are kept biased
-for a long period of time. 
+performance of irradiated LGAD detectors while they are kept constantly
+biased for a long period of time. 
 \end{abstract}
 \tableofcontents{}
 
@@ -175,13 +176,16 @@ During the whole test the detectors will be kept under a standby voltage
 that can be configured individually for each device. Both the bias
 voltage and the bias current will be monitored constantly. In \ref{Figure: standby bias current}
 the very first measurements of standby bias current obtained for eight
-detectors simultaneously using this setup is presented. 
+detectors simultaneously using this setup is presented. For this test
+the bias voltage for all the devices was chosen to be $66\UNIT V$,
+in the future appropriate voltages for each detector will be configured.
 \begin{figure}[H]
 \begin{centering}
 \htmltag{tag_name=iframe}{class=plotly}{src=media/Standby bias current.html}
 \par\end{centering}
 \caption{Very first measurements of the bias current for eight irradiated LGADs
-installed inside the climate chamber. \label{Figure: standby bias current}}
+installed inside the climate chamber. The devices were all biased
+with $66\text{ V}$ for this test. \label{Figure: standby bias current}}
 \end{figure}
 
 
@@ -215,7 +219,8 @@ flowing through the backside.
 \caption{Example of an IV curve measured by the setup using one of the high
 voltage power supplies. The measurement is compared with another measurement
 of the same device made with a probe station before mounting the device
-in the readout board. \label{Figure: example of IV measurement}}
+in the readout board. Both measurements were taken at $-20\text{ °C}$.
+\label{Figure: example of IV measurement}}
 \end{figure}
 
 As seen, the two measurements differ significantly; the current measured
@@ -280,7 +285,8 @@ the bias voltage was applied and the $I_{\text{chuck}}$ current measured,
 applied and the current $I_{\text{pad}}$ was measured, and 3) the
 guard ring was connected to ground. The guard ring current shown is
 $I_{\text{gr}}=I_{\text{chuck}}-I_{\text{pad}}$. The remaining 3
-pads were left floating. \label{Figure: probe station measurements}}
+pads were left floating. All measurements were taken at $-20\text{ °C}$.
+\label{Figure: probe station measurements}}
 \end{figure}
 
 

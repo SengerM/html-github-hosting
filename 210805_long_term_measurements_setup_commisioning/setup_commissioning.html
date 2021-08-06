@@ -2,7 +2,7 @@
 
 <html>
 <head>
-<title>Commissioning of the long term studies setup</title>
+<title>Commissioning of the long-term-studies setup</title>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
 <!-- Math support https://www.mathjax.org/#gettingstarted -->
@@ -94,12 +94,12 @@
 <link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css" rel="stylesheet"/><link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/CommentBox.css" rel="stylesheet"/></head>
 <body>
 <div id="document_title"></div>
-<div style="margin-top: 10px; margin-bottom: 10px;">$\def\NEUTRONEQUIVALENT{\UNIT n_{\text{eq}}}$\UNIT%<author>Matías Senger</author><div style="margin: 22px; text-align: center;">August 5, 2021</div><abstract><div>
+<div style="margin-top: 10px; margin-bottom: 10px;">$\def\NEUTRONEQUIVALENT{\UNIT n_{\text{eq}}}$%<author>Matías Senger</author><div style="margin: 22px; text-align: center;">August 6, 2021</div><abstract><div>
 In this document I provide an update on the commissioning of setup
 for the long term studies of irradiated LGAD detectors at UZH. This
 setup is intended to periodically monitor the characteristics and
-performance of irradiated LGAD detectors when they are kept biased
-for a long period of time. 
+performance of irradiated LGAD detectors while they are kept constantly
+biased for a long period of time. 
 </div></abstract></div><div id="table-of-contents"><h2 class="unnumbered">Table of contents</h2></div><h1>Introduction</h1><div style="margin-top: 10px; margin-bottom: 10px;">
 In this work a set of irradiated FBK detectors from the UFSD3.2 production <crossref toid="Reference:libronuevosobreUFSD"></crossref> 
 are going to be tested<footnote>More specifically, devices of "type" 4 and 10 from wafers 4, 10,
@@ -165,9 +165,12 @@ During the whole test the detectors will be kept under a standby voltage
 that can be configured individually for each device. Both the bias
 voltage and the bias current will be monitored constantly. In <crossref toid="Figure: standby bias current"></crossref>
 the very first measurements of standby bias current obtained for eight
-detectors simultaneously using this setup is presented. 
+detectors simultaneously using this setup is presented. For this test
+the bias voltage for all the devices was chosen to be $66\UNIT V$,
+in the future appropriate voltages for each detector will be configured.
 <float class="Figure" id="Figure: standby bias current"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/Standby bias current.html"></iframe></div><floatcaption>Very first measurements of the bias current for eight irradiated LGADs
-installed inside the climate chamber. </floatcaption></float></div><h1>IV-curve measurements</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+installed inside the climate chamber. The devices were all biased
+with $66\text{ V}$ for this test. </floatcaption></float></div><h1>IV-curve measurements</h1><div style="margin-top: 10px; margin-bottom: 10px;">
 The current-voltage (IV) characteristic of an LGAD detector provides
 valuable information. The setup measures the IV curve of each device
 periodically, using the values of bias voltage and current provided
@@ -188,7 +191,8 @@ The current shown under the label "Probe station" is the current
 flowing through the backside. </div><div><float class="Figure" id="Figure: example of IV measurement"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/iv_curve_example.html"></iframe></div><floatcaption>Example of an IV curve measured by the setup using one of the high
 voltage power supplies. The measurement is compared with another measurement
 of the same device made with a probe station before mounting the device
-in the readout board. </floatcaption></float>
+in the readout board. Both measurements were taken at $-20\text{ °C}$.
+</floatcaption></float>
 As seen, the two measurements differ significantly; the current measured
 by the CAEN is considerably higher than the current measured by the
 probe station, and the current measured in the probe station has an
@@ -241,7 +245,8 @@ the bias voltage was applied and the $I_{\text{chuck}}$ current measured,
 applied and the current $I_{\text{pad}}$ was measured, and 3) the
 guard ring was connected to ground. The guard ring current shown is
 $I_{\text{gr}}=I_{\text{chuck}}-I_{\text{pad}}$. The remaining 3
-pads were left floating. </floatcaption></float></div><h1>Charge collection measurements</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+pads were left floating. All measurements were taken at $-20\text{ °C}$.
+</floatcaption></float></div><h1>Charge collection measurements</h1><div style="margin-top: 10px; margin-bottom: 10px;">
 An important figure of the LGAD detectors is the collected charge.
 To obtain good timing capability a charge of about $5\text{-}6\FEMTO C$
 is required in the output of the detector <crossref toid="Reference:libronuevosobreUFSD"></crossref> .

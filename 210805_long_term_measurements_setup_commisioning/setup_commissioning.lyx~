@@ -117,7 +117,7 @@ filename "~/cloud/lib/lyx/macros2020.lyx"
 \end_layout
 
 \begin_layout Title
-Commissioning of the long term studies setup
+Commissioning of the long-term-studies setup
 \end_layout
 
 \begin_layout Author
@@ -144,8 +144,8 @@ today
 In this document I provide an update on the commissioning of setup for the
  long term studies of irradiated LGAD detectors at UZH.
  This setup is intended to periodically monitor the characteristics and
- performance of irradiated LGAD detectors when they are kept biased for
- a long period of time.
+ performance of irradiated LGAD detectors while they are kept constantly
+ biased for a long period of time.
  
 \end_layout
 
@@ -729,6 +729,11 @@ noprefix "false"
 
  the very first measurements of standby bias current obtained for eight
  detectors simultaneously using this setup is presented.
+ For this test the bias voltage for all the devices was chosen to be 
+\begin_inset Formula $66\UNIT V$
+\end_inset
+
+, in the future appropriate voltages for each detector will be configured.
  
 \begin_inset Float figure
 wide false
@@ -758,6 +763,11 @@ htmltag{tag_name=iframe}{class=plotly}{src=media/Standby bias current.html}
 \begin_layout Plain Layout
 Very first measurements of the bias current for eight irradiated LGADs installed
  inside the climate chamber.
+ The devices were all biased with 
+\begin_inset Formula $66\text{ V}$
+\end_inset
+
+ for this test.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -894,7 +904,12 @@ Example of an IV curve measured by the setup using one of the high voltage
  power supplies.
  The measurement is compared with another measurement of the same device
  made with a probe station before mounting the device in the readout board.
- 
+ Both measurements were taken at 
+\begin_inset Formula $-20\text{ °C}$
+\end_inset
+
+.
+  
 \begin_inset CommandInset label
 LatexCommand label
 name "Figure: example of IV measurement"
@@ -1150,6 +1165,16 @@ noprefix "false"
 \end_inset
 
 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: example of collected charge distribution"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \begin_inset Float figure
 wide false
 sideways false
