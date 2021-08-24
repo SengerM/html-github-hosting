@@ -304,8 +304,26 @@ Laura has been measuring many devices.
 \end_layout
 
 \begin_layout Itemize
-Deconvolution catastrophe: We crashed against devonvoluting the Gaussian
- of the laser.
+Deconvolution catastrophe
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+In analogy to the 
+\begin_inset CommandInset href
+LatexCommand href
+name "ultraviolet catastrophe"
+target "https://en.wikipedia.org/wiki/Ultraviolet_catastrophe"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+: We crashed against devonvoluting the Gaussian of the laser.
 \end_layout
 
 \begin_layout Itemize
