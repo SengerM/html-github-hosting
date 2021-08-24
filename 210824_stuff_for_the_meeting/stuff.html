@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Long term tests setup status update</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+<!-- Math support https://www.mathjax.org/#gettingstarted -->
+<script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Below is the definitions of my macros that I use in Lyx -->
+<div style="display: none;">
+	$$
+	\def\KRONEDELTA#1{\delta_{#1}}
+	\def\MODULE#1{\left|\,#1\,\right|}%
+	\def\PARENTHESES#1{\left(#1\right)}%
+	\def\SQBRACKETS#1{\left[#1\right]}%
+	\def\BRACES#1{\left\{  #1\right\}  }%
+	\def\LBRACE#1{\left\{  #1\right.}%
+	\def\RBRACE#1{\left.#1\right\}  }%
+	\def\LSQBRACKET#1{\left[#1\right.}%
+	\def\RSQBRACKET#1{\left.#1\right]}%
+	\def\LPARENTHESIS#1{\left(#1\right.}%
+	\def\RPARENTHESIS#1{\left.#1\right)}%
+	\def\ANGLEBRACKETS#1{\left\langle #1\right\rangle }%
+	\def\SPACELONG{\hspace{10mm}}%
+	\def\SPACEMEDIUM{\hspace{5mm}}%
+	\def\DEF{\overset{{\scriptscriptstyle \text{def}}}{=}}%
+	\def\UPBRACE#1#2{\overset{{\scriptstyle #2}}{\overbrace{#1}}}%
+	\def\UNDERBRACE#1#2{\underset{{\scriptstyle #2}}{\underbrace{#1}}}%
+	\def\REALES{\mathbb{R}}%
+	\def\IMAGINARIOS{\mathbb{I}}%
+	\def\NATURALES{\mathbb{N}}%
+	\def\ENTEROS{\mathbb{Z}}%
+	\def\COMPLEJOS{\mathbb{C}}%
+	\def\RACIONALES{\mathbb{Q}}%
+	\def\DIFERENTIAL{\,\text{d}}%
+	\def\PRIME{{\vphantom{A}}^{\prime}}%
+	\def\ORDER#1{\mathcal{O}\PARENTHESES{#1}}%
+	\def\DIRACDELTA#1{\delta_{D}\PARENTHESES{#1}}%
+	\def\HEAVYSIDETHETA#1{\Theta_{H}\PARENTHESES{#1}}%
+	\def\ATAN{\text{atan}}%
+	\def\INDICATORFUNCTION#1{\mathbf{1}\BRACES{#1} }%
+	\def\VECTOR#1{\boldsymbol{#1}}%
+	\def\VERSOR#1{\hat{\VECTOR{#1}}}%
+	\def\IDENTITY{\mathds{1}}%
+	\def\CURL{\VECTOR{\nabla}\times}%
+	\def\GRADIENT{\VECTOR{\nabla}}%
+	\def\DIVERGENCE{\VECTOR{\nabla}\cdot}%
+	\def\LAPLACIAN{\nabla^{2}}%
+	\def\REALPART#1{\text{Re}\left(#1\right)}%
+	\def\IMAGPART#1{\text{Im}\left(#1\right)}%
+	\def\TENDSTO#1{\underset{{\scriptscriptstyle #1}}{\longrightarrow}}%
+	\def\EVALUATEDAT#1#2#3{\left\lceil #1\right\rfloor _{#2}^{#3}}%
+	\def\unit#1{\text{#1}}
+	\def\TERA#1{\text{ T}\unit{#1}}%
+	\def\GIGA#1{\text{ G}\unit{#1}}%
+	\def\MEGA#1{\text{ M}\unit{#1}}%
+	\def\KILO#1{\text{ k}\unit{#1}}%
+	\def\UNIT#1{\,\unit{#1}}%
+	\def\CENTI#1{\text{ c}\unit{#1}}%
+	\def\MILI#1{\text{ m}\unit{#1}}%
+	\def\MICRO#1{\text{ }\mu\unit{#1}}%
+	\def\NANO#1{\text{ n}\unit{#1}}%
+	\def\PICO#1{\text{ p}\unit{#1}}%
+	\def\FEMTO#1{\text{ f}\unit{#1}}%
+	\def\TIMESTENTOTHE#1{\times10^{#1}}%
+	\def\PROB#1{\mathbb{P}\left(#1\right)}%
+	\def\MEAN#1{\mathbb{E}\PARENTHESES{#1}}%
+	\def\VARIANCE#1{\mathbb{V}\PARENTHESES{#1}}%
+	\def\COLOR#1#2{{\color{#2}{\,#1\,}}}%
+	\def\RED#1{\textcolor{red}{#1}}%
+	\def\BLUE#1{\COLOR{#1}{blue!80!white}}%
+	\def\GREEN#1{\textcolor{green!70!black}{#1}}%
+	\def\GRAY#1{\COLOR{#1}{black!30}}%
+	\def\GRAY#1{\COLOR{#1}{blue!35!white}}%
+	\def\GUNDERBRACE#1#2{\GRAY{\UNDERBRACE{\COLOR{#1}{black}}{#2}}}%
+	\def\GUPBRACE#1#2{\GRAY{\UPBRACE{\COLOR{#1}{black}}{#2}}}%
+	\def\REDCANCEL#1{\RED{\cancel{{\normalcolor #1}}}}%
+	\def\BLUECANCEL#1{{\color{blue}\cancel{{\normalcolor #1}}}}%
+	\def\GREENCANCEL#1{\GREEN{\cancel{{\normalcolor #1}}}}%
+	\def\BLUECANCELTO#1#2{\BLUE{\cancelto{#2}{{\normalcolor #1}}}}%
+	\def\KET#1{\left|#1\right\rangle }%
+	\def\BRA#1{\left\langle #1\right|}%
+	\def\BRAKET#1#2{\left\langle \left.#1\vphantom{#2}\right|#2\right\rangle }%
+	$$
+	</div>
+<link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css" rel="stylesheet"/><link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/CommentBox.css" rel="stylesheet"/></head>
+<body>
+<div id="document_title"></div>
+<div style="margin-top: 10px; margin-bottom: 10px;"><author>Matías Senger</author><div style="margin: 22px; text-align: center;">August 24, 2021</div></div><h1>First report on commissioning of the setup</h1><div style="margin-top: 10px; margin-bottom: 10px;"><ul><li> A first report on the commissioning of the setup can be found <a href="https://sengerm.github.io/html-github-hosting/210805_long_term_measurements_setup_commisioning/setup_commissioning.html">here</a>.
+</li><li> The previous document was shared with the Torino group, today we have
+meeting to discuss.
+</li><li> Wire-bonded 8 of the devices (two per fluence) and started the setup
+in "test mode" i.e. low bias voltages. Today will discuss which
+values should I use.
+</li></ul></div><h2>Some plots</h2><div style="margin-top: 10px; margin-bottom: 10px;"><float class="Figure"><div style="display: flex; width: 100%;"><image src="media/plot_with_all_data.svg" style="max-width: 100%;"/></div><floatcaption>All data measured from the first day up to now.</floatcaption></float><float class="Figure"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/standby_measurements_strange_current_at_0V.html"></iframe></div><floatcaption>Strange bias current measured while the bias voltage was $0\UNIT V$.
+I have seen this strange behavior the three times I raised the temperature
+to work inside the climate chamber.</floatcaption></float></div><h2>Transimpedance calibration of Chubut board</h2><div style="margin-top: 10px; margin-bottom: 10px;"><ul><li> The transimpedance of the <a href="https://sengerm.github.io/html-github-hosting/210721_Commissioning_of_Chubut_board/210721_Commissioning_of_Chubut_board.html">Chubut board</a>
+has to be known to convert voltage measurements into current measurements
+(i.e. to measure charge in Coulomb).
+</li><li> Should not be complicated.
+</li><li> It is not so easy though because it is not easy to differentiate between
+noise and signals.
+</li><li> Still working on a reliable characterization.
+</li></ul></div><h1>TI-LGADs</h1><div style="margin-top: 10px; margin-bottom: 10px;"><ul><li> Laura has been measuring many devices.
+</li><li> Deconvolution catastrophe: We crashed against devonvoluting the Gaussian
+of the laser.
+</li><li> Now exploring other crazy ideas to obtain the profiles.
+</li><li> Laura can tell you better.
+</li></ul></div><h1>Chip design</h1><div style="margin-top: 10px; margin-bottom: 10px;"><ul><li> In May I sent the boards I had to PSI so they would wirebond the test
+structure of the analog front end.
+</li><li> I had no news for a long time.
+</li><li> I learned to use the wire bonding machine at UZH.
+</li><li> Today I should receive the test structure to wire bond by myself and
+start working on it.
+</li></ul></div><script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script><script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script></body>
+</html>

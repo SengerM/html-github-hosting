@@ -1,0 +1,342 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{/home/alf/cloud/lib/lyx/my_preamble}
+\end_preamble
+\use_default_options true
+\begin_modules
+customHeadersFooters
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\topmargin 2cm
+\rightmargin 1cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle fancy
+\listings_params "keywordstyle={\color{keyword_color}\ttfamily\bfseries},commentstyle={\color{comentarios_color}\itshape},emphstyle={\color{red}},breaklines=true,basicstyle={\ttfamily},stringstyle={\color{cadenas_color}},identifierstyle={\color{identifier_color}},backgroundcolor={\color{fondocodigo_color}},keepspaces=true,numbers=left,xleftmargin=2em,frame=leftline,rulecolor={\color{black}},numbersep=5pt,tabsize=3"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "~/cloud/lib/lyx/macros2020.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Long term tests setup status update
+\end_layout
+
+\begin_layout Author
+Matías Senger
+\end_layout
+
+\begin_layout Date
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+today
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+First report on commissioning of the setup
+\end_layout
+
+\begin_layout Itemize
+A first report on the commissioning of the setup can be found 
+\begin_inset CommandInset href
+LatexCommand href
+name "here"
+target "https://sengerm.github.io/html-github-hosting/210805_long_term_measurements_setup_commisioning/setup_commissioning.html"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The previous document was shared with the Torino group, today we have meeting
+ to discuss.
+\end_layout
+
+\begin_layout Itemize
+Wire-bonded 8 of the devices (two per fluence) and started the setup in
+ 
+\begin_inset Quotes eld
+\end_inset
+
+test mode
+\begin_inset Quotes erd
+\end_inset
+
+ i.e.
+ low bias voltages.
+ Today will discuss which values should I use.
+\end_layout
+
+\begin_layout Subsection
+Some plots
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+htmltag{tag_name=image}{src=media/plot_with_all_data.svg}{style=max-width:
+ 100
+\backslash
+%;}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+All data measured from the first day up to now.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+htmltag{tag_name=iframe}{class=plotly}{src=media/standby_measurements_strange_cu
+rrent_at_0V.html}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Strange bias current measured while the bias voltage was 
+\begin_inset Formula $0\UNIT V$
+\end_inset
+
+.
+ I have seen this strange behavior the three times I raised the temperature
+ to work inside the climate chamber.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Transimpedance calibration of Chubut board
+\end_layout
+
+\begin_layout Itemize
+The transimpedance of the 
+\begin_inset CommandInset href
+LatexCommand href
+name "Chubut board"
+target "https://sengerm.github.io/html-github-hosting/210721_Commissioning_of_Chubut_board/210721_Commissioning_of_Chubut_board.html"
+literal "false"
+
+\end_inset
+
+ has to be known to convert voltage measurements into current measurements
+ (i.e.
+ to measure charge in Coulomb).
+\end_layout
+
+\begin_layout Itemize
+Should not be complicated.
+\end_layout
+
+\begin_layout Itemize
+It is not so easy though because it is not easy to differentiate between
+ noise and signals.
+\end_layout
+
+\begin_layout Itemize
+Still working on a reliable characterization.
+\end_layout
+
+\begin_layout Section
+TI-LGADs
+\end_layout
+
+\begin_layout Itemize
+Laura has been measuring many devices.
+\end_layout
+
+\begin_layout Itemize
+Deconvolution catastrophe: We crashed against devonvoluting the Gaussian
+ of the laser.
+\end_layout
+
+\begin_layout Itemize
+Now exploring other crazy ideas to obtain the profiles.
+\end_layout
+
+\begin_layout Itemize
+Laura can tell you better.
+\end_layout
+
+\begin_layout Section
+Chip design
+\end_layout
+
+\begin_layout Itemize
+In May I sent the boards I had to PSI so they would wirebond the test structure
+ of the analog front end.
+\end_layout
+
+\begin_layout Itemize
+I had no news for a long time.
+\end_layout
+
+\begin_layout Itemize
+I learned to use the wire bonding machine at UZH.
+\end_layout
+
+\begin_layout Itemize
+Today I should receive the test structure to wire bond by myself and start
+ working on it.
+\end_layout
+
+\end_body
+\end_document

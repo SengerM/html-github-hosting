@@ -1,0 +1,107 @@
+%% LyX 2.3.6.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=1cm,rmargin=1cm}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{float}
+\usepackage{units}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{/home/alf/cloud/lib/lyx/my_preamble}
+
+\makeatother
+
+\usepackage{listings}
+\lstset{keywordstyle={\color{keyword_color}\ttfamily\bfseries},
+commentstyle={\color{comentarios_color}\itshape},
+emphstyle={\color{red}},
+breaklines=true,
+basicstyle={\ttfamily},
+stringstyle={\color{cadenas_color}},
+identifierstyle={\color{identifier_color}},
+backgroundcolor={\color{fondocodigo_color}},
+keepspaces=true,
+numbers=left,
+xleftmargin=2em,
+frame=leftline,
+rulecolor={\color{black}},
+numbersep=5pt,
+tabsize=3}
+\begin{document}
+\input{\string~/cloud/lib/lyx/macros2020.tex}
+\title{Long term tests setup status update}
+\author{Matías Senger}
+\date{\today}
+\maketitle
+
+\section{First report on commissioning of the setup}
+\begin{itemize}
+\item A first report on the commissioning of the setup can be found \href{https://sengerm.github.io/html-github-hosting/210805_long_term_measurements_setup_commisioning/setup_commissioning.html}{here}.
+\item The previous document was shared with the Torino group, today we have
+meeting to discuss.
+\item Wire-bonded 8 of the devices (two per fluence) and started the setup
+in ``test mode'' i.e. low bias voltages. Today will discuss which
+values should I use.
+\end{itemize}
+
+\subsection{Some plots}
+
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=image}{src=media/plot_with_all_data.svg}{style=max-width: 100\%;}
+\par\end{centering}
+\caption{All data measured from the first day up to now.}
+\end{figure}
+
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=iframe}{class=plotly}{src=media/standby_measurements_strange_current_at_0V.html}
+\par\end{centering}
+\caption{Strange bias current measured while the bias voltage was $0\protect\UNIT V$.
+I have seen this strange behavior the three times I raised the temperature
+to work inside the climate chamber.}
+\end{figure}
+
+
+\subsection{Transimpedance calibration of Chubut board}
+\begin{itemize}
+\item The transimpedance of the \href{https://sengerm.github.io/html-github-hosting/210721_Commissioning_of_Chubut_board/210721_Commissioning_of_Chubut_board.html}{Chubut board}
+has to be known to convert voltage measurements into current measurements
+(i.e. to measure charge in Coulomb).
+\item Should not be complicated.
+\item It is not so easy though because it is not easy to differentiate between
+noise and signals.
+\item Still working on a reliable characterization.
+\end{itemize}
+
+\section{TI-LGADs}
+\begin{itemize}
+\item Laura has been measuring many devices.
+\item Deconvolution catastrophe: We crashed against devonvoluting the Gaussian
+of the laser.
+\item Now exploring other crazy ideas to obtain the profiles.
+\item Laura can tell you better.
+\end{itemize}
+
+\section{Chip design}
+\begin{itemize}
+\item In May I sent the boards I had to PSI so they would wirebond the test
+structure of the analog front end.
+\item I had no news for a long time.
+\item I learned to use the wire bonding machine at UZH.
+\item Today I should receive the test structure to wire bond by myself and
+start working on it.
+\end{itemize}
+
+\end{document}
