@@ -322,11 +322,7 @@ Chip design
 
 \begin_layout Itemize
 In May I sent the boards I had to PSI so they would wirebond the test structure
- of the 
-\series bold
-analog front end
-\series default
-.
+ of the analog front end.
 \end_layout
 
 \begin_layout Itemize
