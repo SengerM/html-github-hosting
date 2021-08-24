@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Long term tests on irradiated LGADs</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+<!-- Math support https://www.mathjax.org/#gettingstarted -->
+<script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Below is the definitions of my macros that I use in Lyx -->
+<div style="display: none;">
+	$$
+	\def\KRONEDELTA#1{\delta_{#1}}
+	\def\MODULE#1{\left|\,#1\,\right|}%
+	\def\PARENTHESES#1{\left(#1\right)}%
+	\def\SQBRACKETS#1{\left[#1\right]}%
+	\def\BRACES#1{\left\{  #1\right\}  }%
+	\def\LBRACE#1{\left\{  #1\right.}%
+	\def\RBRACE#1{\left.#1\right\}  }%
+	\def\LSQBRACKET#1{\left[#1\right.}%
+	\def\RSQBRACKET#1{\left.#1\right]}%
+	\def\LPARENTHESIS#1{\left(#1\right.}%
+	\def\RPARENTHESIS#1{\left.#1\right)}%
+	\def\ANGLEBRACKETS#1{\left\langle #1\right\rangle }%
+	\def\SPACELONG{\hspace{10mm}}%
+	\def\SPACEMEDIUM{\hspace{5mm}}%
+	\def\DEF{\overset{{\scriptscriptstyle \text{def}}}{=}}%
+	\def\UPBRACE#1#2{\overset{{\scriptstyle #2}}{\overbrace{#1}}}%
+	\def\UNDERBRACE#1#2{\underset{{\scriptstyle #2}}{\underbrace{#1}}}%
+	\def\REALES{\mathbb{R}}%
+	\def\IMAGINARIOS{\mathbb{I}}%
+	\def\NATURALES{\mathbb{N}}%
+	\def\ENTEROS{\mathbb{Z}}%
+	\def\COMPLEJOS{\mathbb{C}}%
+	\def\RACIONALES{\mathbb{Q}}%
+	\def\DIFERENTIAL{\,\text{d}}%
+	\def\PRIME{{\vphantom{A}}^{\prime}}%
+	\def\ORDER#1{\mathcal{O}\PARENTHESES{#1}}%
+	\def\DIRACDELTA#1{\delta_{D}\PARENTHESES{#1}}%
+	\def\HEAVYSIDETHETA#1{\Theta_{H}\PARENTHESES{#1}}%
+	\def\ATAN{\text{atan}}%
+	\def\INDICATORFUNCTION#1{\mathbf{1}\BRACES{#1} }%
+	\def\VECTOR#1{\boldsymbol{#1}}%
+	\def\VERSOR#1{\hat{\VECTOR{#1}}}%
+	\def\IDENTITY{\mathds{1}}%
+	\def\CURL{\VECTOR{\nabla}\times}%
+	\def\GRADIENT{\VECTOR{\nabla}}%
+	\def\DIVERGENCE{\VECTOR{\nabla}\cdot}%
+	\def\LAPLACIAN{\nabla^{2}}%
+	\def\REALPART#1{\text{Re}\left(#1\right)}%
+	\def\IMAGPART#1{\text{Im}\left(#1\right)}%
+	\def\TENDSTO#1{\underset{{\scriptscriptstyle #1}}{\longrightarrow}}%
+	\def\EVALUATEDAT#1#2#3{\left\lceil #1\right\rfloor _{#2}^{#3}}%
+	\def\unit#1{\text{#1}}
+	\def\TERA#1{\text{ T}\unit{#1}}%
+	\def\GIGA#1{\text{ G}\unit{#1}}%
+	\def\MEGA#1{\text{ M}\unit{#1}}%
+	\def\KILO#1{\text{ k}\unit{#1}}%
+	\def\UNIT#1{\,\unit{#1}}%
+	\def\CENTI#1{\text{ c}\unit{#1}}%
+	\def\MILI#1{\text{ m}\unit{#1}}%
+	\def\MICRO#1{\text{ }\mu\unit{#1}}%
+	\def\NANO#1{\text{ n}\unit{#1}}%
+	\def\PICO#1{\text{ p}\unit{#1}}%
+	\def\FEMTO#1{\text{ f}\unit{#1}}%
+	\def\TIMESTENTOTHE#1{\times10^{#1}}%
+	\def\PROB#1{\mathbb{P}\left(#1\right)}%
+	\def\MEAN#1{\mathbb{E}\PARENTHESES{#1}}%
+	\def\VARIANCE#1{\mathbb{V}\PARENTHESES{#1}}%
+	\def\COLOR#1#2{{\color{#2}{\,#1\,}}}%
+	\def\RED#1{\textcolor{red}{#1}}%
+	\def\BLUE#1{\COLOR{#1}{blue!80!white}}%
+	\def\GREEN#1{\textcolor{green!70!black}{#1}}%
+	\def\GRAY#1{\COLOR{#1}{black!30}}%
+	\def\GRAY#1{\COLOR{#1}{blue!35!white}}%
+	\def\GUNDERBRACE#1#2{\GRAY{\UNDERBRACE{\COLOR{#1}{black}}{#2}}}%
+	\def\GUPBRACE#1#2{\GRAY{\UPBRACE{\COLOR{#1}{black}}{#2}}}%
+	\def\REDCANCEL#1{\RED{\cancel{{\normalcolor #1}}}}%
+	\def\BLUECANCEL#1{{\color{blue}\cancel{{\normalcolor #1}}}}%
+	\def\GREENCANCEL#1{\GREEN{\cancel{{\normalcolor #1}}}}%
+	\def\BLUECANCELTO#1#2{\BLUE{\cancelto{#2}{{\normalcolor #1}}}}%
+	\def\KET#1{\left|#1\right\rangle }%
+	\def\BRA#1{\left\langle #1\right|}%
+	\def\BRAKET#1#2{\left\langle \left.#1\vphantom{#2}\right|#2\right\rangle }%
+	$$
+	</div>
+<link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/CommentBox.css" rel="stylesheet"/><link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css" rel="stylesheet"/></head>
+<body>
+<div id="document_title"></div>
+<div style="margin-top: 10px; margin-bottom: 10px;"><author>Matías Senger</author><div style="margin: 22px; text-align: center;">August 24, 2021</div></div><div id="table-of-contents"><h2 class="unnumbered">Table of contents</h2></div><h1>Brief status update</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+Detailed setup description and commissioning see <a href="https://sengerm.github.io/html-github-hosting/210805_long_term_measurements_setup_commisioning/setup_commissioning.html">here</a>.
+<ul><li> The setup started operating in "test mode" (i.e. low bias voltages)
+on the first days of August 2021, see <crossref toid="Figure: all data measured"></crossref>.
+</li><li> Setup still incomplete, but partially operative.
+<ul><li> Continuously monitoring standby bias current and voltage of 8 devices
+(<crossref toid="Figure: all data measured"></crossref>).
+</li><li> Capable of measuring IV curves regularly (see Figure 6 in <a href="https://sengerm.github.io/html-github-hosting/210805_long_term_measurements_setup_commisioning/setup_commissioning.html#Figure:\%20example\%20of\%20IV\%20measurement">this link</a>).
+</li></ul></li></ul><float class="Figure" id="Figure: all data measured"><div style="display: flex; width: 100%;"><image src="media/plot_with_all_data.svg" style="max-width: 100%;"/></div><floatcaption>All data measured from the first day up to now.</floatcaption></float></div><h2>Working on right now</h2><div style="margin-top: 10px; margin-bottom: 10px;"><ul><li> Reliable characterization of transimpedance of Chubut board. 
+<ul><li> Issues triggering without reference detector, trigger level changes
+results.
+<float class="Figure"><div style="display: flex; width: 100%;"><image src="media/2.svg" style="max-width: 100%;"/></div><floatcaption>Screenshots from the oscilloscope showing the same measurement with
+two different trigger levels.</floatcaption></float></li><li> Could not make coincidences with another detector and the PIN diode,
+don't know why.
+</li></ul></li><li> Implementation of the electro-mechanical system to move beta source
+and reference detector from one device to the other.
+</li></ul></div><h1>Some (maybe) interesting things already observed</h1><h2>Discharge at room temperature?</h2><div style="margin-top: 10px; margin-bottom: 10px;"><ul><li> When devices are brought to room temperature there is some kind of
+"discharge bias current", see <crossref toid="Figure: strange bias current at room temperature"></crossref>.
+</li><li> For device #8 the current is bigger than when it is biased. 
+<float class="Figure" id="Figure: strange bias current at room temperature"><div style="display: flex; width: 100%;"><image src="media/1.svg" style="max-width: 100%;"/></div><floatcaption>Strange non-zero bias current when devices are brought to $0\UNIT V$
+and room temperature after being biased for " a long
+time" . </floatcaption></float></li></ul></div><h2>Device #6 </h2><div style="margin-top: 10px; margin-bottom: 10px;">
+Device #6 is "wafer 10, type 4, fluence $15\TIMESTENTOTHE{15}\UNIT{neq}\CENTI m^{-2}$",
+it has shown strange bias current behavior. The measured data is shown
+in <crossref toid="Figure: all data from device num6"></crossref>.
+<ul><li> 2021-Aug-5-1:15. Abrupt increase of current while the beta source
+was on top of the device.
+</li><li> 2021-Aug-18-15:00. After one week I switched off<footnote>This means 1) setting bias voltage to $0\UNIT V$ and 2) going to
+room temperature.</footnote> and removed the beta source from device #6. Then, bias current much
+smaller (makes sense because there is no beta source now?). 
+</li><li> 2021-Aug-19-00:00. Bias current starts to increase. It duplicates
+its value after about 14 hours. It is also fluctuating too much, see
+at 14:20 when the sampling rate was increased.
+</li><li> 2021-Aug-19-15:40. Voltage is brought to $0\UNIT V$, temperature
+increased and chamber open for some work. After this, at 16:17 the
+setup is working again. Bias current is much smaller, even after bringing
+bias voltage back to $111\UNIT V$ at 18:05.
+</li><li> 2021-Aug-20-10:26. Bias current starts to increase again. At 2021-Aug-21-6:39
+it reaches the current compliance value. 
+</li><li> 2021-Aug-23-17:00. Setup is switched off once more and after this
+the current of #6 was small again, up to now.
+</li></ul><float class="Figure" id="Figure: all data from device num6"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/device_num6_all_data.html"></iframe></div><floatcaption>All data measured for device #6 from the commissioning of the setup
+up to now. </floatcaption></float></div><h1>Questions I have</h1><div style="margin-top: 10px; margin-bottom: 10px;"><ul><li> What bias voltage should I set for each device?
+</li><li> How often to measure IV curve? Measure IV curve at all?
+</li><li> How often measure collected charge?
+<ul><li> At standby voltage?
+</li><li> As a function of voltage?
+</li></ul></li></ul></div><div id="footnotes_list"><h1 class="unnumbered">Footnotes</h1></div><script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script><script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script></body>
+</html>

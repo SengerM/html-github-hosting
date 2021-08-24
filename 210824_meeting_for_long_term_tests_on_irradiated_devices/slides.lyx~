@@ -1,0 +1,672 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{/home/alf/cloud/lib/lyx/my_preamble}
+\end_preamble
+\use_default_options true
+\begin_modules
+customHeadersFooters
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\topmargin 2cm
+\rightmargin 1cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle fancy
+\listings_params "keywordstyle={\color{keyword_color}\ttfamily\bfseries},commentstyle={\color{comentarios_color}\itshape},emphstyle={\color{red}},breaklines=true,basicstyle={\ttfamily},stringstyle={\color{cadenas_color}},identifierstyle={\color{identifier_color}},backgroundcolor={\color{fondocodigo_color}},keepspaces=true,numbers=left,xleftmargin=2em,frame=leftline,rulecolor={\color{black}},numbersep=5pt,tabsize=3"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "~/cloud/lib/lyx/macros2020.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Long term tests on irradiated LGADs
+\end_layout
+
+\begin_layout Author
+Matías Senger
+\end_layout
+
+\begin_layout Date
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+today
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Brief status update
+\end_layout
+
+\begin_layout Standard
+Detailed setup description and commissioning see 
+\begin_inset CommandInset href
+LatexCommand href
+name "here"
+target "https://sengerm.github.io/html-github-hosting/210805_long_term_measurements_setup_commisioning/setup_commissioning.html"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The setup started operating in 
+\begin_inset Quotes eld
+\end_inset
+
+test mode
+\begin_inset Quotes erd
+\end_inset
+
+ (i.e.
+ low bias voltages) on the first days of August 2021, see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: all data measured"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Setup still incomplete, but partially operative.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Continuously monitoring standby bias current and voltage of 8 devices (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: all data measured"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+Capable of measuring IV curves regularly (see Figure
+\begin_inset space ~
+\end_inset
+
+6 in 
+\begin_inset CommandInset href
+LatexCommand href
+name "this link"
+target "https://sengerm.github.io/html-github-hosting/210805_long_term_measurements_setup_commisioning/setup_commissioning.html#Figure:%20example%20of%20IV%20measurement"
+literal "false"
+
+\end_inset
+
+).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+htmltag{tag_name=image}{src=media/plot_with_all_data.svg}{style=max-width:
+ 100
+\backslash
+%;}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+All data measured from the first day up to now.
+\begin_inset CommandInset label
+LatexCommand label
+name "Figure: all data measured"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Working on right now
+\end_layout
+
+\begin_layout Itemize
+Reliable characterization of transimpedance of Chubut board.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Issues triggering without reference detector, trigger level changes results.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+htmltag{tag_name=image}{src=media/2.svg}{style=max-width: 100
+\backslash
+%;}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+All data measured from the first day up to now.
+\begin_inset CommandInset label
+LatexCommand label
+name "Figure: all data measured-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Could not make coincidences with another detector and the PIN diode, don't
+ know why.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Implementation of the electro-mechanical system to move beta source and
+ reference detector from one device to the other.
+\end_layout
+
+\begin_layout Section
+Some (maybe) interesting things already observed
+\end_layout
+
+\begin_layout Subsection
+Discharge at room temperature?
+\end_layout
+
+\begin_layout Itemize
+When devices are brought to room temperature there is some kind of 
+\begin_inset Quotes eld
+\end_inset
+
+discharge bias current
+\begin_inset Quotes erd
+\end_inset
+
+, see
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: strange bias current at room temperature"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+For device 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+#8
+\end_layout
+
+\end_inset
+
+ the current is bigger than when it is biased.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+htmltag{tag_name=image}{src=media/1.svg}{style=max-width: 100
+\backslash
+%;}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Strange non-zero bias current when devices are brought to 
+\begin_inset Formula $0\UNIT V$
+\end_inset
+
+ and room temperature after being biased for 
+\begin_inset Quotes eld
+\end_inset
+
+a long time
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "Figure: strange bias current at room temperature"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Device 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+#6
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Device 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+#6
+\end_layout
+
+\end_inset
+
+ is 
+\begin_inset Quotes eld
+\end_inset
+
+wafer 10, type 4, fluence 
+\begin_inset Formula $15\TIMESTENTOTHE{15}\UNIT{neq}\CENTI m^{-2}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+, it has shown strange bias current behavior.
+ The measured data is shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: all data from device num6"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+2021-Aug-5-1:15.
+ Abrupt increase of current while the beta source was on top of the device.
+\end_layout
+
+\begin_layout Itemize
+2021-Aug-18-15:00.
+ After one week I switched off
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+This means 1) setting bias voltage to 
+\begin_inset Formula $0\UNIT V$
+\end_inset
+
+ and 2) going to room temperature.
+\end_layout
+
+\end_inset
+
+ and removed the beta source from device 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+#6
+\end_layout
+
+\end_inset
+
+.
+ Then, bias current much smaller (makes sense because there is no beta source
+ now?).
+ 
+\end_layout
+
+\begin_layout Itemize
+2021-Aug-19-00:00.
+ Bias current starts to increase.
+ It duplicates its value after about 14 hours.
+ It is also fluctuating too much, see at 14:20 when the sampling rate was
+ increased.
+\end_layout
+
+\begin_layout Itemize
+2021-Aug-19-15:40.
+ Voltage is brought to 
+\begin_inset Formula $0\UNIT V$
+\end_inset
+
+, temperature increased and chamber open for some work.
+ After this, at 16:17 the setup is working again.
+ Bias current is much smaller, even after bringing bias voltage back to
+ 
+\begin_inset Formula $111\UNIT V$
+\end_inset
+
+ at 18:05.
+\end_layout
+
+\begin_layout Itemize
+2021-Aug-20-10:26.
+ Bias current starts to increase again.
+ At 2021-Aug-21-6:39 it reaches the current compliance value.
+ 
+\end_layout
+
+\begin_layout Itemize
+2021-Aug-23-17:00.
+ Setup is switched off once more and after this the current of 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+#6
+\end_layout
+
+\end_inset
+
+ was small again, up to now.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+htmltag{tag_name=iframe}{class=plotly}{src=media/device_num6_all_data.html}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+All data measured for device 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+#6
+\end_layout
+
+\end_inset
+
+ from the commissioning of the setup up to now.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "Figure: all data from device num6"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Questions I have
+\end_layout
+
+\begin_layout Itemize
+What bias voltage should I set for each device?
+\end_layout
+
+\begin_layout Itemize
+How often to measure IV curve? Measure IV curve at all?
+\end_layout
+
+\begin_layout Itemize
+How often measure collected charge?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+At standby voltage?
+\end_layout
+
+\begin_layout Itemize
+As a function of voltage?
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

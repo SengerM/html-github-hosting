@@ -1,0 +1,152 @@
+%% LyX 2.3.6.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=1cm,rmargin=1cm}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{float}
+\usepackage{units}
+\usepackage{amstext}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{/home/alf/cloud/lib/lyx/my_preamble}
+
+\makeatother
+
+\usepackage{listings}
+\lstset{keywordstyle={\color{keyword_color}\ttfamily\bfseries},
+commentstyle={\color{comentarios_color}\itshape},
+emphstyle={\color{red}},
+breaklines=true,
+basicstyle={\ttfamily},
+stringstyle={\color{cadenas_color}},
+identifierstyle={\color{identifier_color}},
+backgroundcolor={\color{fondocodigo_color}},
+keepspaces=true,
+numbers=left,
+xleftmargin=2em,
+frame=leftline,
+rulecolor={\color{black}},
+numbersep=5pt,
+tabsize=3}
+\begin{document}
+\input{\string~/cloud/lib/lyx/macros2020.tex}
+\title{Long term tests on irradiated LGADs}
+\author{Matías Senger}
+\date{\today}
+
+\maketitle
+\tableofcontents{}
+
+\section{Brief status update}
+
+Detailed setup description and commissioning see \href{https://sengerm.github.io/html-github-hosting/210805_long_term_measurements_setup_commisioning/setup_commissioning.html}{here}.
+\begin{itemize}
+\item The setup started operating in ``test mode'' (i.e. low bias voltages)
+on the first days of August 2021, see \ref{Figure: all data measured}.
+\item Setup still incomplete, but partially operative.
+\begin{itemize}
+\item Continuously monitoring standby bias current and voltage of 8 devices
+(\ref{Figure: all data measured}).
+\item Capable of measuring IV curves regularly (see Figure~6 in \href{https://sengerm.github.io/html-github-hosting/210805_long_term_measurements_setup_commisioning/setup_commissioning.html\#Figure:\%20example\%20of\%20IV\%20measurement}{this link}).
+\end{itemize}
+\end{itemize}
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=image}{src=media/plot_with_all_data.svg}{style=max-width: 100\%;}
+\par\end{centering}
+\caption{All data measured from the first day up to now.\label{Figure: all data measured}}
+\end{figure}
+
+
+\subsection{Working on right now}
+\begin{itemize}
+\item Reliable characterization of transimpedance of Chubut board. 
+\begin{itemize}
+\item Issues triggering without reference detector, trigger level changes
+results.
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=image}{src=media/2.svg}{style=max-width: 100\%;}
+\par\end{centering}
+\caption{Screenshots from the oscilloscope showing the same measurement with
+two different trigger levels.}
+\end{figure}
+\item Could not make coincidences with another detector and the PIN diode,
+don't know why.
+\end{itemize}
+\item Implementation of the electro-mechanical system to move beta source
+and reference detector from one device to the other.
+\end{itemize}
+
+\section{Some (maybe) interesting things already observed}
+
+\subsection{Discharge at room temperature?}
+\begin{itemize}
+\item When devices are brought to room temperature there is some kind of
+``discharge bias current'', see~\ref{Figure: strange bias current at room temperature}.
+\item For device #8 the current is bigger than when it is biased. 
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=image}{src=media/1.svg}{style=max-width: 100\%;}
+\par\end{centering}
+\caption{Strange non-zero bias current when devices are brought to $0\protect\UNIT V$
+and room temperature after being biased for \textquotedblleft a long
+time\textquotedblright . \label{Figure: strange bias current at room temperature}}
+\end{figure}
+\end{itemize}
+
+\subsection{Device #6 }
+
+Device #6 is ``wafer 10, type 4, fluence $15\TIMESTENTOTHE{15}\UNIT{neq}\CENTI m^{-2}$'',
+it has shown strange bias current behavior. The measured data is shown
+in \ref{Figure: all data from device num6}.
+\begin{itemize}
+\item 2021-Aug-5-1:15. Abrupt increase of current while the beta source
+was on top of the device.
+\item 2021-Aug-18-15:00. After one week I switched off\footnote{This means 1) setting bias voltage to $0\UNIT V$ and 2) going to
+room temperature.} and removed the beta source from device #6. Then, bias current much
+smaller (makes sense because there is no beta source now?). 
+\item 2021-Aug-19-00:00. Bias current starts to increase. It duplicates
+its value after about 14 hours. It is also fluctuating too much, see
+at 14:20 when the sampling rate was increased.
+\item 2021-Aug-19-15:40. Voltage is brought to $0\UNIT V$, temperature
+increased and chamber open for some work. After this, at 16:17 the
+setup is working again. Bias current is much smaller, even after bringing
+bias voltage back to $111\UNIT V$ at 18:05.
+\item 2021-Aug-20-10:26. Bias current starts to increase again. At 2021-Aug-21-6:39
+it reaches the current compliance value. 
+\item 2021-Aug-23-17:00. Setup is switched off once more and after this
+the current of #6 was small again, up to now.
+\end{itemize}
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=iframe}{class=plotly}{src=media/device_num6_all_data.html}
+\par\end{centering}
+\caption{All data measured for device #6 from the commissioning of the setup
+up to now. \label{Figure: all data from device num6}}
+\end{figure}
+
+
+\section{Questions I have}
+\begin{itemize}
+\item What bias voltage should I set for each device?
+\item How often to measure IV curve? Measure IV curve at all?
+\item How often measure collected charge?
+\begin{itemize}
+\item At standby voltage?
+\item As a function of voltage?
+\end{itemize}
+\end{itemize}
+
+\end{document}
