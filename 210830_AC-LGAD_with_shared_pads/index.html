@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>An exploration of pad shape in AC-LGADs</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+<!-- Math support https://www.mathjax.org/#gettingstarted -->
+<script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Below is the definitions of my macros that I use in Lyx -->
+<div style="display: none;">
+	$$
+	\def\KRONEDELTA#1{\delta_{#1}}
+	\def\MODULE#1{\left|\,#1\,\right|}%
+	\def\PARENTHESES#1{\left(#1\right)}%
+	\def\SQBRACKETS#1{\left[#1\right]}%
+	\def\BRACES#1{\left\{  #1\right\}  }%
+	\def\LBRACE#1{\left\{  #1\right.}%
+	\def\RBRACE#1{\left.#1\right\}  }%
+	\def\LSQBRACKET#1{\left[#1\right.}%
+	\def\RSQBRACKET#1{\left.#1\right]}%
+	\def\LPARENTHESIS#1{\left(#1\right.}%
+	\def\RPARENTHESIS#1{\left.#1\right)}%
+	\def\ANGLEBRACKETS#1{\left\langle #1\right\rangle }%
+	\def\SPACELONG{\hspace{10mm}}%
+	\def\SPACEMEDIUM{\hspace{5mm}}%
+	\def\DEF{\overset{{\scriptscriptstyle \text{def}}}{=}}%
+	\def\UPBRACE#1#2{\overset{{\scriptstyle #2}}{\overbrace{#1}}}%
+	\def\UNDERBRACE#1#2{\underset{{\scriptstyle #2}}{\underbrace{#1}}}%
+	\def\REALES{\mathbb{R}}%
+	\def\IMAGINARIOS{\mathbb{I}}%
+	\def\NATURALES{\mathbb{N}}%
+	\def\ENTEROS{\mathbb{Z}}%
+	\def\COMPLEJOS{\mathbb{C}}%
+	\def\RACIONALES{\mathbb{Q}}%
+	\def\DIFERENTIAL{\,\text{d}}%
+	\def\PRIME{{\vphantom{A}}^{\prime}}%
+	\def\ORDER#1{\mathcal{O}\PARENTHESES{#1}}%
+	\def\DIRACDELTA#1{\delta_{D}\PARENTHESES{#1}}%
+	\def\HEAVYSIDETHETA#1{\Theta_{H}\PARENTHESES{#1}}%
+	\def\ATAN{\text{atan}}%
+	\def\INDICATORFUNCTION#1{\mathbf{1}\BRACES{#1} }%
+	\def\VECTOR#1{\boldsymbol{#1}}%
+	\def\VERSOR#1{\hat{\VECTOR{#1}}}%
+	\def\IDENTITY{\mathds{1}}%
+	\def\CURL{\VECTOR{\nabla}\times}%
+	\def\GRADIENT{\VECTOR{\nabla}}%
+	\def\DIVERGENCE{\VECTOR{\nabla}\cdot}%
+	\def\LAPLACIAN{\nabla^{2}}%
+	\def\REALPART#1{\text{Re}\left(#1\right)}%
+	\def\IMAGPART#1{\text{Im}\left(#1\right)}%
+	\def\TENDSTO#1{\underset{{\scriptscriptstyle #1}}{\longrightarrow}}%
+	\def\EVALUATEDAT#1#2#3{\left\lceil #1\right\rfloor _{#2}^{#3}}%
+	\def\unit#1{\text{#1}}
+	\def\TERA#1{\text{ T}\unit{#1}}%
+	\def\GIGA#1{\text{ G}\unit{#1}}%
+	\def\MEGA#1{\text{ M}\unit{#1}}%
+	\def\KILO#1{\text{ k}\unit{#1}}%
+	\def\UNIT#1{\,\unit{#1}}%
+	\def\CENTI#1{\text{ c}\unit{#1}}%
+	\def\MILI#1{\text{ m}\unit{#1}}%
+	\def\MICRO#1{\text{ }\mu\unit{#1}}%
+	\def\NANO#1{\text{ n}\unit{#1}}%
+	\def\PICO#1{\text{ p}\unit{#1}}%
+	\def\FEMTO#1{\text{ f}\unit{#1}}%
+	\def\TIMESTENTOTHE#1{\times10^{#1}}%
+	\def\PROB#1{\mathbb{P}\left(#1\right)}%
+	\def\MEAN#1{\mathbb{E}\PARENTHESES{#1}}%
+	\def\VARIANCE#1{\mathbb{V}\PARENTHESES{#1}}%
+	\def\COLOR#1#2{{\color{#2}{\,#1\,}}}%
+	\def\RED#1{\textcolor{red}{#1}}%
+	\def\BLUE#1{\COLOR{#1}{blue!80!white}}%
+	\def\GREEN#1{\textcolor{green!70!black}{#1}}%
+	\def\GRAY#1{\COLOR{#1}{black!30}}%
+	\def\GRAY#1{\COLOR{#1}{blue!35!white}}%
+	\def\GUNDERBRACE#1#2{\GRAY{\UNDERBRACE{\COLOR{#1}{black}}{#2}}}%
+	\def\GUPBRACE#1#2{\GRAY{\UPBRACE{\COLOR{#1}{black}}{#2}}}%
+	\def\REDCANCEL#1{\RED{\cancel{{\normalcolor #1}}}}%
+	\def\BLUECANCEL#1{{\color{blue}\cancel{{\normalcolor #1}}}}%
+	\def\GREENCANCEL#1{\GREEN{\cancel{{\normalcolor #1}}}}%
+	\def\BLUECANCELTO#1#2{\BLUE{\cancelto{#2}{{\normalcolor #1}}}}%
+	\def\KET#1{\left|#1\right\rangle }%
+	\def\BRA#1{\left\langle #1\right|}%
+	\def\BRAKET#1#2{\left\langle \left.#1\vphantom{#2}\right|#2\right\rangle }%
+	$$
+	</div>
+<link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/CommentBox.css" rel="stylesheet"/><link href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css" rel="stylesheet"/></head>
+<body>
+<div id="document_title"></div>
+<div style="margin-top: 10px; margin-bottom: 10px;"><author>Matías Senger</author><div style="margin: 22px; text-align: center;">August 31, 2021</div><abstract><div>
+This time I studied what happens with the spacial resolution of an
+AC-LGAD when multiple pads are interconnected together producing one
+single, big and extended pad. This is potentially interesting because
+it may allow to reduce the density of readout channels per unit area
+of detector while keeping its performance, simplifying thus the electronics,
+reducing the power consumption and also the amount of data flowing
+out of the detector. 
+</div></abstract></div><div id="table-of-contents"><h2 class="unnumbered">Table of contents</h2></div><h1>Introduction</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+Continuing in my work with AC-LGAD devices <crossref toid="Reference:Firstapplicationoftheempiricallikelihoodblablabla"></crossref> <crossref toid="Reference:FIrsttime-spacecharacterizationofanAC-LGAD"></crossref> <crossref toid="Reference:spacialresolutionof200umAC-LGAD"></crossref> 
+now I wanted to test if there could be any improvement by changing
+the shape of the pads. It turns out that in AC-LGADs there is almost
+total freedom on what the shape of the pads is, it is not restricted
+to squares but instead they can take any 2D shape. </div><div>The AC-LGAD samples we have available in our lab have nine square
+pads arranged in a 3 by 3 matrix. In <crossref toid="Figure: microscope picture of the LGAD"></crossref>
+there is a picture of such a device. To explore how the shape of the
+pads can influence the performance of the detector, I decided to do
+a quick test interconnecting some of the pads between themselves as
+shown in <crossref toid="Figure: microscope picture of the LGAD"></crossref>. As can be
+seen the result is a device with only four channels, instead of nine,
+that still cover the whole area of the original nine pads. Now we
+can think that each single-colored pair of pads is indeed a single
+pad with a non-connected<footnote>Non-connected in the sense of spaces, i.e. in this sense: <a href="https://en.wikipedia.org/wiki/Connected_space">https://en.wikipedia.org/wiki/Connected_space</a>.</footnote>
+shape. Although I did this just because it was easy to do with the
+hardware I had available, this could, in principle, be implemented
+in a readout chip connected to the AC-LGAD. </div><div><float class="Figure" id="Figure: microscope picture of the LGAD"><div style="display: flex; width: 100%;"><image src="media/1.svg" style="max-width: 100%;"/></div><floatcaption>Microscope picture of the AC-LGAD used for this test, also showing
+the way the pads were interconnected resulting in a device with less
+pads but covering the whole surface.</floatcaption></float>
+For the tests presented in this document the used device was the one
+labeled <em>RSD1 W15-A 5,3 3× 3 200</em>. </div><div></div><h1>Results</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+In <crossref toid="Figure: collected charge plots"></crossref> it is shown the collected
+charge in each of the four pads, each connected to one channel in
+the oscilloscope, as a function of position. It can be seen each of
+the individual "dual-pads" as was described before, specifically
+the CH1 in <crossref toid="Figure: collected charge plots"></crossref> is the pad 1 from
+<crossref toid="Figure: microscope picture of the LGAD"></crossref>, the CH2 is pad 2,
+and so on.</div><div><float class="Figure" id="Figure: collected charge plots"><div style="display: flex; width: 100%;"><image src="media/2.svg" style="max-width: 100%;"/></div><floatcaption>Collected charge, in arbitrary units, measured as a function of position
+along the AC-LGAD using the TCT. </floatcaption></float>
+Unfortunately the measurement was affected by an intermittent source
+of noise. This can be seen in the presence of vertical noisy and no-noisy
+strips in the plots of <crossref toid="Figure: collected charge plots"></crossref>. This
+noise, of course, worsened the results that will be shown later on.
+The process of taking this measurement takes several hours/days, thus
+each vertical strip represents a different moment in time. It was
+not possible to locate the origin of this noise yet, and it is still
+affecting new measurements in the lab. </div><div>The procedure I followed was the same as for my other measurements
+(see e.g. <crossref toid="Reference:Firstapplicationoftheempiricallikelihoodblablabla"></crossref> ).
+Namely, I produced one training and one testing dataset which I then
+used with the MLE algorithm. Results can be seen in <crossref toid="Figure: reconstruction error mean colormap"></crossref>.
+Here we see the average reconstruction error as a function of position.
+In each measured $xy$ point $4$ events were recorded for the testing
+dataset, so at each point in the plot in <crossref toid="Figure: reconstruction error mean colormap"></crossref>
+the average is of $4$ events. 
+<float class="Figure" id="Figure: reconstruction error mean colormap"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/Reconstruction error mean.html"></iframe></div><floatcaption>Average reconstruction error for the MLE algorithm as a function of
+$xy$ position. </floatcaption></float>
+In order to study the performance of the detector, I defined a total
+of 5 regions numbered from 1 to 4 and one "main region", as shown
+in <crossref toid="Figure: reconstruction error mean colormap"></crossref>. The regions
+1 to 4 are just squares while the region named "main region" is
+the difference between the outer square and the inner square, i.e.
+the area between the two squares. For each of these regions the reconstruction
+error distribution in $x$, in $y$ and in absolute value $\sqrt{x^{2}+y^{2}}$
+is shown in <crossref toid="Figure: x error distribution"></crossref>, <crossref toid="Figure: y error distribution"></crossref>
+and <crossref toid="Figure: combined error distribution"></crossref> respectively. To ease
+visualization and compare different regions it is possible to enable/disable
+traces by clicking in the legend of each plot. We see that events
+from regions 1 and 2 have better (smaller) $y$ error, given by the
+width of each distribution, than events from regions 3 and 4, and
+the inverse is true in the $x$ direction. This can be understood
+by the position of each region with respect to the pads: regions 1
+and 2 are closer to pads in the $y$ direction and far from pads in
+the $x$ direction, creating this a steeper gradient of collected
+charge in the $y$ direction and an almost flat dependency in the
+$x$ direction, as can be seen in the charge color maps of <crossref toid="Figure: collected charge plots"></crossref>.
+The same applies to regions 3 and 4 inverting $x$ and $y$. </div><div>Events in the region called "main region" show, obviously, a combined
+effect from the other regions. Both the $x$ and $y$ components of
+the reconstruction error follow a strange distribution (see <crossref toid="Figure: x error distribution"></crossref>
+and <crossref toid="Figure: y error distribution"></crossref>) which seems to have two components:
+1) a Gaussian like main peak in the middle and 2) tails that extend
+further from this Gaussian main peak. A Gaussian distribution was
+fitted to the main peak for each coordinate (see the figures) obtaining
+from each 
+\[
+\LBRACE{\begin{aligned} &amp; \sigma_{x\text{ Gaussian fit}}^{\text{main region}}=36.5\MICRO m\\
+ &amp; \sigma_{y\text{ Gaussian fit}}^{\text{main region}}=35.2\MICRO m
+\end{aligned}
+}
+\]
+ and thus 
+\[
+\sigma_{\sqrt{x^{2}+y^{2}}\text{ Gaussian fit}}^{\text{main region}}\approx50.7\MICRO m\text{.}
+\]
+ If, instead, we look at all the data and calculate its standard deviation
+we get 
+\[
+\LBRACE{\begin{aligned} &amp; \sigma_{x\text{ all data}}^{\text{main region}}=78.8\MICRO m\\
+ &amp; \sigma_{y\text{ all data}}^{\text{main region}}=76.8\MICRO m
+\end{aligned}
+}
+\]
+ and 
+\[
+\sigma_{\sqrt{x^{2}+y^{2}}\text{ all data}}^{\text{main region}}=110\MICRO m\text{.}
+\]<float class="Figure" id="Figure: x error distribution"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/x reconstruction error distribution.html"></iframe></div><floatcaption>Distribution of the $x$ component of the reconstruction error. The
+different regions are defined in <crossref toid="Figure: reconstruction error mean colormap"></crossref>.
+Traces can be enabled-disabled by clicking in the legend.</floatcaption></float><float class="Figure" id="Figure: y error distribution"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/y reconstruction error distribution.html"></iframe></div><floatcaption>Distribution of the $y$ component of the reconstruction error. The
+different regions are defined in <crossref toid="Figure: reconstruction error mean colormap"></crossref>.
+Traces can be enabled-disabled by clicking in the legend.</floatcaption></float><float class="Figure" id="Figure: combined error distribution"><div style="display: flex; width: 100%;"><iframe class="plotly" src="media/Reconstruction error distribution.html"></iframe></div><floatcaption>Distribution of the combined $\sqrt{x^{2}+y^{2}}$ reconstruction
+error. The different regions are defined in <crossref toid="Figure: reconstruction error mean colormap"></crossref>.
+Traces can be enabled-disabled by clicking in the legend.</floatcaption></float></div><h1>Discussion</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+How can we tell if these results are good or not? In reference <crossref toid="Reference:spacialresolutionof200umAC-LGAD"></crossref> 
+I measured the spacial resolution of the exact same device when it
+was connected "normally". In that opportunity I obtained a spacial
+resolution of 
+\[
+\LBRACE{\begin{aligned} &amp; \sigma_{x\text{ interpad region}}^{\text{regular connection}}=6.24\MICRO m\\
+ &amp; \sigma_{y\text{ interpad region}}^{\text{regular connection}}=5.96\MICRO m
+\end{aligned}
+}
+\]
+ and so 
+\[
+\sigma_{\sqrt{x^{2}+y^{2}}\text{ interpad region}}^{\text{regular connection}}=8.63\MICRO m
+\]
+ where the "interpad region" is the region between the four pads.
+Of course in this case we expect a better resolution because the pitch
+is $200\MICRO m$ against about twice in the current work. The question
+now is how to compare these two results. One possibility is to define
+a "spacial resolution efficiency" 
+\[
+\eta\DEF\frac{\sqrt{A}}{\sigma N}
+\]
+ where $A$ is the area of some region $\mathcal{R}$(e.g. any of
+the regions in <crossref toid="Figure: reconstruction error mean colormap"></crossref>),
+$\sigma$ is the spacial resolution obtained for region $\mathcal{R}$
+and $N$ the number of channels. With this definition $\eta$ increases
+with the covered area, it is also bigger for smaller $\sigma$ which
+is what we want, and it becomes worse as we increase the number of
+channels. Using this spacial resolution efficiency we can compare
+the two measurements:
+\[
+\eta=\LBRACE{\begin{aligned} &amp; 0.624 &amp;  &amp; \text{for the current work}\\
+ &amp; 2.39 &amp;  &amp; \text{for the normal configuration}
+\end{aligned}
+}\text{.}
+\]
+Based in this quantity, the "normal configuration" from reference
+<crossref toid="Reference:spacialresolutionof200umAC-LGAD"></crossref>  seems to be
+better than the current configuration mixing pads. </div><div></div><h1>Conclusion</h1><div style="margin-top: 10px; margin-bottom: 10px;">
+A crazy interconnection of the pads in an AC-LGAD was measured with
+the objective of studying how the spacial resolution degrades while
+keeping the same number of channels but covering a bigger area. The
+results showed that the spacial resolution was severely affected,
+becoming a factor of about $\gtrsim10$ bigger, while the area covered
+with this approach increased in a factor of about $8$. The results,
+however, may not be accurate due to the presence of an intermittent
+noise in the measuring setup, as was mentioned in the text. A further
+study on this subject may be worth.
+</div><div id="footnotes_list"><h1 class="unnumbered">Footnotes</h1></div><div id="references_list"><h1 class="unnumbered">References</h1><reference id="Reference:spacialresolutionof200umAC-LGAD"><dummy_tag><dummy_tag>Spacial
+resolution of </dummy_tag><dummy_tag>$200\MICRO m$</dummy_tag><dummy_tag> pitch AC-LGAD, https://msenger.web.cern.ch/spacial-resolution-of-200-</dummy_tag><dummy_tag>µ</dummy_tag><dummy_tag> m-pitch-ac-lgad/.
+
+</dummy_tag></dummy_tag></reference><reference id="Reference:FIrsttime-spacecharacterizationofanAC-LGAD"><dummy_tag><dummy_tag>First
+time-space characterization of an AC-LGAD, </dummy_tag><dummy_tag><a href="https://msenger.web.cern.ch/first-time-space-characterization-of-an-ac-lgad/">https://msenger.web.cern.ch/first-time-space-characterization-of-an-ac-lgad/</a></dummy_tag><dummy_tag>.
+
+</dummy_tag></dummy_tag></reference><reference id="Reference:Firstapplicationoftheempiricallikelihoodblablabla"><dummy_tag><dummy_tag>First
+application of the empirical likelihood function to position reconstruction
+in AC-LGAD detectors, </dummy_tag><dummy_tag><a href="https://msenger.web.cern.ch/first-application-of-the-empirical-likelihood-function-to-position-reconstruction-in-ac-lgad-detectors/">https://msenger.web.cern.ch/first-application-of-the-empirical-likelihood-function-to-position-reconstruction-in-ac-lgad-detectors/</a></dummy_tag><dummy_tag>.
+</dummy_tag></dummy_tag></reference></div><script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script><script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script></body>
+</html>
