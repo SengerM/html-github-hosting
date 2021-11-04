@@ -1,0 +1,1151 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{/home/alf/cloud/lib/lyx/my_preamble}
+\end_preamble
+\use_default_options true
+\begin_modules
+customHeadersFooters
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\topmargin 2cm
+\rightmargin 1cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle fancy
+\listings_params "keywordstyle={\color{keyword_color}\ttfamily\bfseries},commentstyle={\color{comentarios_color}\itshape},emphstyle={\color{red}},breaklines=true,basicstyle={\ttfamily},stringstyle={\color{cadenas_color}},identifierstyle={\color{identifier_color}},backgroundcolor={\color{fondocodigo_color}},keepspaces=true,numbers=left,xleftmargin=2em,frame=leftline,rulecolor={\color{black}},numbersep=5pt,tabsize=3"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "~/cloud/lib/lyx/macros2020.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+An exploration of pad shape in AC-LGADs
+\end_layout
+
+\begin_layout Author
+Matías Senger
+\end_layout
+
+\begin_layout Date
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+today
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+This time I studied what happens with the spacial resolution of an AC-LGAD
+ when multiple pads are interconnected together producing one single, big
+ and extended pad.
+ This is potentially interesting because it may allow to reduce the density
+ of readout channels per unit area of detector while keeping its performance,
+ simplifying thus the electronics, reducing the power consumption and also
+ the amount of data flowing out of the detector.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Continuing in my work with AC-LGAD devices
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Reference: First application of the empirical likelihood bla bla bla,Reference: FIrst time-space characterization of an AC-LGAD,Reference: spacial resolution of 200 um AC-LGAD"
+literal "false"
+
+\end_inset
+
+ now I wanted to test if there could be any improvement by changing the
+ shape of the pads.
+ It turns out that in AC-LGADs there is almost total freedom on what the
+ shape of the pads is, it is not restricted to squares but instead they
+ can take any 2D shape.
+ 
+\end_layout
+
+\begin_layout Standard
+The AC-LGAD samples we have available in our lab have nine square pads arranged
+ in a 3 by 3 matrix.
+ In 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: microscope picture of the LGAD"
+
+\end_inset
+
+ there is a picture of such a device.
+ To explore how the shape of the pads can influence the performance of the
+ detector, I decided to do a quick test interconnecting some of the pads
+ between themselves as shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: microscope picture of the LGAD"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ As can be seen the result is a device with only four channels, instead
+ of nine, that still cover the whole area of the original nine pads.
+ Now we can think that each single-colored pair of pads is indeed a single
+ pad with a non-connected
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Non-connected in the sense of spaces, i.e.
+ in this sense: 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://en.wikipedia.org/wiki/Connected_space
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ shape.
+ Although I did this just because it was easy to do with the hardware I
+ had available, this could, in principle, be implemented in a readout chip
+ connected to the AC-LGAD.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+htmltag{tag_name=image}{src=media/1.svg}{style=max-width: 100
+\backslash
+%;}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Microscope picture of the AC-LGAD used for this test, also showing the way
+ the pads were interconnected resulting in a device with less pads but covering
+ the whole surface.
+\begin_inset CommandInset label
+LatexCommand label
+name "Figure: microscope picture of the LGAD"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For the tests presented in this document the used device was the one labeled
+ 
+\emph on
+RSD1 W15-A 5,3 3×3 200
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: collected charge plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ it is shown the collected charge in each of the four pads, each connected
+ to one channel in the oscilloscope, as a function of position.
+ It can be seen each of the individual 
+\begin_inset Quotes eld
+\end_inset
+
+dual-pads
+\begin_inset Quotes erd
+\end_inset
+
+ as was described before, specifically the CH1 in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: collected charge plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is the pad
+\begin_inset space ~
+\end_inset
+
+1 from 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: microscope picture of the LGAD"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the CH2 is pad
+\begin_inset space ~
+\end_inset
+
+2, and so on.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+htmltag{tag_name=image}{src=media/2.svg}{style=max-width: 100
+\backslash
+%;}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Collected charge, in arbitrary units, measured as a function of position
+ along the AC-LGAD using the TCT.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "Figure: collected charge plots"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Unfortunately the measurement was affected by an intermittent source of
+ noise.
+ This can be seen in the presence of vertical noisy and no-noisy strips
+ in the plots of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: collected charge plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ This noise, of course, worsened the results that will be shown later on.
+ The process of taking this measurement takes several hours/days, thus each
+ vertical strip represents a different moment in time.
+ It was not possible to locate the origin of this noise yet, and it is still
+ affecting new measurements in the lab.
+ 
+\end_layout
+
+\begin_layout Standard
+The procedure I followed was the same as for my other measurements (see
+ e.g.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Reference: First application of the empirical likelihood bla bla bla"
+literal "false"
+
+\end_inset
+
+).
+ Namely, I produced one training and one testing dataset which I then used
+ with the MLE algorithm.
+ Results can be seen in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: reconstruction error mean colormap"
+
+\end_inset
+
+.
+ Here we see the average reconstruction error as a function of position.
+ In each measured 
+\begin_inset Formula $xy$
+\end_inset
+
+ point 
+\begin_inset Formula $4$
+\end_inset
+
+ events were recorded for the testing dataset, so at each point in the plot
+ in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: reconstruction error mean colormap"
+
+\end_inset
+
+ the average is of 
+\begin_inset Formula $4$
+\end_inset
+
+ events.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+htmltag{tag_name=iframe}{class=plotly}{src=media/Reconstruction error mean.html}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Average reconstruction error for the MLE algorithm as a function of 
+\begin_inset Formula $xy$
+\end_inset
+
+ position.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "Figure: reconstruction error mean colormap"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to study the performance of the detector, I defined a total of
+ 5 regions numbered from 1 to 4 and one 
+\begin_inset Quotes eld
+\end_inset
+
+main region
+\begin_inset Quotes erd
+\end_inset
+
+, as shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: reconstruction error mean colormap"
+
+\end_inset
+
+.
+ The regions 1 to 4 are just squares while the region named 
+\begin_inset Quotes eld
+\end_inset
+
+main region
+\begin_inset Quotes erd
+\end_inset
+
+ is the difference between the outer square and the inner square, i.e.
+ the area between the two squares.
+ For each of these regions the reconstruction error distribution in 
+\begin_inset Formula $x$
+\end_inset
+
+, in 
+\begin_inset Formula $y$
+\end_inset
+
+ and in absolute value 
+\begin_inset Formula $\sqrt{x^{2}+y^{2}}$
+\end_inset
+
+ is shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: x error distribution"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: y error distribution"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: combined error distribution"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ respectively.
+ To ease visualization and compare different regions it is possible to enable/di
+sable traces by clicking in the legend of each plot.
+ We see that events from regions 1 and 2 have better (smaller) 
+\begin_inset Formula $y$
+\end_inset
+
+ error, given by the width of each distribution, than events from regions
+ 3 and 4, and the inverse is true in the 
+\begin_inset Formula $x$
+\end_inset
+
+ direction.
+ This can be understood by the position of each region with respect to the
+ pads: regions 1 and 2 are closer to pads in the 
+\begin_inset Formula $y$
+\end_inset
+
+ direction and far from pads in the 
+\begin_inset Formula $x$
+\end_inset
+
+ direction, creating this a steeper gradient of collected charge in the
+ 
+\begin_inset Formula $y$
+\end_inset
+
+ direction and an almost flat dependency in the 
+\begin_inset Formula $x$
+\end_inset
+
+ direction, as can be seen in the charge color maps of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: collected charge plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The same applies to regions 3 and 4 inverting 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Events in the region called 
+\begin_inset Quotes eld
+\end_inset
+
+main region
+\begin_inset Quotes erd
+\end_inset
+
+ show, obviously, a combined effect from the other regions.
+ Both the 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ components of the reconstruction error follow a strange distribution (see
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: x error distribution"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: y error distribution"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) which seems to have two components: 1) a Gaussian like main peak in the
+ middle and 2) tails that extend further from this Gaussian main peak.
+ A Gaussian distribution was fitted to the main peak for each coordinate
+ (see the figures) obtaining from each 
+\begin_inset Formula 
+\[
+\LBRACE{\begin{aligned} & \sigma_{x\text{ Gaussian fit}}^{\text{main region}}=36.5\MICRO m\\
+ & \sigma_{y\text{ Gaussian fit}}^{\text{main region}}=35.2\MICRO m
+\end{aligned}
+}
+\]
+
+\end_inset
+
+ and thus 
+\begin_inset Formula 
+\[
+\sigma_{\sqrt{x^{2}+y^{2}}\text{ Gaussian fit}}^{\text{main region}}\approx50.7\MICRO m\text{.}
+\]
+
+\end_inset
+
+ If, instead, we look at all the data and calculate its standard deviation
+ we get 
+\begin_inset Formula 
+\[
+\LBRACE{\begin{aligned} & \sigma_{x\text{ all data}}^{\text{main region}}=78.8\MICRO m\\
+ & \sigma_{y\text{ all data}}^{\text{main region}}=76.8\MICRO m
+\end{aligned}
+}
+\]
+
+\end_inset
+
+ and 
+\begin_inset Formula 
+\[
+\sigma_{\sqrt{x^{2}+y^{2}}\text{ all data}}^{\text{main region}}=110\MICRO m\text{.}
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+htmltag{tag_name=iframe}{class=plotly}{src=media/x reconstruction error
+ distribution.html}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Distribution of the 
+\begin_inset Formula $x$
+\end_inset
+
+ component of the reconstruction error.
+ The different regions are defined in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: reconstruction error mean colormap"
+
+\end_inset
+
+.
+ Traces can be enabled-disabled by clicking in the legend.
+\begin_inset CommandInset label
+LatexCommand label
+name "Figure: x error distribution"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+htmltag{tag_name=iframe}{class=plotly}{src=media/y reconstruction error
+ distribution.html}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Distribution of the 
+\begin_inset Formula $y$
+\end_inset
+
+ component of the reconstruction error.
+ The different regions are defined in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: reconstruction error mean colormap"
+
+\end_inset
+
+.
+ Traces can be enabled-disabled by clicking in the legend.
+\begin_inset CommandInset label
+LatexCommand label
+name "Figure: y error distribution"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+htmltag{tag_name=iframe}{class=plotly}{src=media/Reconstruction error distributi
+on.html}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Distribution of the combined 
+\begin_inset Formula $\sqrt{x^{2}+y^{2}}$
+\end_inset
+
+ reconstruction error.
+ The different regions are defined in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: reconstruction error mean colormap"
+
+\end_inset
+
+.
+ Traces can be enabled-disabled by clicking in the legend.
+\begin_inset CommandInset label
+LatexCommand label
+name "Figure: combined error distribution"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Discussion
+\end_layout
+
+\begin_layout Standard
+How can we tell if these results are good or not? In reference 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Reference: spacial resolution of 200 um AC-LGAD"
+literal "false"
+
+\end_inset
+
+ I measured the spacial resolution of the exact same device when it was
+ connected 
+\begin_inset Quotes eld
+\end_inset
+
+normally
+\begin_inset Quotes erd
+\end_inset
+
+.
+ In that opportunity I obtained a spacial resolution of 
+\begin_inset Formula 
+\[
+\LBRACE{\begin{aligned} & \sigma_{x\text{ interpad region}}^{\text{regular connection}}=6.24\MICRO m\\
+ & \sigma_{y\text{ interpad region}}^{\text{regular connection}}=5.96\MICRO m
+\end{aligned}
+}
+\]
+
+\end_inset
+
+ and so 
+\begin_inset Formula 
+\[
+\sigma_{\sqrt{x^{2}+y^{2}}\text{ interpad region}}^{\text{regular connection}}=8.63\MICRO m
+\]
+
+\end_inset
+
+ where the 
+\begin_inset Quotes eld
+\end_inset
+
+interpad region
+\begin_inset Quotes erd
+\end_inset
+
+ is the region between the four pads.
+ Of course in this case we expect a better resolution because the pitch
+ is 
+\begin_inset Formula $200\MICRO m$
+\end_inset
+
+ against about twice in the current work.
+ The question now is how to compare these two results.
+ One possibility is to define a 
+\begin_inset Quotes eld
+\end_inset
+
+spacial resolution efficiency
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\eta\DEF\frac{\sqrt{A}}{\sigma N}
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $A$
+\end_inset
+
+ is the area of some region 
+\begin_inset Formula $\mathcal{R}$
+\end_inset
+
+ (e.g.
+ any of the regions in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Figure: reconstruction error mean colormap"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ is the spacial resolution obtained for region 
+\begin_inset Formula $\mathcal{R}$
+\end_inset
+
+ and 
+\begin_inset Formula $N$
+\end_inset
+
+ the number of channels.
+ With this definition 
+\begin_inset Formula $\eta$
+\end_inset
+
+ increases with the covered area, it is also bigger for smaller 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ which is what we want, and it becomes worse as we increase the number of
+ channels.
+ Using this spacial resolution efficiency we can compare the two measurements:
+\begin_inset Formula 
+\[
+\eta=\LBRACE{\begin{aligned} & 0.624 &  & \text{for the current work}\\
+ & 2.39 &  & \text{for the normal configuration}
+\end{aligned}
+}\text{.}
+\]
+
+\end_inset
+
+Based in this quantity, the 
+\begin_inset Quotes eld
+\end_inset
+
+normal configuration
+\begin_inset Quotes erd
+\end_inset
+
+ from reference 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Reference: spacial resolution of 200 um AC-LGAD"
+literal "false"
+
+\end_inset
+
+ seems to be better than the current configuration mixing pads.
+ 
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Standard
+A crazy interconnection of the pads in an AC-LGAD was measured with the
+ objective of studying how the spacial resolution degrades while keeping
+ the same number of channels but covering a bigger area.
+ The results showed that the spacial resolution was severely affected, becoming
+ a factor of about 
+\begin_inset Formula $\gtrsim10$
+\end_inset
+
+ bigger, while the area covered with this approach increased in a factor
+ of about 
+\begin_inset Formula $8$
+\end_inset
+
+.
+ The results, however, may not be accurate due to the presence of an intermitten
+t noise in the measuring setup.
+ A further study on this subject may be worth.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Reference: spacial resolution of 200 um AC-LGAD"
+literal "false"
+
+\end_inset
+
+Spacial resolution of 
+\begin_inset Formula $200\MICRO m$
+\end_inset
+
+ pitch AC-LGAD, https://msenger.web.cern.ch/spacial-resolution-of-200-µm-pitch-ac-l
+gad/.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Reference: FIrst time-space characterization of an AC-LGAD"
+literal "false"
+
+\end_inset
+
+First time-space characterization of an AC-LGAD, 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://msenger.web.cern.ch/first-time-space-characterization-of-an-ac-lgad/
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Reference: First application of the empirical likelihood bla bla bla"
+literal "false"
+
+\end_inset
+
+First application of the empirical likelihood function to position reconstructio
+n in AC-LGAD detectors, 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://msenger.web.cern.ch/first-application-of-the-empirical-likelihood-function-
+to-position-reconstruction-in-ac-lgad-detectors/
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,285 @@
+%% LyX 2.3.6.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=1cm,rmargin=1cm}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{float}
+\usepackage{units}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{/home/alf/cloud/lib/lyx/my_preamble}
+
+\makeatother
+
+\usepackage{listings}
+\lstset{keywordstyle={\color{keyword_color}\ttfamily\bfseries},
+commentstyle={\color{comentarios_color}\itshape},
+emphstyle={\color{red}},
+breaklines=true,
+basicstyle={\ttfamily},
+stringstyle={\color{cadenas_color}},
+identifierstyle={\color{identifier_color}},
+backgroundcolor={\color{fondocodigo_color}},
+keepspaces=true,
+numbers=left,
+xleftmargin=2em,
+frame=leftline,
+rulecolor={\color{black}},
+numbersep=5pt,
+tabsize=3}
+\begin{document}
+\input{\string~/cloud/lib/lyx/macros2020.tex}
+\title{An exploration of pad shape in AC-LGADs}
+\author{Matías Senger}
+\date{\today}
+\maketitle
+\begin{abstract}
+This time I studied what happens with the spacial resolution of an
+AC-LGAD when multiple pads are interconnected together producing one
+single, big and extended pad. This is potentially interesting because
+it may allow to reduce the density of readout channels per unit area
+of detector while keeping its performance, simplifying thus the electronics,
+reducing the power consumption and also the amount of data flowing
+out of the detector. 
+\end{abstract}
+\tableofcontents{}
+
+\section{Introduction}
+
+Continuing in my work with AC-LGAD devices~\cite{Reference: First application of the empirical likelihood bla bla bla,Reference: FIrst time-space characterization of an AC-LGAD,Reference: spacial resolution of 200 um AC-LGAD}
+now I wanted to test if there could be any improvement by changing
+the shape of the pads. It turns out that in AC-LGADs there is almost
+total freedom on what the shape of the pads is, it is not restricted
+to squares but instead they can take any 2D shape. 
+
+The AC-LGAD samples we have available in our lab have nine square
+pads arranged in a 3 by 3 matrix. In \ref{Figure: microscope picture of the LGAD}
+there is a picture of such a device. To explore how the shape of the
+pads can influence the performance of the detector, I decided to do
+a quick test interconnecting some of the pads between themselves as
+shown in \ref{Figure: microscope picture of the LGAD}. As can be
+seen the result is a device with only four channels, instead of nine,
+that still cover the whole area of the original nine pads. Now we
+can think that each single-colored pair of pads is indeed a single
+pad with a non-connected\footnote{Non-connected in the sense of spaces, i.e. in this sense: \url{https://en.wikipedia.org/wiki/Connected_space}.}
+shape. Although I did this just because it was easy to do with the
+hardware I had available, this could, in principle, be implemented
+in a readout chip connected to the AC-LGAD. 
+
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=image}{src=media/1.svg}{style=max-width: 100\%;}
+\par\end{centering}
+\caption{Microscope picture of the AC-LGAD used for this test, also showing
+the way the pads were interconnected resulting in a device with less
+pads but covering the whole surface.\label{Figure: microscope picture of the LGAD}}
+\end{figure}
+
+For the tests presented in this document the used device was the one
+labeled \emph{RSD1 W15-A 5,3 3\texttimes 3 200}. 
+
+\section{Results}
+
+In \ref{Figure: collected charge plots} it is shown the collected
+charge in each of the four pads, each connected to one channel in
+the oscilloscope, as a function of position. It can be seen each of
+the individual ``dual-pads'' as was described before, specifically
+the CH1 in \ref{Figure: collected charge plots} is the pad~1 from
+\ref{Figure: microscope picture of the LGAD}, the CH2 is pad~2,
+and so on.
+
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=image}{src=media/2.svg}{style=max-width: 100\%;}
+\par\end{centering}
+\caption{Collected charge, in arbitrary units, measured as a function of position
+along the AC-LGAD using the TCT. \label{Figure: collected charge plots}}
+\end{figure}
+
+Unfortunately the measurement was affected by an intermittent source
+of noise. This can be seen in the presence of vertical noisy and no-noisy
+strips in the plots of \ref{Figure: collected charge plots}. This
+noise, of course, worsened the results that will be shown later on.
+The process of taking this measurement takes several hours/days, thus
+each vertical strip represents a different moment in time. It was
+not possible to locate the origin of this noise yet, and it is still
+affecting new measurements in the lab. 
+
+The procedure I followed was the same as for my other measurements
+(see e.g.~\cite{Reference: First application of the empirical likelihood bla bla bla}).
+Namely, I produced one training and one testing dataset which I then
+used with the MLE algorithm. Results can be seen in \ref{Figure: reconstruction error mean colormap}.
+Here we see the average reconstruction error as a function of position.
+In each measured $xy$ point $4$ events were recorded for the testing
+dataset, so at each point in the plot in \ref{Figure: reconstruction error mean colormap}
+the average is of $4$ events. 
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=iframe}{class=plotly}{src=media/Reconstruction error mean.html}
+\par\end{centering}
+\caption{Average reconstruction error for the MLE algorithm as a function of
+$xy$ position. \label{Figure: reconstruction error mean colormap}}
+\end{figure}
+
+In order to study the performance of the detector, I defined a total
+of 5 regions numbered from 1 to 4 and one ``main region'', as shown
+in \ref{Figure: reconstruction error mean colormap}. The regions
+1 to 4 are just squares while the region named ``main region'' is
+the difference between the outer square and the inner square, i.e.
+the area between the two squares. For each of these regions the reconstruction
+error distribution in $x$, in $y$ and in absolute value $\sqrt{x^{2}+y^{2}}$
+is shown in \ref{Figure: x error distribution}, \ref{Figure: y error distribution}
+and \ref{Figure: combined error distribution} respectively. To ease
+visualization and compare different regions it is possible to enable/disable
+traces by clicking in the legend of each plot. We see that events
+from regions 1 and 2 have better (smaller) $y$ error, given by the
+width of each distribution, than events from regions 3 and 4, and
+the inverse is true in the $x$ direction. This can be understood
+by the position of each region with respect to the pads: regions 1
+and 2 are closer to pads in the $y$ direction and far from pads in
+the $x$ direction, creating this a steeper gradient of collected
+charge in the $y$ direction and an almost flat dependency in the
+$x$ direction, as can be seen in the charge color maps of \ref{Figure: collected charge plots}.
+The same applies to regions 3 and 4 inverting $x$ and $y$. 
+
+Events in the region called ``main region'' show, obviously, a combined
+effect from the other regions. Both the $x$ and $y$ components of
+the reconstruction error follow a strange distribution (see \ref{Figure: x error distribution}
+and \ref{Figure: y error distribution}) which seems to have two components:
+1) a Gaussian like main peak in the middle and 2) tails that extend
+further from this Gaussian main peak. A Gaussian distribution was
+fitted to the main peak for each coordinate (see the figures) obtaining
+from each 
+\[
+\LBRACE{\begin{aligned} & \sigma_{x\text{ Gaussian fit}}^{\text{main region}}=36.5\MICRO m\\
+ & \sigma_{y\text{ Gaussian fit}}^{\text{main region}}=35.2\MICRO m
+\end{aligned}
+}
+\]
+ and thus 
+\[
+\sigma_{\sqrt{x^{2}+y^{2}}\text{ Gaussian fit}}^{\text{main region}}\approx50.7\MICRO m\text{.}
+\]
+ If, instead, we look at all the data and calculate its standard deviation
+we get 
+\[
+\LBRACE{\begin{aligned} & \sigma_{x\text{ all data}}^{\text{main region}}=78.8\MICRO m\\
+ & \sigma_{y\text{ all data}}^{\text{main region}}=76.8\MICRO m
+\end{aligned}
+}
+\]
+ and 
+\[
+\sigma_{\sqrt{x^{2}+y^{2}}\text{ all data}}^{\text{main region}}=110\MICRO m\text{.}
+\]
+ 
+
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=iframe}{class=plotly}{src=media/x reconstruction error distribution.html}
+\par\end{centering}
+\caption{Distribution of the $x$ component of the reconstruction error. The
+different regions are defined in \ref{Figure: reconstruction error mean colormap}.
+Traces can be enabled-disabled by clicking in the legend.\label{Figure: x error distribution}}
+\end{figure}
+
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=iframe}{class=plotly}{src=media/y reconstruction error distribution.html}
+\par\end{centering}
+\caption{Distribution of the $y$ component of the reconstruction error. The
+different regions are defined in \ref{Figure: reconstruction error mean colormap}.
+Traces can be enabled-disabled by clicking in the legend.\label{Figure: y error distribution}}
+\end{figure}
+
+\begin{figure}[H]
+\begin{centering}
+\htmltag{tag_name=iframe}{class=plotly}{src=media/Reconstruction error distribution.html}
+\par\end{centering}
+\caption{Distribution of the combined $\sqrt{x^{2}+y^{2}}$ reconstruction
+error. The different regions are defined in \ref{Figure: reconstruction error mean colormap}.
+Traces can be enabled-disabled by clicking in the legend.\label{Figure: combined error distribution}}
+\end{figure}
+
+
+\section{Discussion}
+
+How can we tell if these results are good or not? In reference \cite{Reference: spacial resolution of 200 um AC-LGAD}
+I measured the spacial resolution of the exact same device when it
+was connected ``normally''. In that opportunity I obtained a spacial
+resolution of 
+\[
+\LBRACE{\begin{aligned} & \sigma_{x\text{ interpad region}}^{\text{regular connection}}=6.24\MICRO m\\
+ & \sigma_{y\text{ interpad region}}^{\text{regular connection}}=5.96\MICRO m
+\end{aligned}
+}
+\]
+ and so 
+\[
+\sigma_{\sqrt{x^{2}+y^{2}}\text{ interpad region}}^{\text{regular connection}}=8.63\MICRO m
+\]
+ where the ``interpad region'' is the region between the four pads.
+Of course in this case we expect a better resolution because the pitch
+is $200\MICRO m$ against about twice in the current work. The question
+now is how to compare these two results. One possibility is to define
+a ``spacial resolution efficiency'' 
+\[
+\eta\DEF\frac{\sqrt{A}}{\sigma N}
+\]
+ where $A$ is the area of some region $\mathcal{R}$ (e.g. any of
+the regions in \ref{Figure: reconstruction error mean colormap}),
+$\sigma$ is the spacial resolution obtained for region $\mathcal{R}$
+and $N$ the number of channels. With this definition $\eta$ increases
+with the covered area, it is also bigger for smaller $\sigma$ which
+is what we want, and it becomes worse as we increase the number of
+channels. Using this spacial resolution efficiency we can compare
+the two measurements:
+\[
+\eta=\LBRACE{\begin{aligned} & 0.624 &  & \text{for the current work}\\
+ & 2.39 &  & \text{for the normal configuration}
+\end{aligned}
+}\text{.}
+\]
+Based in this quantity, the ``normal configuration'' from reference
+\cite{Reference: spacial resolution of 200 um AC-LGAD} seems to be
+better than the current configuration mixing pads. 
+
+\section{Conclusion}
+
+A crazy interconnection of the pads in an AC-LGAD was measured with
+the objective of studying how the spacial resolution degrades while
+keeping the same number of channels but covering a bigger area. The
+results showed that the spacial resolution was severely affected,
+becoming a factor of about $\gtrsim10$ bigger, while the area covered
+with this approach increased in a factor of about $8$. The results,
+however, may not be accurate due to the presence of an intermittent
+noise in the measuring setup, as was mentioned in the text. A further
+study on this subject may be worth.
+\begin{thebibliography}{1}
+\bibitem{Reference: spacial resolution of 200 um AC-LGAD}Spacial
+resolution of $200\MICRO m$ pitch AC-LGAD, https://msenger.web.cern.ch/spacial-resolution-of-200-\textmu m-pitch-ac-lgad/.
+
+\bibitem{Reference: FIrst time-space characterization of an AC-LGAD}First
+time-space characterization of an AC-LGAD, \url{https://msenger.web.cern.ch/first-time-space-characterization-of-an-ac-lgad/}.
+
+\bibitem{Reference: First application of the empirical likelihood bla bla bla}First
+application of the empirical likelihood function to position reconstruction
+in AC-LGAD detectors, \url{https://msenger.web.cern.ch/first-application-of-the-empirical-likelihood-function-to-position-reconstruction-in-ac-lgad-detectors/}.
+\end{thebibliography}
+
+\end{document}

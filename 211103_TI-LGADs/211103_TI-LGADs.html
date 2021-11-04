@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>TI-LGAD characterization @ UZH</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich">Matías Senger</author>
+<author affiliation="Universität Zürich">Anna Macchiolo</author>
+<author affiliation="Universität Zürich">Ben Kilminster</author>
+
+<div style="margin: 22px; text-align: center;">November 4<sup>th</sup>, 2021</div>
+
+<siglas class="definition" first="________" short="___"></siglas>
+
+<abstract>In thisdocument I present some preliminary results of the characterization of the TI-LGADs at UZH.</abstract>
+
+<div id="table-of-contents">
+	<h2 class="unnumbered">Contents</h2>
+</div>
+
+<h1>Devices at UZH</h1>
+
+<p>The following scheme shows all the TI-LGAD devices we have at UZH and how each design pattern is distributed.</p>
+
+<float class="Figure">
+	<iframe class="plotly" src="media/FBK TI-LGAD RD50 1 at UZH parallel categories.html"></iframe>
+	<floatcaption>Parallel categories plot showing all the different design patterns of the TI-LGADs present at UZH.</floatcaption>
+</float>
+
+<h1>IV curves</h1>
+
+<float class="Figure">
+	<iframe class="plotly" style="height: 666px !important;" src="media/iv_curves.html"></iframe>
+	<floatcaption>IV curves measured for the devices while mounted in the measuring TCT setup. In all cases all the pixels were either grounded or connected to a 50&nbsp;Ω termination to ground.</floatcaption>
+</float>
+
+<h1>TCT scans</h1>
+
+<p>A subset of these devices are being characterized using a TCT setup with an infrared laser. The following image shows how the scan is being performed: it starts in the left on top of the metal, then it moves in steps of 1&nbsp;µm to the right scanning the two pixels and finally ends on top of the metal of the right pixel.</p>
+
+<float class="Figure">
+	<image src="media/1.svg" style="width: 555px; max-width: 100%;"></image>
+	<floatcaption>Microscope picture of the openings used for the laser scans. </floatcaption>
+</float>
+
+<p>The scans are performed from metal to metal in order to capture the response of the device in the transition metal-silicon which serves as a reference to check the shape of the laser. In <crossref toid="Figure: fit erf example"></crossref> an example is shown, for a single scan. Here we see the normalized collected charge<footnote>Normalized such that when the laser is on the metal the mean value of the collected charge is 0 and when the laser is in the plateau the mean value of the collected charge is 1.</footnote> as a function of scanning distance, as well as one <a href="https://en.wikipedia.org/wiki/Error_function">erf function</a> fitted in each metal-silicon transition modeling the convolution of the laser with a Gaussian profile with a step function for the response of the device. From these fits we see that the size of the laser has a sigma of roughly 9&nbsp;µm, which is consistent with a <a href="https://msenger.web.cern.ch/a-spacial-characterization-of-the-tct/">previous characterization of our TCT setup</a>. </p>
+
+<float class="Figure" id="Figure: fit erf example">
+	<iframe class="plotly" src="media/fit_erf_example.html"></iframe>
+	<floatcaption>Normalized collected charge as a function of scanning distance, for one particular measurement<footnote>Measurement of device #84 at 201&nbsp;V.</footnote> showing a fit of an <a href="https://en.wikipedia.org/wiki/Error_function">erf function</a> in each metal-silicon interface to check the Gaussian profile of the laser with a standard deviation close to 9&nbsp;µm.</floatcaption>
+</float>
+
+<h2>Inter-pixel distance</h2>
+
+<p>Using this data it is possible to calculate the inter-pixel distance at some height of the normalized collected charge. This is shown in <crossref toid="Figure: inter pixel distance example"></crossref> (you can zoom in horizontally to better visualize this). These distances were calculated by linear interpolation of each trace. In particular it is of interest to us the value at 50&nbsp;% which is highlighted in black in the plot. This value was used for all the measurements as the inter-pixel distance.</p>
+
+<float class="Figure" id="Figure: inter pixel distance example">
+	<iframe class="plotly" src="media/inter_pixel_distance.html"></iframe>
+	<floatcaption>Normalized collected charge as a function of scanning distance showing the inter-pixel distance calculated by linear interpolation at different heights. The value at 50&nbsp;% of height, highlighted in black in this plot, was used in all cases as the inter-pixel distance.</floatcaption>
+</float>
+
+<p>Repeating the previous procedure for different devices and biased at different voltages, we obtain the plot in <crossref toid="Figure: inter pixel vs bias voltage"></crossref>. Here we see a common trend that the inter-pixel distance is reduced as the bias voltage is increased. This behavior was also observed in a previous characterization of this technology&nbsp;<crossref toid="Reference: TI-LGADs at picosecond workshop"></crossref>. From the characterization done so far, we see that those devices with "contact type ring" have a smaller inter-pixel distance than those with "contact type dot", with exception of device #1 which displays a strange behavior and will be re-measured. We also note that device #84 has the smallest inter-pixel distance at all voltages, this device has pixel border V2 (aggressive) and deep trenches.</p>
+
+<float class="Figure" id="Figure: inter pixel vs bias voltage">
+	<iframe class="plotly" src="media/interpixel_distance_vs_bias_voltage.html"></iframe>
+	<floatcaption>Inter-pixel distance, measured as the distance between the 50&nbsp;% of the normalized collected charge using linear interpolation, as shown in <crossref toid="Figure: inter pixel distance example"></crossref>, as a function of bias voltage for some of the devices that were measured. Each symbol (circle, diamond, square, etc.) denotes a different device. Each color denotes a different combination of design patterns excluding the "contact type". The line type, solid or dashed, denotes the "contact type" choice.</floatcaption>
+</float>
+
+<h2>Time resolution</h2>
+
+<p>With the TCT it is also possible to get an estimate of the time resolution. Our TCT setup has implemented <a href="https://msenger.web.cern.ch/laser-delay-system-for-the-scanning-tct/">a system to split the laser in two pulses with a constant delay of about 100&nbsp;ns</a> which we use to measure the time resolution. Data is being taken using this system, although the software for analyzing this data is still under development. As a rough estimate, however, we can use the time difference 
+	<equation>$$t_{50} - t_\text{Trigger}$$</equation>
+where $t_{50}$ is the time at which the signal reached the 50&nbsp;% of its amplitude and $t_\text{Trigger}$ is the time at which the oscilloscope triggers, which is coming from the laser controller. If we plot this quantity as a function of the scanning distance we get the plot shown in <crossref toid="Figure: t_50 example"></crossref>. Here we see that, for this particular scan, the time resolution within the window where silicon is exposed is better<footnote>The quantity shown in the plot is $\sigma_{t_{50}}^2 = \sigma_\text{Detector}^2 + \sigma_\text{Trigger}^2$.</footnote> than ~15&nbsp;ps.
+</p>
+
+<float class="Figure" id="Figure: t_50 example">
+	<iframe class="plotly" src="media/t_50 (s) std.html"></iframe>
+	<floatcaption>Standard deviation of the time difference between the moment at which the signal reaches the 50&nbsp;% of its height and the trigger signal produced by the laser controller.</floatcaption>
+</float>
+
+
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: TI-LGADs at picosecond workshop">Ashish Bisht. “Characterization of Novel Trench-Isolated LGADs for 4D Tracking.” Presented at the WORKSHOP ON PICO-SECOND TIMING DETECTORS FOR PHYSICS, Zurich, September 9, 2021. <a href="https://indico.cern.ch/event/861104/contributions/4514658/">https://indico.cern.ch/event/861104/contributions/4514658/</a>.</reference>
+</div>
+
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
