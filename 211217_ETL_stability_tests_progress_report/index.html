@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Progress report on stability tests for ETL LGADs</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/images_gallery/images_gallery_with_zoom_211019.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	<style>
+	.button {
+		background-color: #eeeeff;
+		border: 2px solid #ddddff;
+		color: inherit;
+		padding: 1px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		margin: 4px 2px;
+		cursor: pointer;
+		transition-duration: .5s;
+		border-radius: 10px;
+	}
+	.button:hover {
+		color: inherit;
+		border-radius: 0;
+	}
+	</style>
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich">Matías Senger</author>
+
+<div style="margin: 22px; text-align: center;">December 17<sup>th</sup>, 2021</div>
+
+<siglas class="definition" first="________" short="___"></siglas>
+<siglas class="definition" first="Endcap Timing Layer (ETL)" short="ETL"></siglas>
+<siglas class="definition" first="Low Gain Avalanch Detector (LGAD)" short="LGAD"></siglas>
+
+<abstract>
+<p>In this document I provide a brief update on the progress of the stability tests of the <siglas>ETL</siglas> detectors. Previous report can be found in reference <crossref toid="Reference: Commissioning of the long-term-studies setup"></crossref>.</p>
+</abstract>
+
+<div id="table-of-contents">
+	<h2 class="unnumbered">Contents</h2>
+</div>
+
+<h1>Introduction</h1>
+
+<p>The <siglas>ETL</siglas> is a new sub-detector to be installed in the CMS detector during the long shutdown 3&nbsp;<crossref toid="Reference: ETL TDR"></crossref>. It is going to be implemented with <siglas>LGAD</siglas> detectors, a relatively new technology in silicon. Stability tests are ongoing, described in this document, to verify the long-term performance of this technology. A first description of the tests and the planned setup can be found in&nbsp;<crossref toid="Reference: Commissioning of the long-term-studies setup"></crossref>.</p>
+
+<h1>Current status of the setup</h1>
+
+<p>The setup, described in&nbsp;<crossref toid="Reference: Commissioning of the long-term-studies setup"></crossref>, is still under commissioning. The construction of the mechanical system to move the beta source and the timing reference is the most complicated part as it has to be custom-made, but it is almost completed. Some pictures of the setup can be found in <crossref toid="Figure: pictures of the setup"></crossref> where we can see the mentioned mechanical system partially assembled.</p>
+
+<float class="Figure" id="Figure: pictures of the setup">
+	<div class="images_gallery_with_zoom_211019">
+		<image src="https://sengerm.github.io/html-github-hosting/210805_long_term_measurements_setup_commisioning/media/picture_of_the_setup.svg"></image>
+		<image src="media/setup_pics/photo_2021-12-17_12-28-02.jpg"></image>
+		<image src="media/setup_pics/photo_2021-12-17_12-28-44.jpg"></image>
+		<image src="media/setup_pics/photo_2021-12-17_12-28-51.jpg"></image>
+	</div>
+	<floatcaption>Pictures of the setup.</floatcaption>
+</float>
+
+<p>All the parts for the setup are already available in our lab with the exception of the MCP-PMT timing reference&nbsp;<crossref toid="Reference: Commissioning of the long-term-studies setup"></crossref> which should arrive within the following two weeks.</p>
+
+<h1>Current results</h1>
+
+<p>Despite the setup not being ready yet, some stability tests were already performed on irradiated devices. These tests consisted on keeping the devices biased at operating voltage for "a long period of time" while monitoring the bias voltage and current. In <crossref toid="Figure: logged data"></crossref> it shown the bias current, bias voltage, ambient temperature and ambient humidity for eight devices tested for a period of about 4 months. As the setup is still in commissioning the test was interrupted for small periods of time to perform technical tasks. This can be seen in the plots in the periods were the bias voltage was reduced or the temperature increased. Within the periods in which the bias voltage and the temperature were at correct values, with extensions up to 2.5 weeks, no instabilities were observed in the bias current. A more detailed analysis of this data is pending and will be performed once the setup is fully operational, which should happen soon.</p>
+
+<float class="Figure" id="Figure: logged data">
+	<iframe class="plotly" style="height: 800px !important;" src="media/logged_data.html"></iframe>
+	<floatcaption>All data collected up to date. To explore the data in more detail you can zoom in just by click-and-drag on any plot, double click to reset zoom. <a class="button" href="media/logged_data.html" target="_blank">Open in new tab</a></floatcaption>
+</float>
+
+<h1>Conclusions</h1>
+
+<ul>
+	<li>Activities are ongoing according to the plan.</li>
+	<li>Setup is almost complete, expecting to have it fully operational in one month.</li>
+	<li>Current tests (without beta source) show no instabilities on the irradiated LGADs.</li>
+</ul>
+
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+<!--
+	<reference id="Reference: _____">Bla bla bla.</reference>
+-->
+	<reference id="Reference: Commissioning of the long-term-studies setup">Commissioning of the long-term-studies setup, Matías Senger, August 6, 2021. <a href="https://sengerm.github.io/html-github-hosting/210805_long_term_measurements_setup_commisioning/setup_commissioning.html">Link</a>.</reference>
+	<reference id="Reference: ETL TDR">Cms, Collaboration. 2019. “A MIP Timing Detector for the CMS Phase-2 Upgrade.” CERN Document Server. March 15, 2019. <a href="https://cds.cern.ch/record/2667167">https://cds.cern.ch/record/2667167</a>.</reference>
+</div>
+
+<!--
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+-->
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
