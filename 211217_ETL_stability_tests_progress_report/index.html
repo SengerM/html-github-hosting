@@ -84,12 +84,16 @@
 
 <h1>Current results</h1>
 
-<p>Despite the setup not being ready yet, some stability tests were already performed on irradiated devices. These tests consisted on keeping the devices biased at operating voltage for "a long period of time" while monitoring the bias voltage and current. In <crossref toid="Figure: logged data"></crossref> it shown the bias current, bias voltage, ambient temperature and ambient humidity for eight devices tested for a period of about 4 months. As the setup is still in commissioning the test was interrupted for small periods of time to perform technical tasks. This can be seen in the plots in the periods were the bias voltage was reduced or the temperature increased. Within the periods in which the bias voltage and the temperature were at correct values, with extensions up to 2.5 weeks, no instabilities were observed in the bias current. A more detailed analysis of this data is pending and will be performed once the setup is fully operational, which should happen soon.</p>
+<p>Despite the setup not being ready yet, some stability tests were already performed on irradiated devices. These tests consisted on keeping the devices biased at operating voltage<footnote>"Operating voltage" means that bias voltage such that 10&nbsp;fC of charge was produced by the detectors according to a plot sent to me by Nicolò.</footnote> for "a long period of time" while monitoring the bias voltage and current. In <crossref toid="Figure: logged data"></crossref> it shown the bias current, bias voltage, ambient temperature and ambient humidity for eight devices tested for a period of about 4 months. As the setup is still in commissioning the test was interrupted for small periods of time to perform technical tasks. This can be seen in the plots in the periods were the bias voltage was reduced or the temperature increased. Within the periods in which the bias voltage and the temperature were at correct values, with extensions up to 2.5 weeks, no instabilities were observed in the bias current<footnote>This means that there was no point in time at which the bias current showed a peak, or any strange behavior, while both bias voltage and temperature were at the proper values.</footnote>.</p>
 
 <float class="Figure" id="Figure: logged data">
 	<iframe class="plotly" style="height: 800px !important;" src="media/logged_data.html"></iframe>
 	<floatcaption>All data collected up to date. To explore the data in more detail you can zoom in just by click-and-drag on any plot, double click to reset zoom. <a class="button" href="media/logged_data.html" target="_blank">Open in new tab</a></floatcaption>
 </float>
+
+<p>An exception is device #10,&nbsp;W18&nbsp;T4&nbsp;4e14&nbsp;n<sub>eq</sub>&nbsp;cm<sup>-2</sup> which reached breakdown before the expected bias voltage. This device, however, showed a different behavior even in the initial IV curves measured in the probe station, see the plot in <a href="../210805_long_term_measurements_setup_commisioning/setup_commissioning.html#Figure: probe station measurements">Figure 7 of reference</a>&nbsp;<crossref toid="Reference: Commissioning of the long-term-studies setup"></crossref>.</p>
+
+<p>A more detailed analysis of this data is pending and will be performed once the setup is fully operational, which should happen soon.</p>
 
 <h1>Conclusions</h1>
 
@@ -108,11 +112,9 @@
 	<reference id="Reference: ETL TDR">Cms, Collaboration. 2019. “A MIP Timing Detector for the CMS Phase-2 Upgrade.” CERN Document Server. March 15, 2019. <a href="https://cds.cern.ch/record/2667167">https://cds.cern.ch/record/2667167</a>.</reference>
 </div>
 
-<!--
 <div id="footnotes_list">
 	<h1 class="unnumbered">Footnotes</h2>
 </div>
--->
 
 <script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
 <script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
