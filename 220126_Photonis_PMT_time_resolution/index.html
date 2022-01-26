@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Determining the time resolution of the Photonis MCP-PMT with betas</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/images_gallery/images_gallery_with_zoom_211019.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich">Matías Senger</author>
+
+<div style="margin: 22px; text-align: center;">January 26<sup>th</sup>, 2022</div>
+
+<siglas class="definition" first="________" short="___"></siglas>
+
+<abstract>Write here the abstract.</abstract>
+
+<div id="table-of-contents">
+	<h2 class="unnumbered">Contents</h2>
+</div>
+
+<h1>Introduction</h1>
+
+<p>Recently we received a new <em>MCP-PMT of type PP2365AC</em> manufactured by Photonis&nbsp;<crossref toid="Reference: MCP-PMT Photonis website"></crossref>. We plan to use it as a timing reference for beta particles, as has been done by others&nbsp;<crossref toid="Development of a new fast shower maximum detector based on microchannel plates photomultipliers (MCP-PMT) as an active element"></crossref>,&nbsp;<crossref toid="Reference: Precision timing detectors with cadmium-telluride sensor"></crossref>,&nbsp;<crossref toid="Reference: Test Beam Studies Of Silicon Timing for Use in Calorimetry"></crossref>,&nbsp;<crossref toid="Reference: Development of a 10ps level time of flight system in the Fermilab Test Beam Facility"></crossref>. The device is currently operating in our lab, but what is its time resolution for tagging beta particles from a radioactive Sr-90 source? To address this question I performed the "triple beta scan method", described below, to determine its time resolution.</p>
+
+<h2>The triple beta scan method</h2>
+
+<p>The <em>triple beta scan method</em> allows to determine the time resolution of three devices without knowing any of them beforehand. The method consists on performing three different beta scans combining each pair of detectors. Each of these three beta scans is an "ordinary beta scan" as the one described in&nbsp;<crossref toid="Reference: An Introduction to UFSD Ferrero 2021"></crossref>&nbsp;§&nbsp;4.4. In an ordinary beta scan two detectors are employed, one with known time resolution used as a reference and one with unknown time resolution to be characterized. The time resolution of each detector contributes in quadrature to the total dispersion observed in the measurement:
+
+<equation id="Equation: sigmas added in quadrature">
+	$$\sigma_\text{device 1}^2 + \sigma_\text{device 2}^2 = \sigma_\text{measurement}^2$$
+</equation>
+
+where $\sigma_\text{measurement}$ is the value of the fluctuations of the time difference between the time tagged by device&nbsp;1 and the time tagged by device&nbsp;2. If there are three devices and three scans are performed combining two devices in each measurement, we then have the following system of equations 
+
+<equation id="Equation: sigmas of the three measurements">
+	$$  \left\{ \begin{aligned} & \sigma_{\text{device 1}}^{2}+\sigma_{\text{device 2}}^{2}=\sigma_{\text{measurement 1}}^{2}\\
+ & \sigma_{\text{device 1}}^{2}+\sigma_{\text{device 3}}^{2}=\sigma_{\text{measurement 2}}^{2}\\
+ & \sigma_{\text{device 2}}^{2}+\sigma_{\text{device 3}}^{2}=\sigma_{\text{measurement 3}}^{2}
+\end{aligned}
+\right.  $$
+</equation>
+
+where $\sigma_{\text{device }i}$ is the time resolution of each device and $\sigma_{\text{measurement }i}$ the dispersion of the $\Delta t$ between the pulses in each beta scan. This system can be inverted to obtain
+
+<equation id="Equation: solution of the system">
+	$$  \left\{ \begin{aligned} & \sigma_{d1}=\sqrt{\frac{\sigma_{m1}^{2}+\sigma_{m2}^{2}-\sigma_{m3}^{2}}{2}}\\
+ & \sigma_{d2}=\sqrt{\frac{\sigma_{m1}^{2}+\sigma_{m3}^{2}-\sigma_{m2}^{2}}{2}}\\
+ & \sigma_{d3}=\sqrt{\frac{\sigma_{m2}^{2}+\sigma_{m3}^{2}-\sigma_{m1}^{2}}{2}}
+\end{aligned}
+\right.  $$
+</equation>
+where $\sigma_{di} \equiv \sigma_{\text{device }i}$ and $\sigma_{mi} \equiv \sigma_{\text{measurement }i}$. Here we see that the time resolution of each device can be determined without prior information or the need of a time reference.</p>
+
+<h1>Setup, analysis and results</h1>
+
+<p>The three devices used for this experiment were:
+	<ol>
+		<li>LGAD "Speedy Gonzalez 11", AIDA-2020 V1 RUN 11478 W5-DA11.</li>
+		<li>LGAD "Speedy Gonzalez 12", AIDA-2020 V1 RUN 11478 W5-DA12.</li>
+		<li>Photonis MCP-PMT PP2365AC.</li>
+	</ol>
+The two <em>Speedy Gonzalez</em> LGADs were chosen because they showed the best time resolution in prior characterizations in our lab&nbsp;<crossref toid="Reference: Beta setup in Zurich RD50 Nov2020"></crossref>, while the MCP-PMT is the device that I wanted to characterize. Each of the two LGAD devices was mounted in one Chubut board which is similar to the usual Santa Cruz board&nbsp;<crossref toid="Reference: The Chubut board in my website"></crossref>. The LGADs were biased with a CAEN DT1470ET power supply, while the MCP-PMT was powered with a USB source supplied by its manufacturer. All devices were connected directly to the 50&nbsp;Ω inputs of a LeCroy&nbsp;WaveRunner&nbsp;9524M oscilloscope with no additional amplification. The oscilloscope's trigger was configured to trigger only on coincidences above certain threshold voltage which was carefully selected such that only beta particles would trigger it.</p>
+
+<p>The window of the MCP-PMT was covered with thin aluminum adhesive tape to prevent ambient photons to enter into the device. This proved to be enough shielding to allow the device to be used under ambient light conditions without issues&nbsp;<crossref toid="First test of MCP-PMT as a MIP detector"></crossref>.</p>
+
+<p>In <crossref toid="Figure: pictures of the setup"></crossref> some pictures of the setup are shown.</p>
+
+<float class="Figure" id="Figure: pictures of the setup">
+	<div class="images_gallery_with_zoom_211019" style="--miniatures_height: 266px;">
+		<image src="media/photo_2022-01-26_17-33-26.jpg"></image>
+		<image src="media/photo_2022-01-26_17-33-26 (2).jpg"></image>
+	</div>
+	<floatcaption>Pictures of the setup used for the measurements. The first picture shows two Chubut boards where the LGAD devices were mounted, and the radioactive beta source on top. The second picture shows one of the Chubut boards mounted in a 3D-printed structure that holds the MCP-PMT inside, and the beta source on top.</floatcaption>
+</float>
+
+<p>Each of the three beta scans collected a total of 3333 events in coincidence of the two respective detectors. Each signal was then individually processed to extract its features using the <a href="https://github.com/SengerM/lgadtools">lgadtools package</a> for Python&nbsp;<crossref toid="Reference: lgadtools package GitHub"></crossref>. An example of such processing is shown in <crossref toid="Figure: example of a signal"></crossref>.</p>
+
+<float class="Figure" id="Figure: example of a signal">
+	<iframe class="plotly" src="media/Signal n_trigger 2443 n_channel 3.html"></iframe>
+	<floatcaption>Example of a signal from one of the LGADs with the different analysis quantities on top of it produced using the <em>lgadtools package</em>&nbsp;<crossref toid="Reference: lgadtools package GitHub"></crossref>.</floatcaption>
+</float>
+
+<p>The values of the "time at $x$ %" extracted from the analysis shown in <crossref toid="Figure: example of a signal"></crossref> were used to perform a timing analysis using the constant fraction discriminator method. The value of each $\sigma_{mi}$ from <crossref toid="Equation: solution of the system"></crossref> was determined as the median absolute deviation of the time difference between pulse 1 and pulse 2 choosing the "constant fraction discriminator constants" $k_i$ at the value where this quantity was minimized. <crossref toid="Figure: cfd plot"></crossref> displays an example of the method applied to one of the beta scans performed. Here we see in the color map the dispersion of the time difference for different values of the constant fraction discriminator threshold $k_i$ for each detector. For example the point where $k_1=10\%$ and $k_2=50\%$ is showing the dispersion of $\Delta t = t_{10 \%}^\text{device 1} - t_{50 \%}^\text{device 2}$ where each $t_{\%}^{\text{device }i}$ is given by the value as shown in <crossref toid="Figure: example of a signal"></crossref> for the respective detector. At each value of $k_1,k_2$ the distribution of $\Delta t$ is Gaussian, an example is shown in <crossref toid="Figure: cfd plot"></crossref> at the right.</p>
+
+<float class="Figure" id="Figure: cfd plot">
+	<div style="display: flex;">
+		<iframe class="plotly" style="width: 500px !important; min-width: 500px !important;" src="media/CFD_plot.html"></iframe>
+		<iframe class="plotly" src="media/histogram k1 60 k2 40.html"></iframe>
+	</div>
+	<floatcaption>Example of analysis of one single beta scan.
+	Left: Value of the dispersion of $\Delta t$ as a function of $k_1$ and $k_2$, the constant fraction discriminator thresholds for each of the pulses of each detector respectively. In green is indicated the point where the minimum is reached with a value of $\sigma \approx 53.13$&nbsp;ps. 
+	Right: For $k_1 = 60 \%$ and $k_2 = 40 \%$ (the values that minimize the plot on the left) the values of $\Delta t$ follow this distribution. A Gaussian function was fitted.</floatcaption>
+</float>
+
+<p>The final values reported (later on) for each $\sigma_\text{measurement}$ were obtained as $$ \sigma = 1.4826 \times \text{MAD} $$ where $\text{MAD}$ is the median absolute deviation. This estimator is practically equivalent to the standard deviation but more robust against outliers&nbsp;<crossref toid="Reference: Robust statistics my website"></crossref>. The Gaussian fit as the one shown in <crossref toid="Figure: cfd plot"></crossref> was used as a cross check for the value of $\sigma$.</p>
+
+<h2>Results</h2>
+
+<p>The results obtained from 5 beta scans are summarized in <crossref toid="Table: beta scans"></crossref>. The uncertainty in each measured σ was obtained by bootstrapping. We see that the scan with the "worse time resolution" is that performed with the two LGADs, while those in which one of the devices was the MCP-PMT have smaller values of σ. This is consistent with the MCP-PMT being better for time tagging, as expected.</p>
+
+<float class="Table" id="Table: beta scans">
+	<table>
+		<thead>
+		  <tr>
+			<th></th>
+			<th>Device A</th>
+			<th>Device B</th>
+			<th>Measured σ (ps)</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+			<td>Beta scan 1</td>
+			<td>Speedy Gonzalez 11</td>
+			<td>Speedy Gonzalez 12</td>
+			<td>53.1±1</td>
+		  </tr>
+		  <tr>
+			<td>Beta scan 2</td>
+			<td>Speedy Gonzalez 11</td>
+			<td>Photonis @ 2650 V</td>
+			<td>45.2±0.9</td>
+		  </tr>
+		  <tr>
+			<td>Beta scan 3</td>
+			<td>Speedy Gonzalez 12</td>
+			<td>Photonis @ 2650 V</td>
+			<td>44.5±0.8</td>
+		  </tr>
+		  <tr>
+			<td>Beta scan 4</td>
+			<td>Speedy Gonzalez 11</td>
+			<td>Photonis @ 3000 V</td>
+			<td>45.2±0.9</td>
+		  </tr>
+		  <tr>
+			<td>Beta scan 5</td>
+			<td>Speedy Gonzalez 12</td>
+			<td>Photonis @ 3000 V</td>
+			<td>42.2±0.8</td>
+		  </tr>
+		</tbody>
+	</table>
+	<floatcaption>Summary of the beta scans performed.</floatcaption>
+</float>
+
+<p>Using this data and <crossref toid="Equation: solution of the system"></crossref> the time resolution of each device can be computed. Specifically we can distinguish two cases:
+	<ol>
+		<li>Using beta scans 1, 2 and 3: characterize the MCP-PMT at 2650&nbsp;V, which is the nominal voltage.</li>
+		<li>Using beta scans 1, 4 and 5: characterize the MCP-PMT at 3000&nbsp;V, which is the maximum voltage.</li>
+	</ol>
+By doing so the results from <crossref toid="Table: time resolution final results"></crossref> were obtained.</p>
+
+<float class="Table" id="Table: time resolution final results">
+	<table>
+	<thead>
+	  <tr>
+		<th>Beta scans used</th>
+		<th>Speedy Gonzalez 11 (ps)</th>
+		<th>Speedy Gonzalez 12 (ps)</th>
+		<th>Pohtonis MCP-PMT (ps)</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+		<td>1,2 and 3</td>
+		<td>38.0±1.0</td>
+		<td>37.1±1.1</td>
+		<td>24.5±1.6</td>
+	  </tr>
+	  <tr>
+		<td>1, 4 and 5</td>
+		<td>39.3±1.0</td>
+		<td>35.8±1.1</td>
+		<td>22.4±1.7</td>
+	  </tr>
+	</tbody>
+	</table>
+	<floatcaption>Time resolution obtained for each device after inserting the measured values from <crossref toid="Table: beta scans"></crossref> into <crossref toid="Equation: solution of the system"></crossref>.</floatcaption>
+</float>
+
+<p>We see that the time resolution for both of the Speedy Gonzalez devices is on the order of 38&nbsp;ps. Using the measured σ from the beta scan 1 alone and assuming that the two devices are identical (which should be the case) a value of $\frac{53.1\text{ ps}}{\sqrt{2}}\approx 37.5\text{ ps}$ which is consistent. For the MCP-PMT the time resolution is on the order of 22-24&nbsp;ps at the two different voltages. There seems to be a slight improvement with increasing the bias voltage but it is not important.</p>
+
+<h1>Conclusions and discussion</h1>
+
+<p>The time resolution of two LGADs and our new MCP-PMT was determined by means of the "three beta scans method". For the two LGADs a time resolution of 37&nbsp;ps was obtained while for the MCP-PMT a value of 22-24&nbsp;ps was determined. These values are not in perfect agreement with the expected ones. For the two Speedy Gonzalez LGADs a value of 27&nbsp;ps was determined in the past&nbsp;<crossref toid="Reference: Beta setup in Zurich RD50 Nov2020"></crossref> while for the Photonis PP2365AC MCP-PMT a value of the order of 10-15&nbsp;ps was expected. It has to be noted, however, that for a similar device of the same manufacturer a value at the level of 35-40&nbsp;ps was reported for MIPs&nbsp;<crossref toid="Development of a new fast shower maximum detector based on microchannel plates photomultipliers (MCP-PMT) as an active element"></crossref>.</p>
+
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: MCP-PMT Photonis website">MCP-PMT Photonis product website. <a href="https://www.photonis.com/products/mcp-pmt">https://www.photonis.com/products/mcp-pmt</a>.</reference>
+	
+	<reference id="Reference: Test Beam Studies Of Silicon Timing for Use in Calorimetry">Test Beam Studies Of Silicon Timing for Use in Calorimetry, A. Apresyan, G. Bolla, A. Bornheim, H. Kim, S. Los, C. Pena, E. Ramberg,A. Ronzhin, M. Spiropulu, and S. Xie. <a href="https://inspirehep.net/files/f6b1cd929d10bb6fe53679fd2f38d3c7">https://inspirehep.net/files/f6b1cd929d10bb6fe53679fd2f38d3c7</a>.</reference>
+	
+	<reference id="Reference: Precision timing detectors with cadmium-telluride sensor">A. Bornheim, C. Pena, M. Spiropulu, S. Xie, Z. Zhang, Precision timing detectors with cadmium-telluride sensor, 21 September 2017, Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment, <a href="https://doi.org/10.1016/j.nima.2017.04.024">https://doi.org/10.1016/j.nima.2017.04.024</a>.</reference>
+	
+	<reference id="Development of a new fast shower maximum detector based on microchannel plates photomultipliers (MCP-PMT) as an active element">A. Ronzhin, S. Los, E. Ramberg, M. Spiropulu, A. Apresyan, S. Xie, H. Kim, A. Zatserklyaniy, Development of a new fast shower maximum detector based on microchannel plates photomultipliers (MCP-PMT) as an active element, 21 September 2014, Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment. <a href="https://doi.org/10.1016/j.nima.2014.05.039">https://doi.org/10.1016/j.nima.2014.05.039</a>.</reference>
+	
+	<reference id="Reference: Development of a 10ps level time of flight system in the Fermilab Test Beam Facility">A. Ronzhin, M.G. Albrow, M. Demarteau, S. Los, S. Malik, A. Pronko, E. Ramberg, A. Zatserklyaniy, Development of a 10ps level time of flight system in the Fermilab Test Beam Facility, Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment, <a href="https://doi.org/10.1016/j.nima.2010.08.025">https://doi.org/10.1016/j.nima.2010.08.025</a>.</reference>
+	
+	<reference id="Reference: An Introduction to UFSD Ferrero 2021">Ferrero, Marco, Roberta Arcidiacono, Marco Mandurrino, Valentina Sola, and Nicolò Cartiglia. 2021. An Introduction to Ultra-Fast Silicon Detectors: Design, Tests, and Performances. Boca Raton: CRC Press. <a href="https://doi.org/10.1201/9781003131946">https://doi.org/10.1201/9781003131946</a>.</reference>
+	
+	<reference id="Reference: Beta setup in Zurich RD50 Nov2020">Matias Senger. 2020. “Beta Setup in Zurich.” Presented at the The 37th RD50 Workshop (Zagreb -- online Workshop), November 20. <a href="https://indico.cern.ch/event/896954/contributions/4106457/">https://indico.cern.ch/event/896954/contributions/4106457/</a>.</reference>
+	
+	<reference id="Reference: The Chubut board in my website">The Chubut board, Matías Senger, July 2021. <a href="https://msenger.web.cern.ch/the-chubut-board/">https://msenger.web.cern.ch/the-chubut-board/</a>.</reference>
+	
+	<reference id="Reference: lgadtools package GitHub">lgadtools package repository. <a href="https://github.com/SengerM/lgadtools">https://github.com/SengerM/lgadtools</a>.</reference>
+	
+	<reference id="Reference: Robust statistics my website">Robust statistics, Matías Senger. <a href="https://msenger.web.cern.ch/robust-statistics/">https://msenger.web.cern.ch/robust-statistics/</a>.</reference>
+	
+	<reference id="First test of MCP-PMT as a MIP detector">First test of MCP-PMT as a MIP detector, Matías Senger. <a href="https://msenger.web.cern.ch/first-test-of-mcp-pmt-as-a-mip-detector/">https://msenger.web.cern.ch/first-test-of-mcp-pmt-as-a-mip-detector/</a>.</reference>
+</div>
+
+<!--
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+-->
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
