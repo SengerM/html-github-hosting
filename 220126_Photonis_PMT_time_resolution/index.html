@@ -76,9 +76,23 @@ where $\sigma_{di} \equiv \sigma_{\text{device }i}$ and $\sigma_{mi} \equiv \sig
 
 <p>The three devices used for this experiment were:
 	<ol>
-		<li>LGAD "Speedy Gonzalez 11", AIDA-2020 V1 RUN 11478 W5-DA11.</li>
-		<li>LGAD "Speedy Gonzalez 12", AIDA-2020 V1 RUN 11478 W5-DA12.</li>
-		<li>Photonis MCP-PMT PP2365AC.</li>
+		<li>LGAD "Speedy Gonzalez 11", AIDA-2020 V1 RUN 11478 W5-DA11.
+			<ul>
+				<li>Mounted in Chubut board.</li>
+				<li>No second stage amplifier.</li>
+			</ul>
+		</li>
+		<li>LGAD "Speedy Gonzalez 12", AIDA-2020 V1 RUN 11478 W5-DA12.
+			<ul>
+				<li>Mounted in Chubut board.</li>
+				<li>No second stage amplifier.</li>
+			</ul>
+		</li>
+		<li>Photonis MCP-PMT PP2365AC.
+			<ul>
+				<li>Connected straight to the 50 Ω input of the oscilloscope without any amplification at all.</li>
+			</ul>
+		</li>
 	</ol>
 The two <em>Speedy Gonzalez</em> LGADs were chosen because they showed the best time resolution in prior characterizations in our lab&nbsp;<crossref toid="Reference: Beta setup in Zurich RD50 Nov2020"></crossref>, while the MCP-PMT is the device that I wanted to characterize. Each of the two LGAD devices was mounted in one Chubut board which is similar to the usual Santa Cruz board&nbsp;<crossref toid="Reference: The Chubut board in my website"></crossref>. The LGADs were biased with a CAEN DT1470ET power supply, while the MCP-PMT was powered with a USB source supplied by its manufacturer. All devices were connected directly to the 50&nbsp;Ω inputs of a LeCroy&nbsp;WaveRunner&nbsp;9524M oscilloscope with no additional amplification. The oscilloscope's trigger was configured to trigger only on coincidences above certain threshold voltage which was carefully selected such that only beta particles would trigger it.</p>
 
@@ -204,7 +218,7 @@ By doing so the results from <crossref toid="Table: time resolution final result
 
 <h1>Conclusions and discussion</h1>
 
-<p>The time resolution of two LGADs and our new MCP-PMT was determined by means of the "three beta scans method". For the two LGADs a time resolution of 37&nbsp;ps was obtained while for the MCP-PMT a value of 22-24&nbsp;ps was determined. These values are not in perfect agreement with the expected ones. For the two Speedy Gonzalez LGADs a value of 27&nbsp;ps was determined in the past&nbsp;<crossref toid="Reference: Beta setup in Zurich RD50 Nov2020"></crossref> while for the Photonis PP2365AC MCP-PMT a value of the order of 10-15&nbsp;ps was expected. It has to be noted, however, that for a similar device of the same manufacturer a value at the level of 35-40&nbsp;ps was reported for MIPs&nbsp;<crossref toid="Development of a new fast shower maximum detector based on microchannel plates photomultipliers (MCP-PMT) as an active element"></crossref>.</p>
+<p>The time resolution of two LGADs and our new MCP-PMT was determined by means of the "three beta scans method". For the two LGADs a time resolution of 37&nbsp;ps was obtained while for the MCP-PMT a value of 22-24&nbsp;ps was determined. These values are not in perfect agreement with the expected ones. For the two Speedy Gonzalez LGADs a value of 27&nbsp;ps was determined in the past&nbsp;<crossref toid="Reference: Beta setup in Zurich RD50 Nov2020"></crossref> while for the Photonis PP2365AC MCP-PMT a value of the order of 10-15&nbsp;ps was expected. It has to be noted, however, that for a similar device of the same manufacturer a value at the level of 35-40&nbsp;ps was reported for MIPs&nbsp;<crossref toid="Development of a new fast shower maximum detector based on microchannel plates photomultipliers (MCP-PMT) as an active element"></crossref>. With respect to the two Speedy Gonzalez LGADs, in the past they were mounted in Santa Cruz boards and a second stage amplifier was also used, this may be the difference.</p>
 
 <div id="references_list">
 	<h1 class="unnumbered">References</h1>
