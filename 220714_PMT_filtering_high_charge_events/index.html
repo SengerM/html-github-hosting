@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>PMT filtering high charge events</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+	
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich">Matías Senger</author>
+
+<div style="margin: 22px; text-align: center;">July 14<sup>th</sup>, 2022</div>
+
+<siglas class="definition" first="________" short="___"></siglas>
+
+<div id="table-of-contents">
+	<h2 class="unnumbered">Contents</h2>
+</div>
+
+<h1>Introduction</h1>
+
+<p>A number of times when "playing" with our new Photonis PMT&nbsp;<crossref toid="Reference: First test of the PMT"></crossref>&nbsp;<crossref toid="Reference: Characterization of the new MCP-PMT as a timing detector for beta particles"></crossref> I noticed that the signals on the LGAD get smaller if I require coincidence with the PMT, which is below. So I decided to perform a beta scan to see more precisely what is going on.</p>
+
+<p>In <crossref toid="Figure: setup"></crossref> there is a graphical description of the setup arrangement. The LGAD, an HPK device whose IV curve is shown in&nbsp;<crossref toid="Figure: LGAD iv curve"></crossref>, was mounted on a Chubut board&nbsp;<crossref toid="Reference: Chubut board"></crossref>. Both the LGAD and the PMT were connected to the oscilloscope through one of our EBay amplifiers. As shown in <crossref toid="Figure: screenshot of oscilloscope"></crossref> the trigger was set only on the LGAD. In these conditions several beta scans were performed at different bias voltages with "low statistics" and only a single one, at 140&nbsp;V, was performed at high statistics.</p>
+
+<float class="Figure" id="Figure: setup">
+	<image src="media/1.svg" style="max-width: 100%;"></image>
+	<floatcaption>Setup arrangement description.</floatcaption>
+</float>
+
+<float class="Figure" id="Figure: screenshot of oscilloscope">
+	<image src="media/Screenshot_2022-07-13_15-41-23.png" style="max-width: 100%;"></image>
+	<floatcaption>Configuration in the oscilloscope. Channel 2 is the PMT while channel 3 is the LGAD.</floatcaption>
+</float>
+
+<float class="Figure" id="Figure: LGAD iv curve">
+	<iframe class="plotly" src="media/iv_curve_lin_scale.html"></iframe>
+	<floatcaption>IV curve of the LGAD used for this test.</floatcaption>
+</float>
+
+<h1>Results</h1>
+
+<p>99999 triggers were acquired with the oscilloscope in the conditions described above and the LGAD at a fixed voltage of 140&nbsp;V. The events were filtered according to 3 categories:
+<ol>
+	<li>LGAD yes PMT don't care: Events that produced a signal on the LGAD, independently of the fact that there was signal in the PMT.</li>
+	<li>LGAD yes PMT no: Events that produced a signal on the LGAD and no signal on the PMT.</li>
+	<li>coincidence: Events that produced a signal in both devices.</li>
+</ol>
+Events with no signal in any of the two devices were discarded as background. The charge distribution for each of these three conditions is shown in <crossref toid="Figure: charge distribution"></crossref>. Three <em>Langauss</em> fits where performed, once for each distribution. The distributions seem to qualitatively match the fits. Looking at the parameters of each fit, it can be seen that the Landau's most probable value (x<sub>MPV</sub>) is practically the same in each case, but the Landau's width parameter ξ is the one changing when the events are required to produce a signal not only in the LGAD but also in the PMT.</p>
+
+<float class="Figure" id="Figure: charge distribution">
+	<iframe class="plotly" src="media/collected_charge_comparison.html"></iframe>
+	<floatcaption>Distribution of the collected charge in the LGAD for 3 different conditions.</floatcaption>
+</float>
+
+<p>The same behavior was observed at different bias voltages, though with less statistics.</p>
+
+<h1>Conclusions</h1>
+
+<p>The effect of the PMT filtering out the higher charge events was measured. The most probable value of the Landau does not seem to change but the width of it. I am still not sure what the reason for this behavior is, some colleagues suggested that probably the non-MIP part of the <sup>90</sup>SR spectrum, i.e. low energy electrons, are probably not reaching the PMT because they deposit much more energy on the LGAD (and maybe the glass of the PMT) and they are stopped before. If this is the case, this would actually be beneficial as we are interested only on MIPs.</p>
+
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+<!--
+	<reference id="Reference: _____">Bla bla bla.</reference>
+-->
+	<reference id="Reference: First test of the PMT">First test of MCP-PMT as a MIP detector, <a href="https://msenger.web.cern.ch/first-test-of-mcp-pmt-as-a-mip-detector/">https://msenger.web.cern.ch/first-test-of-mcp-pmt-as-a-mip-detector/</a>.</reference>
+	<reference id="Reference: Characterization of the new MCP-PMT as a timing detector for beta particles">Characterization of the new MCP-PMT as a timing detector for beta particles, <a href="https://msenger.web.cern.ch/characterization-of-the-new-mcp-pmt-as-a-timing-detector-for-beta-particles/">https://msenger.web.cern.ch/characterization-of-the-new-mcp-pmt-as-a-timing-detector-for-beta-particles/</a>.</reference>
+	<reference id="Reference: Chubut board">The Chubut board, <a href="https://msenger.web.cern.ch/the-chubut-board/">https://msenger.web.cern.ch/the-chubut-board/</a>.</reference>
+</div>
+
+<!--
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+-->
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
