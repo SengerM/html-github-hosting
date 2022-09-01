@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Automatic classification of background events in beta scans of LGAD detectors</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<link rel="stylesheet" href="css.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+	
+</head>
+
+<body style="max-width: 888px !important; margin: auto; padding: 33px;">
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich"><a href="https://msenger.web.cern.ch/" target="_blank">Matias Senger</a></author>
+<!--
+<div style="margin: 22px; text-align: center;">September 8<sup>th</sup>, 2021</div>
+-->
+
+<siglas class="definition" first="________" short="___"></siglas>
+<siglas class="definition" first="Low Gain Avalanche Detector (LGAD)" short="LGAD"></siglas>
+<siglas class="definition" first="Large Hadron Collider (LHC)" short="LHC"></siglas>
+<siglas class="definition" first="MIP Timing Detector (MTD)" short="MTD"></siglas>
+<siglas class="definition" first="Device Under Test (DUT)" short="DUT"></siglas>
+<siglas class="definition" first="Photon Multiplying Tube (PMT)" short="PMT"></siglas>
+
+<abstract>This document provides a brief description of a bachelor thesis project at the CMS group of the University of Zurich. It consists on the automation of the classification of background/non-background events in beta scans on LGAD detectors via machine learning algorithms.</abstract>
+
+<div id="table-of-contents">
+	<h2 class="unnumbered">Contents</h2>
+</div>
+
+<h1>Introduction</h1>
+
+<p>In recent years a new kind of solid state radiation detector has emerged as a promising evolution of the regular silicon PIN detector, known as <siglas>LGAD</siglas>. These detectors have promising applications as pixel detectors in the trackers of collider experiments. <siglas>LGAD</siglas>s have an outstanding time resolution on the order of 30&nbsp;ps&nbsp;<crossref toid="Reference: libro de LGADs"></crossref> and they are already finding application in future upgrades of the ATLAS&nbsp;<crossref toid="Reference: ATLAS HGTD TDR"></crossref> and CMS&nbsp;<crossref toid="Reference: CMS MIP Timing Detector TDR"></crossref> detectors, the two largest experiments hosted in the <siglas>LHC</siglas>. Moreover, it is foreseen that future collider experiments will require tracking capabilities with precise time and spacial resolution&nbsp;<crossref toid="Reference: Strategic R&D Programme on Technologies for Future Experiments"></crossref> which motivates the development not only of <siglas>LGAD</siglas>s but also variations of this technology to produce ever smaller pixel areas.</p>
+
+<p>Our group at the University of Zurich is involved in activities within the CMS <siglas>MTD</siglas> as well as into the study of new <siglas>LGAD</siglas> technologies to achieve a small pixel area. In turn, we usually have several devices in our lab on which we perform different kinds of tests. One of the most important tests is generically known as <em>a beta scan</em>. During a beta scan, a detector is exposed to beta particles from a radioactive source and its response to the radiation is recorded. Each of these beta scans typically posses several hundred or thousand events, of which some are of interest and some are background events that have to be discarded prior to the analysis of the data. A correct distinction between background events and real events is a key part to achieve correct results.</p>
+
+<p>This project proposes to develop an automated method to discern between background and non-background events in beta scans of <siglas>LGAD</siglas> detectors. Such method if foreseen to be implemented via a machine learning algorithm and is expected to perform well under the different circumstances found in each beta scan, which are different depending on the characteristics of the detector under study.</p>
+
+<h1>Beta scan</h1>
+
+<p>As mentioned in <crossref toid="Introduction"></crossref>, a <em>beta scan of an <siglas>LGAD</siglas></em> consists in exposing it to particles emitted by a radioactive source and observe its response. In this section a few more details about this will be provided.</p>
+
+<p><crossref toid="Figure: beta scan schematic"></crossref> shows schematically an experimental arrangement for a beta scan. The <sup>90</sup>SR radioactive beta source sits on top. The beta particles emitted by this source traverse then the <siglas>LGAD</siglas>, which is the <siglas>DUT</siglas> and then go into a <siglas>PMT</siglas> which serves as a reference detector for triggering the acquisition system. The two devices, <siglas>DUT</siglas> and <siglas>PMT</siglas>, are connected to an oscilloscope which is used to acquire their outputs. In <crossref toid="Figure: screenshot of oscilloscope"></crossref> a screenshot of the oscilloscope is shown where the waveforms of the two channels, one for the <siglas>LGAD</siglas> and the other for the <siglas>PMT</siglas>, are shown.</p>
+
+<float class="Figure" id="Figure: beta scan schematic">
+	<img src="https://sengerm.github.io/html-github-hosting/220714_PMT_filtering_high_charge_events/media/1.svg">
+	<floatcaption>Schematic representation of a beta scan arrangement. The <siglas>LGAD</siglas> detector, mounted in a readout board shown in green, is placed on top of a reference detector, in this case a PMT, and the signal of both devices are recorded with a digital acquisition system.</floatcaption>
+</float>
+
+<float class="Figure" id="Figure: screenshot of oscilloscope">
+	<img width=100% src="https://sengerm.github.io/html-github-hosting/220714_PMT_filtering_high_charge_events/media/Screenshot_2022-07-13_15-41-23.png">
+	<floatcaption>Screenshot of the oscilloscope showing the raw signals from each of the two devices shown schematically in <crossref toid="Figure: beta scan schematic"></crossref>.</floatcaption>
+</float>
+
+<p>The setup is configured to acquire several events and record the waveforms in a computer, which later on are processed to extract some relevant features. An example of such processing is shown in <crossref toid="Figure: signal example"></crossref>. Here we see the raw data (blue points labeled as <em>signal</em> in the legend) and several parameters extracted out of it, such as its amplitude, the noise level, the baseline, etc.</p>
+
+<float class="Figure" id="Figure: signal example">
+	<iframe class="plotly" src="media/n_trigger 2003 signal_name DUT.html"></iframe>
+	<floatcaption>Example showing how a raw signal is processed to exract its features, such as amplitude, charge (integral), noise, etc. </floatcaption>
+</float>
+
+<p>The example previously shown illustrates the case for a "real event", i.e. one in which the waveform corresponds to a signal after the hit of a beta particle. However, in a beta scan an important fraction of the recorded events do not correspond to beta particles actually hitting the detector but rather to noise triggering the oscilloscope. Thus, before any analysis can be performed on the data the events must be properly classified into <em>background events</em> and <em>non-background events</em>. An example of this classification is shown in <crossref toid="Figure: scatter plot example"></crossref>. This plot shows all the events displayed in a <em>scatter matrix plot</em> in which the 2D distribution of several combination of variables (not all) are graphed. Each event is one point, shown once per 2D plot. The colors in this plot specify whether the event was tagged as background (red) or as a real event from a beta particle (green). If the plot displays too small it is possible to open it in a new tab by clicking <a href="media/scatter matrix plot.html" target=”_blank”>here</a>.</p>
+
+<float class="Figure" id="Figure: scatter plot example">
+	<iframe class="plotly" src="media/scatter matrix plot.html"></iframe>
+	<floatcaption>Example of the distribution of all events from a single beta scan and their classification as background events (red) and non-background events (green), in this case done manually. (To open the plot in a new tab click <a href="media/scatter matrix plot.html" target=”_blank”>here</a>.)</floatcaption>
+</float>
+
+<p>After the classification into background and real events was performed, the analysis of the data can proceed, for example by studying the Landau distribution on the amplitude of the signals shown in <crossref toid="Figure: landau"></crossref>.</p>
+
+<float class="Figure" id="Figure: landau">
+	<iframe class="plotly" src="media/langauss fit to Amplitude (V).html"></iframe>
+	<floatcaption>Characteristic Landau distribution of the amplitude of the signals in a solid state detector.</floatcaption>
+</float>
+
+<h1>Proposed bachelor thesis work</h1>
+
+<p>As detailed in <crossref toid="Beta scan"></crossref> the classification of events into <em>real</em> and <em>background</em> is a key and unavoidable step in the analysis of the data produced in a beta scan. Moreover, the distributions shown e.g. in <crossref toid="Figure: scatter plot example"></crossref> vary from one detector to another and sometimes even within the same detector but on different testing conditions. When the number of beta scans becomes high enough that overpasses human capabilities (or it becomes very time consuming), an automated procedure is in due to achieve this classification.</p>
+
+<p>The proposed bachelor thesis work consists on the development, testing and validation of such an automated procedure, probably employing machine learning algorithms. The expected result is a software capable of producing such classification for different detectors under different measurement conditions, automatically, reliably and robustly.</p>
+
+<p>If you find this project interesting <a href="https://msenger.web.cern.ch/contact/" target="_blank" class="click_here">click here!</a></p>
+
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: _____">Bla bla bla.</reference>
+	
+	<reference id="Reference: libro de LGADs">Ferrero, Marco, Roberta Arcidiacono, Marco Mandurrino, Valentina Sola, and Nicolò Cartiglia. An Introduction to Ultra-Fast Silicon Detectors: Design, Tests, and Performances. Boca Raton: CRC Press, 2021. <a href="https://doi.org/10.1201/9781003131946">https://doi.org/10.1201/9781003131946</a>.</reference>
+	
+	<reference id="Reference: CMS MIP Timing Detector TDR">CMS collaboration. “A MIP Timing Detector for the CMS Phase-2 Upgrade.” Technical Design Report. CMS, March 15, 2019. <a href="https://cds.cern.ch/record/2667167">https://cds.cern.ch/record/2667167</a>.</reference>
+	
+	<reference id="Reference: ATLAS HGTD TDR">ATLAS colaboration. “Technical Design Report: A High-Granularity Timing Detector for the ATLAS Phase-II Upgrade.” Technical Design Report. ATLAS. CERN, June 5, 2020. <a href="https://cds.cern.ch/record/2719855">https://cds.cern.ch/record/2719855</a>.</reference>
+	
+	<reference id="Reference: Strategic R&D Programme on Technologies for Future Experiments"> Martin Aleksa, Christian Joram, Philippe Farthouat, Antti Onnela, Jakob Blomer, Corrado Gargiulo, Pere Mato Vila, Benoit Cure, Dominik Dannheim, Herman Ten Kate, Heinz Pernegger, Francois Vasey, Lucie Linssen, Graeme Stewart, Carmelo D’Ambrosio, Michael Campbell, Michael Doser, Christoph Rembser, Luciano Musa, Paulo Rodrigues Simoes Moreira, Manfred Krammer, Eraldo Oliveri, Petra Riedler, Federico Faccio, and Patrick Janot. Strategic R&D; Programme on Technologies for Future Experiments. <a href="https://cds.cern.ch/record/2649646">https://cds.cern.ch/record/2649646</a>, December 2018. Number: CERN-OPEN-2018-006.</reference>
+</div>
+
+<!--
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+-->
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
