@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CAEN digitizer for timing measurements</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+	
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich">Matías Senger</author>
+
+<div style="margin: 22px; text-align: center;">February 27<sup>th</sup>, 2023</div>
+
+<siglas class="definition" first="________" short="___"></siglas>
+<siglas class="definition" first="Trench Isolated LGAD (TI-LGAD)" short="TI-LGAD"></siglas>
+<siglas class="definition" first="Device Under Test (DUT)" short="DUT"></siglas>
+
+<abstract>In this document I describe my results on testing the CAEN DT5742 digitizer for timing characterization of LGADs. Spoiler alert: I think it is up to the task.</abstract>
+
+<div id="table-of-contents">
+	<h2 class="unnumbered">Contents</h2>
+</div>
+
+<h1>Introduction</h1>
+
+<p>I am working toward a project we discussed in my last PhD committee meeting, which consists in the implementation of a 4D tracking system prototype using <siglas>TI-LGAD</siglas> devices. Such system would consist on stacking multiple layers of <siglas>TI-LGAD</siglas>s with at least 4 pixels each and expose them to the particles from a test beam. The <siglas>TI-LGAD</siglas>s would be mounted on analog readout boards and the signals from each channel have to be somehow digitized. One possibility is to proceed by brute force, i.e. by putting all our oscilloscopes together to reach the required number of channels. Though this is possible, it is cumbersome and expensive. Another possibility is to use a digitizer with more channels. There are not many available options in the market suitable for this, but one option es the <a href="https://www.caen.it/products/dt5742/">CAEN DT5742</a> which has 16+1 channels and a sampling frequency of 5&nbsp;GHz. So I was fortunate to get one of these devices to play with for some weeks in the lab before making the decision of buying it or not. Here I present my results and methods.</p>
+
+<p>I had to develop a Python interface for the digitizer which can be found at <a href="https://github.com/SengerM/CAENpy">https://github.com/SengerM/CAENpy</a>. I want to thank the people from the Torino group which kindly provided me help for this and shared their code.</p>
+
+<h1>Setup and measurements</h1>
+
+<p>To perform the tests of the digitizer I used a modified version of our beta setup at UZH&nbsp;<crossref toid="Reference: The Robocold Beta Setup"></crossref> on which time resolution as low as ~30&nbsp;ps has been measured&nbsp;<crossref toid="Reference: Further preliminary tests with the Robocold setup"></crossref>, and in some cases we have seen even smaller values down to ~26&nbsp;ps. <crossref toid="Figure: setup schematic"></crossref> shows a schematic representation of the setup. The <siglas>DUT</siglas> was installed on the usual readout boards we have in our setup, which are the Chubut boards&nbsp;<crossref toid="Reference: The Chubut board"></crossref> very similar to the Santa Cruz board. The output from the readout board was connected to a 20&nbsp;dB amplifier which, again, is part of our regular beta setup. For triggering and time reference the MCP-PMT which is part ouf our beta setup was used in the same way as usual, with the only difference being that for some tests an additional 20&nbsp;dB amplifier was placed (Amp&nbsp;2 in <crossref toid="Figure: setup schematic"></crossref>). This was done because the threshold level in the CAEN digitizer is not easy to configure, and this additional amplifier made it easier. In order to compare the results with the current digitizing system we have, the same measurements were performed both with the CAEN and with our LeCroy Waverunner 9254M oscilloscope which is part of the setup.</p>
+
+<float class="Figure" id="Figure: setup schematic">
+	<image style="max-width: 100%; width: 888px;" src="media/setup_schematic.svg"></image>
+	<floatcaption>Schematic of the setup.</floatcaption>
+</float>
+
+<h1>Results</h1>
+
+<p>As of today, 27&nbsp;Feb&nbsp;2023, the measurements are still ongoing. It is taking me longer than expected but still I already have some results. These are shown in the plotted of <crossref toid="Figure: Measured jitter"></crossref> in which the jitter is plot against the bias voltage for a <siglas>TI-LGAD</siglas> from wafer 16, one trench, pixel border V3, contact type dot, labeled TI106. Please note that the <em>y</em> axis is the jitter and not the time resolution. The reason I am comparing the jitter and not the time resolution is that the jitter is actually what we measure, while the time resolution comes after subtracting the contribution from the time reference to the jitter, in our case the MCP-PMT. This contribution depends on several things, not only on the device. One such thing is the trigger threshold value which is unfortunately unknown in the CAEN<footnote>It can be changed but we only know the "DAC" value, not the volts. And it has a weird dependence with some other parameters, so you cannot know it. This is what they say in the user manual.</footnote>. Another dependence is on the number of amplifiers, and here I am comparing measurements with one and two amplifiers. Thus, it makes more sense to compare the jitter and keep in mind that the time resolution of the <siglas>DUT</siglas> is going to be slightly lower.</p>
+<p>Coming back to the plot of <crossref toid="Figure: Measured jitter"></crossref>, each trace is a voltage scan. The color denotes if the measurement was performed using the LeCroy oscilloscope or the CAEN digitizer while the columns denote the number of amplifiers that were placed after the PMT (either one or two). These measurements can be compared with the one in <crossref toid="Figure: TI107 jitter measured before"></crossref> which corresponds to the same <siglas>DUT</siglas> but measured with the beta setup in normal conditions during the 2022 measuring campaign. As can be seen the results are in all cases in agreement within the error bands.</p>
+
+<float class="Figure" id="Figure: Measured jitter">
+	<iframe class="plotly" style="min-width: 888px;" src="media/jitter_comparison.html"></iframe>
+	<floatcaption>Jitter as a function of the bias voltage obtained for the different configurations that were tested.</floatcaption>
+</float>
+
+<float class="Figure" id="Figure: TI107 jitter measured before">
+	<iframe style="max-width: 666px;" class="plotly" src="media/jitter_vs_bias_voltage_TI107_measured_before.html"></iframe>
+	<floatcaption>Jitter measured vs bias voltage measured between the TI107 and the MCP-PMT in the beta setup. This was measured with the setup in its normal configuration during 2022, i.e. not with the CAEN or any of the modifications done for the current tests.</floatcaption>
+</float>
+
+<p>On <crossref toid="Figure: signal example"></crossref> an example of a signal digitized by the CAEN is shown. As can be seen the quality is quite good despite the lower sampling frequency when compared to the LeCroy Waverunner 9254M oscilloscope.</p>
+
+<float class="Figure" id="Figure: signal example">
+	<iframe class="plotly" src="media/signal_example.html"></iframe>
+	<floatcaption>Example of a signal from the <siglas>TI-LGAD</siglas> digitized by the CAEN.</floatcaption>
+</float>
+
+<h1>Conclusions</h1>
+
+<p>A CAEN DT5742 digitizer was set up and tested in our lab with our beta setup. The results show that, for this application, it is capable of measuring jitter comparable with our current LeCroy Waverunner 9254M oscilloscope. Jitter values as lo as 35&nbsp;ps were measured with the CAEN digitizer, which should be enough for the application we are foreseeing.</p>
+
+<h1 class="unnumbered">Note</h1>
+
+<p>As I write this, additional measurements are being performed with the digitizer in the setup. As soon as I have these results I will update this document.</p>
+
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: The Robocold Beta Setup">The Robocold Beta Setup. <a href="https://msenger.web.cern.ch/the-robocold-beta-setup/">https://msenger.web.cern.ch/the-robocold-beta-setup/</a>.</reference>
+	<reference id="Reference: Further preliminary tests with the Robocold setup">Further preliminary tests with the Robocold setup. <a href="https://msenger.web.cern.ch/further-preliminary-tests-with-the-robocold-setup/">https://msenger.web.cern.ch/further-preliminary-tests-with-the-robocold-setup/</a>.</reference>
+	<reference id="Reference: The Chubut board">The Chubut Board. <a href="https://msenger.web.cern.ch/the-chubut-board/">https://msenger.web.cern.ch/the-chubut-board/</a>.</reference>
+</div>
+
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
