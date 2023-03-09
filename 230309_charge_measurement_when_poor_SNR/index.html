@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Charge measurement on radiation silicon detectors with poor SNR</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+	
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich">Matias Senger</author>
+
+<div style="margin: 22px; text-align: center;">March 9<sup>th</sup>, 2023</div>
+
+<siglas class="definition" first="Low Gain Avalanche Detector (LGAD)" short="LGAD"></siglas>
+<siglas class="definition" first="Minimum Ionizing Particle (MIP)" short="MIP"></siglas>
+<siglas class="definition" first="Device Under Test" short="DUT"></siglas>
+<siglas class="definition" first="Signal to Noise Ratio (SNR)" short="SNR"></siglas>
+<siglas class="definition" first="Kernel Density Estimation (KDE)" short="KDE"></siglas>
+
+<abstract><p>In this document I discuss how to fit the langauss distribution to the signal events from a silicon detector when the signals overlap with the noise. This is useful when measuring PIN detectors or heavily irradiated <siglas>LGAD</siglas> devices.</p></abstract>
+
+<div id="table-of-contents">
+	<h2 class="unnumbered">Contents</h2>
+</div>
+
+<h1>Introduction</h1>
+
+<p>When an ionizing particle impinges on a silicon detector it produces ionization charge in the form of electrons and holes that can be sensed as a peaked current signal on the terminals of the device. The amount of charge that is produced determines the intensity of the signal, the more charge the more intense the signal. Normally it is desired to obtain as much charge as possible in the output, thus some technologies such as the <siglas>LGAD</siglas> (on which I am working during my PhD) add internal gain to multiply the charge carriers. This gain is severely degraded by radiation and so is the amount of charge produced by a particle. Since there is a lower threshold on the minimum amount of charge that the electronics can trigger on, it is one of the key factors to measure when testing different technologies for a future application.</p>
+
+<p>One way to measure the charge produced by a <siglas>MIP</siglas> is to expose the <siglas>DUT</siglas> to beta particles from a <sup>90</sup>Sr source and observe the signals. <crossref toid="Figure: signal example"></crossref> shows an example of a signal measured with an oscilloscope connected to the output of a silicon radiation detector. This signal was measured from a PIN detector from an <siglas>LGAD</siglas> production<footnote>To be specific, the RD50 FBK production of TI-LGADs.</footnote>, i.e. a detector without gain and a thickness on the order of 40&nbsp;µm. As a consequence of being so thin and without internal gain, the signals are very small (compared to the noise) as seen in <crossref toid="Figure: signal example"></crossref>. This makes it challenging to measure the charge, as will be discussed later on.</p>
+
+<float class="Figure" id="Figure: signal example">
+	<iframe class="plotly" src="media/signal_example.html"></iframe>
+	<floatcaption>Example of a signal produced by a <siglas>MIP</siglas> on a silicon detector. Several features extracted from the waveform are shown such as the amplitude, the integral of the peak, etc.</floatcaption>
+</float>
+
+<h1>Signal processing</h1>
+
+<p>For the signal processing I usually just feed the waveforms straight into my signal processing module<footnote><a href="https://github.com/SengerM/signals">https://github.com/SengerM/signals</a>.</footnote>. This works perfectly when the <siglas>SNR</siglas> is high enough, e.g. with <siglas>LGAD</siglas>s. However, when working with a PIN (as in this work) or with heavily irradiated <siglas>LGAD</siglas>s this becomes more challenging.</p>
+
+<p>Recently I developed a new board which I called <em>Chubut 2</em> which has multiple readout channels thus allowing to measure multiple signals per event. In the current work I was actually characterizing this board with a 4 pixel PIN and I noticed that there is a correlated noise component on the 4 channels. Normally, with an <siglas>LGAD</siglas> this is not a problem since the internal gain makes the signals high enough to neglect this noise. But in the case of the PIN (and as well for heavily irradiated <siglas>LGAD</siglas>s) this correlated noise can be removed thus making easier (and better) the later analysis. So I recently implemented a script that computes the common mode noise component as the average of the channels and then subtracts it. It allows to improve the quality of the signals, as shown in <crossref toid="Figure: common mode noise example"></crossref> where in the left plot is hard to tell whether there is a signal at all while in the right plot (after the fix) it is evident that <em>CH1</em> has a signal.</p>
+
+<p>I want to emphasize that this level of processing is normally not required for regular <siglas>LGAD</siglas>s (as they have enough gain) but it helps a lot when working with PINs (and, I predict, with heavily irradiated <siglas>LGAD</siglas>s). Also, this is not possible with single channel readout boards.</p>
+
+<float class="Figure" id="Figure: common mode noise example">
+	<iframe style="min-width: 888px;" class="plotly" src="media/common_mode_noise_extraction_example.html"></iframe>
+	<floatcaption>Example of the subtraction of the common mode noise. In the left plot it is hard to tell whether there was a signal or not. In the right plot it is evident that channel <em>CH1</em> has a signal while the others don't.</floatcaption>
+</float>
+
+<h1>Charge measurement</h1>
+
+<p>The procedure to measure the charge produced by <siglas>MIP</siglas>s using a beta source is to expose the device, record a large number of events, and then fit a <em>langauss</em> distribution to the data. When the <siglas>SNR</siglas> is high enough this is easy, since a simple threshold in amplitude allows for a good separation of background and signal events. When there is no gain, as for the PIN detector, a threshold in the amplitude does not work anymore. This is evident when looking at the distribution of the amplitude, an example is shown in <crossref toid="Figure: amplitude distribution examples"></crossref>. Here, the first plot shows the distribution for an <siglas>LGAD</siglas> (labeled as <em>DUT</em>, ignore the <em>MCP-PMT</em> trace) while the second plot shows the distribution for the PIN. In the plot for the <siglas>LGAD</siglas> it can be seen that a threshold in the amplitud at ~20&nbsp;mV provides an excellent separation between background events (less than the threshold) and signal events (higher than the threshold). In the case of the PIN not only such threshold would classify all the events as background but it is literally impossible to separate the signal from background with a threshold, as can be seen.</p>
+
+<float class="Figure" id="Figure: amplitude distribution examples">
+	<div style="display: flex; flex-direction: row; flex-wrap: wrap; ">
+		<iframe class="plotly" src="media/Amplitude (V) ecdf LGAD.html"></iframe>
+		<iframe class="plotly" src="media/Amplitude (V) ecdf PIN.html"></iframe>
+	</div>
+	<floatcaption>Amplitude distribution (<a href="https://en.wikipedia.org/wiki/Empirical_distribution_function">ECDF</a>), first plot is for an <siglas>LGAD</siglas> labeled as <em>DUT</em> (ignore the <em>MCP-PMT</em> trace), second plot is for the PIN.</floatcaption>
+</float>
+
+<h2>Background estimation</h2>
+
+<p>There is another variable that can be used to which I call <em>t_50</em> and measures the time at which the highest peak in the waveform was at the 50&nbsp;% of its total height. This is nothing more than the <em>Time at 50&nbsp;%</em> shown in the signal example of <crossref toid="Figure: signal example"></crossref>. Since the oscilloscope is trigged with the MCP-PMT placed underneath the <siglas>DUT</siglas>, then the t_50 has a very well defined value for signals that were caused by a real particle, while it has a uniform distribution for background signals. This can be well appreciated looking at the joint distribution of the amplitude and the t_50 which is shown in <crossref toid="Figure: amplitude vs t_50 distribution"></crossref>. In this plot each dot is an event. The vertical column of events around 14&nbsp;ns corresponds to signal events, i.e. those with well defined t_50 and high amplitude. The horizontal band of events with low amplitude are background. For a regular <siglas>LGAD</siglas> device this plot looks similar but the vertical column is completely separated from the horizontal strip, because the gain is enough such that signal events have a very high amplitude.</p>
+
+<float class="Figure" id="Figure: amplitude vs t_50 distribution">
+	<iframe class="plotly" src="media/t_50_(s)_Amplitude_(V)_scatter_plot.html"></iframe>
+	<floatcaption>Joint distribution of the amplitude and the <em>t_50</em> variable, which is defined in <crossref toid="Figure: signal example"></crossref> as the <em>Time at 50&nbsp;%</em>.</floatcaption>
+</float>
+
+<p>It is possible to exploit the t_50 variable to still measure the underlying Landau distribution from the signal events. This is a two step procedure. First, a representative sample of background is taken from the data, say requiring t_50&nbsp;∈&nbsp;[5&nbsp;ns,10&nbsp;ns]. After this selection it is possible to employ <siglas>KDE</siglas> to obtain a functional representation of the amplitude distribution for the background, as shown in <crossref toid="Figure: background KDE estimation"></crossref>. In this figure the <em>x axis</em> shows the <em>amplitude SCALED</em>, which is just a renormalization of the amplitude so that it fluctuates around 1. The only reason for this is that the fitting algorithm from Python is more stable and has a better convergence.</p>
+
+<float class="Figure" id="Figure: background KDE estimation">
+	<iframe class="plotly" src="media/Amplitude (V) SCALED background model.html"></iframe>
+	<floatcaption>Background distribution estimation using <siglas>KDE</siglas>. Note: The apparent discrepancy for the <em>DUT_CH2</em> channel is related to an insufficient dense <em>x axis</em> sampling and not to a failure in the <siglas>KDE</siglas>.</floatcaption>
+</float>
+
+<h2>Fitting the signal</h2>
+
+<p>Once the <siglas>KDE</siglas> model for the background is obtained, it is now possible to include it as part of the fit model for a subset of samples in a region where we expect to measure signal, say t_50&nbsp;∈&nbsp;[13&nbsp;ns,15&nbsp;ns]. The model to fit here is simply 
+
+<equation id="Equation: model to fit">$$\alpha ~ \text{Background KDE}(x) + \beta ~ \text{Langauss(x)}$$</equation>
+
+where $\alpha$ and $\beta$ specify the weight of each component. When performing the fit, it is possible to constraint the values of $\alpha$ and $\beta$ using the fact that the background events (seem to) come from Poisson point process. Thus, we can obtain an estimation of the number of background events expected in the signal region by counting how many background events were found in the background-only region before. As for the number of signal events, an estimation for this would be simply the total number of events in the signal region minus the estimation of the number of background events. To allow for some flexibility I let $\alpha$ and $\beta$ to move within $\pm \sigma$, where $\sigma$ is estimated as the square root of the expected events for each, since I am assuming a Poisson point process.</p>
+
+<p><crossref toid="Figure: fit example"></crossref> shows an example of a fit performed as described above. In each of these fits, the <em>background model</em> component is simply the <siglas>KDE</siglas> estimate (from <crossref toid="Figure: background KDE estimation"></crossref>) appropriately normalized to take into account the number of background events in the signal region (n<sub>background</sub>), while the <em>signal model</em> component is a langauss distribution fitted to the data constraining only the number of signal events in the signal region (n<sub>signal</sub>).</p>
+
+<float class="Figure" id="Figure: fit example">
+	<iframe style="min-width: 666px;" class="plotly" src="media/Amplitude (V) SCALED fit.html"></iframe>
+	<floatcaption>Example of a fit of <crossref toid="Equation: model to fit"></crossref> to data. To better appreciate the details it is suggested to zoom in horizontally, and maybe disable some traces by clicking in the legend items.</floatcaption>
+</float>
+
+<h1>Conclusions</h1>
+
+<p>While characterizing the new <em>Chubut 2</em> board using a PIN detector I faced the issue of signals overlapping with noise, and after some thinking I arrived to this method which is probably very standard but I was not using it before. This method to perform the fit allows to get an estimate of the charge even when it partially overlaps with the noise level. The procedure is not only useful for the characterization of the <em>Chubut 2</em> board but also for studies of heavily irradiated <siglas>LGAD</siglas>s.</p>
+
+<!--
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: _____">Bla bla bla.</reference>
+</div>
+-->
+
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
