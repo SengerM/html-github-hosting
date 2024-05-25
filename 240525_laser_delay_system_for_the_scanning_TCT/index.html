@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Laser delay system for the scanning TCT</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich">Matías Senger</author>
+
+<div style="margin: 22px; text-align: center;">January 11<sup>th</sup>, 2021</div>
+
+<siglas class="definition" first="________" short="___"></siglas>
+
+<abstract><p>We have in our lab a <a rel="noreferrer noopener" href="http://particulars.si/products.php?prod=LargeScanTCT.html" data-type="URL" data-id="http://particulars.si/products.php?prod=LargeScanTCT.html" target="_blank">scanning TCT by Particulars</a>
+ which produces laser pulses. We want to do timing measurements with
+this so we need a time reference and a pulse. The best condition for
+this would be to have two separate laser pulses shifted in time by a
+fixed delay. One way to ensure that this delay is always the same for
+all of the pulses is to split the original pulse in two and then produce
+ the delay by making one of the pulses to travel a longer distance. So
+today I assembled in the lab a system that implements such a delay
+method.</p></abstract>
+
+<div id="table-of-contents">
+	<h2 class="unnumbered">Contents</h2>
+</div>
+
+<h1>Schematic</h1>
+
+<p>This is a scheme of the system that I assembled:</p>
+
+
+
+<img decoding="async" src="media/laser-splitter-tct-schematic.svg" style="max-width: 100%; max-height: 80vh;">
+
+<p>From left to right: the laser comes out from the TCT, it enters into a
+ laser splitter which produces two identical pulses with 50 % of the
+energy each, then one of the pulses travels to a mixer and the other
+pulse travels through a “long” delay line before it reaches the mixer.
+Finally the two pulses are mixed back together into the same fiber and
+sent to the TCT again.</p>
+
+<h1>Components</h1>
+
+<p>The components we bought all to Thorlabs and can be found below:</p>
+
+
+
+<figure class="wp-block-table is-style-regular"><table><thead><tr><th>Element</th><th>Code</th><th>Quantity</th></tr></thead><tbody><tr><td>Laser splitter/mixer</td><td><a href="https://www.thorlabs.com/thorproduct.cfm?partnumber=TN1064R5F2A" data-type="URL" data-id="https://www.thorlabs.com/thorproduct.cfm?partnumber=TN1064R5F2A" target="_blank" rel="noreferrer noopener">TN1064R5F2A</a></td><td>2 units</td></tr><tr><td>Delay optic fiber</td><td>NaN (see below)</td><td>20 meters</td></tr><tr><td>Connector</td><td><a href="https://www.thorlabs.com/thorproduct.cfm?partnumber=ADAFC1" data-type="URL" data-id="https://www.thorlabs.com/thorproduct.cfm?partnumber=ADAFC1" target="_blank" rel="noreferrer noopener">ADAFC1</a></td><td>4 units</td></tr></tbody></table></figure>
+
+<h2>Optic fiber delay line</h2>
+
+<p>For the optic fiber delay line I used the <a rel="noreferrer noopener" href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=2410" data-type="URL" data-id="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=2410" target="_blank">Custom Cable Configurator</a> with the following input:</p>
+
+<img decoding="async" src="media/delay-optic-fiber-details.png" alt="" style="max-width: 100%; max-height: 80vh;">
+
+<p>When it arrived, the optic fiber had the following label:</p>
+
+<img decoding="async" src="media/photo_2021-01-11_14-29-47-768x533.jpg" alt="" class="wp-image-173" style="max-width: 100%; max-height: 80vh;">
+
+<h3>Length of the delay line optic fiber</h3>
+
+<p>To calculate the length of the optic fiber I used the approximation
+that the speed of light inside the fiber is approximately two thirds
+that of vacuum. Thus $$\text{Delay optic fiber length} = \frac{2c}{3}\Delta t$$ where $c \approx 3 \times 10^8 \text{ m s}^{-1}$ and $\Delta t$ is the desired delay time. In my case $\Delta t = 100 \text{ ns}$ so the length of the fiber is 20&nbsp;m.</p>
+
+
+
+<h1>The system assembly</h1>
+
+<p>The assembly of the system is almost trivial. The only precaution to
+have is to be very careful when handling the fibers because they are too
+ thin. Below there are two pictures of the system assembled outside the
+TCT and finally installed inside the TCT with all the connections made:</p>
+
+<img decoding="async" src="media/photo_2021-01-11_14-17-58.jpg" alt="" class="wp-image-173" style="max-width: 100%; max-height: 80vh;">
+
+<h1>Results</h1>
+
+<p>At a first glance, the system is behaving as expected. In the image
+below we see two pulses coming out from an AC-LGAD detector each
+corresponding to each of the two laser pulses. The delay time between
+the two pulses is $\Delta t \approx 98.7 \text{ ns}$ as designed. The system was no further characterized yet.</p>
+
+<img decoding="async" src="media/photo_2021-01-11_14-21-07.jpg" alt="" class="wp-image-173" style="max-width: 100%; max-height: 80vh;">
+
+<!--
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: _____">Bla bla bla.</reference>
+</div>
+-->
+
+<!--
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+-->
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
