@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Making a temperature controller with Python</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich">Matías Senger</author>
+
+<!--
+<div style="margin: 22px; text-align: center;">September 8<sup>th</sup>, 2021</div>
+-->
+
+<siglas class="definition" first="________" short="___"></siglas>
+
+<p>Controlling the temperature of something is a very common task to do in the lab, basically because almost everything is a function of temperature and you usually want to keep it stable at a known value. Currently I am working in measuring the TI-LGADs after irradiation, and for this they have to be cooled down to approximately -20&nbsp;°C because otherwise the current blows up. That is why I implemented the <a href="../240525_low_temperature_setup_for_the_TCT/index.html">low temperature system for the TCT setup</a>. The system works fine and is capable of reaching the desired temperature, but without a controller there is not much precision in the temperature, and it is subjected to fluctuations. To ease my life and improve the quality of the results I decided to implement a temperature controller which automatically adjusts the current flowing through the Peltier cells such that the temperature is stabilized at the desired value.</p>
+
+<p>Usually these controllers can be just bought, but since I had all the required elements in the lab to implement one on my own, I decided to go this way. The only extra thing I had to do is to connect the DC power supply (powering the Peltier cells) using a USB cable to the computer, and write the software. Establishing the communication between the computer and the power supply was the most complicated part, but that’s another story. Once this communication was working, I decided to try with the engineer’s workhorse when something has to be automatically controlled, a <a href="https://en.wikipedia.org/wiki/PID_controller">PID controller</a>. Python is so vast that there is a PID module awaiting to be imported, the <a href="https://pypi.org/project/simple-pid/">simple-pid package</a>. So all I had to do is import this package, tune the PID constants for a while, and voilà, the controller was working. The current version of the software that controls the temperature in the TCT setup can be found <a href="https://github.com/SengerM/tct_scripts/blob/5c0806229609b75e4b04576152916a5c6d1835aa/temperature_controller.py">here</a>, it is more than just importing the PID package but that’s for having it running as a daemon in the background, automatically reporting parameters to my mobile (in case something goes wrong) and at the same time allowing control from any other Python script (for example the scripts that will actually measure the TI-LGADs).</p>
+
+<p>I have to say that I am surprised on how well the controller performs. Below there is a plot showing the set-temperature and the measured-temperature while I was doing some testing. We can see that it stabilizes in about 3 minutes and the temperature has fluctuation of less than 0.05&nbsp;°C once it stabilizes. This is far better than what I need for this application, so nice&nbsp;😁.</p>
+
+<iframe src="media/temperature_controller.html" class="plotly"></iframe>
+
+<p>The "measured temperature" is the temperature measured by a sensor that is less than one centimeter from the TI-LGAD in the readout board, you can see it in the picture below it is the small black chip next to the gold pad where the TI-LGAD is mounted.</p>
+
+<img src="../240525_low_temperature_setup_for_the_TCT/media/pcb/3.jpg" style="max-width: 100%; max-height: 88vh;">
+
+<!--
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: _____">Bla bla bla.</reference>
+</div>
+-->
+
+<!--
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+-->
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
