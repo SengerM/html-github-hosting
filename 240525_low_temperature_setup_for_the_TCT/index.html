@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Low temperature setup for the TCT</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author affiliation="Universität Zürich">Matías Senger</author>
+
+<!--
+<div style="margin: 22px; text-align: center;">September 8<sup>th</sup>, 2021</div>
+-->
+
+<siglas class="definition" first="________" short="___"></siglas>
+
+<p>As I mentioned in the previous post, we are planning to measure irradiated TI-LGADs in our TCT setup in the near future. After irradiation the bias current of these devices is considerably higher and since it has an exponential dependence on temperature[1] they are usually cooled down to limit it. To this end I made some modifications to our TCT setup so it can reach temperatures lower than -20 °C. </p>
+
+<p>First of all I designed a simple four channel and passive readout board shown below. This board was designed in such a way that it is small enough to fit within the Peltier cells included in the TCT setup and at the same time has a flat surface, except in one side where the connectors are, so it has a good thermal contact. It also hosts a temperature and humidity sensor (the black chip below the pad to stick the DUT).</p>
+
+<img src="media/pcb/2.jpg" style="max-width: 100%; max-height: 80vh;">
+
+<p>In conjunction with this board I designed three 3D printed pieces to arrange everything in place. This is, to keep the four Peltier cells arranged in a pyramidal way (mimicking <a href="https://www.google.com/search?q=peltier+stacking&tbm=isch&ved=2ahUKEwjEl_-hhrf0AhXT0oUKHYT6BfcQ2-cCegQIABAA&oq=peltier+stack&gs_lcp=CgNpbWcQARgBMgcIIxDvAxAnMgcIIxDvAxAnMggIABAIEB4QE1AAWABggRRoAHAAeACAAX-IAX-SAQMwLjGYAQCqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=4VuhYYSjJ9OllwSE9Ze4Dw&bih=964&biw=1644&client=ubuntu&hs=1Fn">this</a>), on top of this the readout board, and finally the dry air system to avoid ice formation.</p>
+
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+	<img src="media/3d_printed/1.jpg" style="width: 333px;">
+	<img src="media/3d_printed/2.jpg" style="width: 333px;">
+	<img src="media/3d_printed/3.jpg" style="width: 333px;">
+	<img src="media/3d_printed/4.jpg" style="width: 333px;">
+</div>
+
+<p>The whole system seems to behave pretty well as seen in the plot below, during a quick test:</p>
+
+<img src="media/Screenshot_2021-11-26_16-19-17-1536x864.png" style="max-width: 100%; max-height: 88vh;">
+
+<p>The arrange of Peltier cells drains about 4 Ampère at about 12 V (yes, quite inefficient but it gets the job done). During a quick test the setup stabilized at about -22 °C while the dry air was flowing preventing ice from forming. Without this dry air the system can reach a lower temperature (-28&nbsp;°C) but ice is produced (I tested this).</p>
+
+<p>Everything seems to be ready for the measurements of the irradiated devices&nbsp;✅.</p>
+
+<!--
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: _____">Bla bla bla.</reference>
+</div>
+-->
+
+<!--
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+-->
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
